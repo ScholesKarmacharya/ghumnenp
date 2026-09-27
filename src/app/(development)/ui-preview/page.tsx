@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { UiPreview } from "@/components/dev/ui-preview";
 import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
 
 export const metadata: Metadata = {
   title: "Component preview",
@@ -34,6 +35,7 @@ export default function UiPreviewPage() {
         </header>
         <UiPreview />
       </main>
+      <SiteFooter />
     </>
   );
 }

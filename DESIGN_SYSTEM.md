@@ -71,3 +71,7 @@ Use actual input types (`email`, `number`, `date`, etc.) and `autoComplete` wher
 The public layout includes `SiteHeader`, a skip-to-content link, and a compact brand link. Each public page must provide `<main id="main-content" tabIndex={-1}>`. Navigation uses existing routes from `components/layout/navigation.ts`; add links with their completed features.
 
 Below 768px, a disclosure button controls the mobile navigation. It supports Tab, Escape with focus restoration, outside clicks, link selection, and resets when the route or desktop breakpoint changes. It is ordinary site navigation, not an ARIA menu or modal. Desktop and mobile navigation are never simultaneously visible/focusable. Current-page links expose `aria-current="page"`.
+
+### Footer
+
+`SiteFooter` is a Server Component with the shared brand, product positioning, copyright, and a separately named navigation landmark. It wraps into one column on small screens and sits after content using the public layout's minimum viewport height. Add policy/contact links only when their real content and routes are available; never invent addresses or legal claims.

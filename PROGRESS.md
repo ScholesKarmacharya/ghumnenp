@@ -4,9 +4,9 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-013.
-- Current task: TASK-014 — Footer.
-- Next task: TASK-015 — Standard loading/error/empty states.
+- Completed: TASK-001 through TASK-014.
+- Current task: TASK-015 — Standard loading/error/empty states.
+- Next task: TASK-016 — Initial schema migration.
 - Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
@@ -211,3 +211,15 @@ Updated: 2026-09-27.
 **Files created:** `src/components/layout/{navigation.ts,brand-link.tsx,site-header.tsx,site-navigation.tsx}`, `src/app/(public)/layout.tsx`. Removed the layout marker. Modified the public home page, development preview page, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
 
 **Environment/migrations:** None. **Issues/blockers:** More navigation items will be added only when their routes exist. **Next:** TASK-014.
+
+## TASK-014 — Complete
+
+**Understand/plan:** Add a compact semantic footer using established brand/navigation components and real routes.
+
+**Implement:** Added Server Component `SiteFooter` and integrated it into the public layout and development preview. Includes positioning, copyright, shared brand, and separately labeled footer navigation. No fabricated contacts, policies, or partner links.
+
+**Test/review:** Full quality gate passed (60 tests and all gates). Browser checks confirmed one contentinfo landmark, named footer navigation, working HTTP 200 links, no content overlap, and no overflow across four widths at normal/doubled text size. Footer stays after main content and uses the existing token system.
+
+**Files created:** `src/components/layout/site-footer.tsx`. Modified public layout, preview page, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
+
+**Environment/migrations:** None. **Issues/blockers:** Real policy/contact content must exist before adding its links. **Next:** TASK-015.
