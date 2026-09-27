@@ -29,3 +29,15 @@ Date: 2026-09-27. Related task: TASK-003.
 Use Tailwind CSS 4.3.3 through `@tailwindcss/postcss`, imported in the root global stylesheet. Tailwind 4 uses CSS configuration and automatic source discovery, so no legacy `tailwind.config.js` or Autoprefixer dependency is needed. Keep neutral base colors, a local system font, focus visibility, and reduced-motion defaults here; product design tokens and typography remain TASK-008 and TASK-009.
 
 Reference: [Tailwind PostCSS setup](https://tailwindcss.com/docs/installation/using-postcss).
+
+## DEC-010 — Public service configuration and test boundary
+
+Date: 2026-09-27. Related tasks: TASK-005, TASK-006.
+
+This new Supabase integration uses a project URL and modern publishable key. No privileged client or service-role variable is needed for session-scoped server/browser clients. Reject legacy JWT keys and secret keys in public configuration; the project has no legacy integration to preserve. Require HTTPS except for local loopback development. Validate only named public fields, and report field names without values.
+
+Validate at use time and also when Next.js loads configured values before bundling. Both values may be absent while the foundation has no Supabase-consuming route; partially supplied or invalid values must fail. This keeps static development possible while preventing a secret pasted into public configuration from reaching a build. Public values are build-time values; changing them requires a rebuild.
+
+Add Vitest at TASK-005 because validation now introduces security-sensitive testable logic. Tests use inert fixtures and do not load local credentials or contact Supabase. The unit suite is part of `npm run check`.
+
+References: [Supabase API keys](https://supabase.com/docs/guides/getting-started/api-keys), [Next.js environment variables](https://nextjs.org/docs/app/guides/environment-variables).

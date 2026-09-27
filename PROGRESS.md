@@ -4,10 +4,10 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-004.
-- Current task: TASK-005 — Environment example and validation.
-- Next task: TASK-006 — Supabase server/browser clients.
-- Blockers: none for TASK-005. External service configuration has not been supplied.
+- Completed: TASK-001 through TASK-005.
+- Current task: TASK-006 — Supabase server/browser clients.
+- Next task: TASK-007 — Project folder architecture, after TASK-006 verification.
+- Blockers: live Supabase verification needs the user's project URL and publishable key. Local client implementation can proceed.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
 ## TASK-001 — Complete
@@ -85,3 +85,21 @@ Updated: 2026-09-27.
 **Environment/migrations:** Installed development formatter only. No database, application environment, or production changes.
 
 **Known issues/follow-up:** ESLint 9 compatibility limitation remains documented in DEC-008. Proceed to TASK-005.
+
+## TASK-005 — Complete
+
+**Understand/plan:** Provide a safe configuration template and validate only the service configuration needed next. Avoid reading or creating privileged credentials.
+
+**Implement:** Added blank `.env.example`, typed Zod parsing, an explicit public environment accessor, and validation before bundling when configuration is supplied. Invalid diagnostics name fields without exposing values. Added Vitest and included tests in the quality gate. See DEC-010 for the modern key format and validation timing.
+
+**Test:** `npm run check` passed: formatting, lint, strict types, all 40 environment tests, and production build with no Supabase configuration. A separate negative build check passed: a synthetic secret key in the public variable is rejected before compilation and is absent from diagnostics. Git ignore check confirms `.env.local` and `.env.production` are ignored while `.env.example` is trackable. `git diff --check` passed.
+
+**Review:** Tests were implemented independently and reviewed against the validation contract. Tests cover valid/invalid URLs, loopback HTTP, key restrictions, missing/wrong types, removal of unrelated private fields, redacted errors, and lazy uncached reads. No actual secrets, external connections, or fake success paths.
+
+**Files created:** `.env.example`, `src/lib/env/schema.ts`, `src/lib/env/public.ts`, `src/tests/unit/env.test.ts`, `vitest.config.mts`.
+
+**Files modified:** `next.config.ts`, `tsconfig.json`, `package.json`, `package-lock.json`, `README.md`, `GHUMNE_MASTER_SPEC.md`, `DECISIONS.md`, `PROGRESS.md`.
+
+**Environment/migrations:** Zod and Vitest installed. No `.env.local` or live credentials created; no database changes.
+
+**Known issues/follow-up:** TASK-006 can be implemented and locally tested now, but live Supabase connectivity requires user configuration. ESLint compatibility limitation remains.
