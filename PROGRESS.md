@@ -4,10 +4,10 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001, TASK-002.
-- Current task: TASK-003 — Tailwind and global styling.
-- Next task: TASK-004 — Linting, formatting, and type checks.
-- Blockers: none for TASK-003. External service configuration has not been supplied.
+- Completed: TASK-001 through TASK-003.
+- Current task: TASK-004 — Linting, formatting, and type checks.
+- Next task: TASK-005 — Environment example and validation.
+- Blockers: none for TASK-004. External service configuration has not been supplied.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
 ## TASK-001 — Complete
@@ -49,3 +49,21 @@ Updated: 2026-09-27.
 **Environment/migrations:** Local dependencies installed; local Git initialized. No database or deployment changes. No `.env.local` created.
 
 **Known issues/follow-up:** ESLint 9 has an upstream deprecation warning but is the compatible version for Next.js's React lint plugin; tracked in DEC-008. The optional `unrs-resolver` postinstall remains unapproved; lint passed using the installed native optional package. Formatting belongs to TASK-004. Homepage product UI belongs to TASK-023.
+
+## TASK-003 — Complete
+
+**Understand/plan:** Configure the current Tailwind integration and global accessibility defaults without advancing the design-system task sequence.
+
+**Implement:** Added Tailwind 4.3.3, its PostCSS plugin, and a root stylesheet. Applied bounded responsive spacing and type sizes to the existing minimal page. Added visible focus and reduced-motion defaults; no remote fonts or assets.
+
+**Test:** Type checking, linting, production build, dependency check, production CSS retrieval, and whitespace checks passed. Headless Edge rendering reviewed at 390×844 and 1440×900. A temporary Playwright check passed at widths 320, 390, 768, and 1440: no horizontal overflow, expected responsive heading size, reduced-motion media preference recognized, and no browser runtime errors. Screenshots remain in ignored `test-results/`. Production test server stopped.
+
+**Review:** Global stylesheet loads once from the root layout. Neutral base colors retain contrast. Existing content and semantics preserved. The direct Edge screenshot at mobile width clipped a wider browser viewport; repeated with Playwright's exact viewport emulation and verified the actual layout.
+
+**Files created:** `postcss.config.mjs`, `src/app/globals.css`.
+
+**Files modified:** `package.json`, `package-lock.json`, `src/app/layout.tsx`, `src/app/(public)/page.tsx`, `GHUMNE_MASTER_SPEC.md`, `DECISIONS.md`, `PROGRESS.md`.
+
+**Environment/migrations:** Styling dependencies installed. Temporary Playwright CLI cached locally for browser verification, without adding it to application dependencies. No database or environment changes.
+
+**Known issues/follow-up:** Product colors, type system, controls, and components remain in Phase 2. ESLint compatibility limitation from TASK-002 remains.

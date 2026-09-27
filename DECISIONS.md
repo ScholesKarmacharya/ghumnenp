@@ -21,3 +21,11 @@ Use Node.js 24, Next.js 16.3.6 and React 19.3.0, verified against npm's stable r
 Add the basic ESLint command in TASK-002 because every code task requires lint verification. Complete formatting and the aggregate quality gate in TASK-004. Run `next typegen` before `tsc --noEmit` so type checks work on a clean checkout. Keep external fonts and service connections out of the initial build.
 
 The Windows execution sandbox owns files under a different account and makes `.git` read-only. Git operations use a command-scoped `safe.directory` for this workspace and reviewed escalation for writes; global Git configuration is unchanged.
+
+## DEC-009 — Tailwind CSS configuration
+
+Date: 2026-09-27. Related task: TASK-003.
+
+Use Tailwind CSS 4.3.3 through `@tailwindcss/postcss`, imported in the root global stylesheet. Tailwind 4 uses CSS configuration and automatic source discovery, so no legacy `tailwind.config.js` or Autoprefixer dependency is needed. Keep neutral base colors, a local system font, focus visibility, and reduced-motion defaults here; product design tokens and typography remain TASK-008 and TASK-009.
+
+Reference: [Tailwind PostCSS setup](https://tailwindcss.com/docs/installation/using-postcss).
