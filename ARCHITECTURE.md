@@ -38,3 +38,5 @@ Keep Supabase client construction in `lib/supabase`; feature data-access files i
 Route groups do not change public URLs. Do not create placeholder pages merely to populate a directory or link to a route before it exists. A new authenticated route requires both verified server authorization and the Supabase session-refresh proxy; folder placement alone does not protect it.
 
 Tests use inert fixtures by default. Tests against a real database must use an explicitly configured development/test project. Keep development seed data separate from production data.
+
+`src/components/dev` and `src/app/(development)/ui-preview` provide an isolated component verification surface. The route is gated by `NODE_ENV` and returns 404 outside development; it is not part of the product navigation.

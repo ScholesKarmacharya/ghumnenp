@@ -46,4 +46,10 @@ Use one `h1` per page and a meaningful heading order. Choose the semantic elemen
 
 ## Scope
 
-Reusable controls follow in TASK-010 onward. Product pages will compose these primitives in Phase 4; do not invent destination data or routes for a component preview.
+### Buttons and links
+
+`Button` uses native button semantics, defaults to `type="button"`, and supports primary, secondary, ghost, and danger variants. Use `type="submit"` explicitly in forms. `isLoading` disables activation and supplies a visible `loadingLabel` plus `aria-busy`. Keep the label specific to the operation. Native `disabled` prevents activation; it is not a substitute for server-side authorization.
+
+Use `ButtonLink` for navigation styled as an action and `TextLink` for inline navigation. Links stay links, without a pretend disabled state. New-tab links retain supplied `rel` values and add `noopener noreferrer`; include the new-tab behavior in their label/context. Standalone actions have a 44px minimum target; inline text links retain normal text flow.
+
+Run `npm run dev` and open `/ui-preview` to inspect controls. This route returns 404 outside development, includes no live data, and is excluded from indexing. Product pages will compose these primitives in Phase 4.

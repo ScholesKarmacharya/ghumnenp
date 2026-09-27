@@ -4,9 +4,9 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-009.
-- Current task: TASK-010 — Buttons and links.
-- Next task: TASK-011 — Form controls.
+- Completed: TASK-001 through TASK-010.
+- Current task: TASK-011 — Form controls.
+- Next task: TASK-012 — Cards and badges.
 - Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
@@ -163,3 +163,15 @@ Updated: 2026-09-27.
 **Files modified:** `src/app/tokens.css`, `src/app/globals.css`, `src/app/(public)/page.tsx`, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
 
 **Environment/migrations:** None. **Issues/blockers:** None locally. **Next:** TASK-010.
+
+## TASK-010 — Complete
+
+**Understand/plan:** Build native buttons and navigation links using the shared tokens, preserving keyboard behavior and preventing accidental form submission.
+
+**Implement:** Added `Button`, `ButtonLink`, `TextLink`, shared button styles, and a small class-name utility. Buttons default to non-submit, support four variants, and disable activation while loading. New-tab links preserve caller rel values and add noopener/noreferrer. Added a development-only component preview; it is not in product navigation.
+
+**Test/review:** Full quality gate passed (60 tests and all other gates). Production `/ui-preview` returns HTTP 404. Browser checks passed for click vs submit semantics, keyboard activation and visible focus, disabled/loading states, link rel values, 44px targets, four viewport widths, and no runtime errors. Initial checks used 127.0.0.1 against a pre-existing localhost dev server, which blocked its dev resources; using its configured localhost origin resolved the interaction failure without changing application security settings. Existing user dev server remains running; only our production test server was stopped.
+
+**Files created:** `src/components/ui/{button-styles.ts,button.tsx,link.tsx}`, `src/lib/utils/cn.ts`, `src/components/dev/ui-preview.tsx`, `src/app/(development)/ui-preview/page.tsx`. Removed the now-unneeded UI/utils directory markers. Updated `DESIGN_SYSTEM.md`, `ARCHITECTURE.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
+
+**Environment/migrations:** None; no dependencies added. **Issues/blockers:** Live service follow-up remains. **Next:** TASK-011.

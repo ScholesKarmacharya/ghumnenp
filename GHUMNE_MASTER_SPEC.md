@@ -1163,7 +1163,7 @@ Codex should work sequentially unless a dependency makes a different order neces
 
 - [x] TASK-008 Define design tokens
 - [x] TASK-009 Implement typography
-- [ ] TASK-010 Implement buttons and links
+- [x] TASK-010 Implement buttons and links
 - [ ] TASK-011 Implement form controls
 - [ ] TASK-012 Implement cards/badges
 - [ ] TASK-013 Implement responsive header/navigation
