@@ -59,3 +59,9 @@ References: [Supabase SSR clients](https://supabase.com/docs/guides/auth/server-
 Date: 2026-09-27. Related tasks: TASK-006 onward.
 
 On resumption, all 60 existing tests and the quality gate passed. TASK-006 configures client code; its local acceptance checks are complete. The specification does not require a live connection before folder architecture or design-system work. Correct the prior blanket blocker and continue sequentially through work that does not consume a live service. Keep live verification explicitly pending and stop when a task actually requires a provisioned database or user-specific service settings. Do not invent credentials, weaken validation, or treat mocked tests as proof of live integration.
+
+## DEC-013 — Preserve focused environment and test modules
+
+Date: 2026-09-27. Related task: TASK-007.
+
+Use the specification's folder architecture with `lib/env` for configuration and `tests/unit` for isolated tests. Retain database types beside the Supabase adapter until migration generation provides their source. Track unused module directories with markers; add implementations only in their assigned tasks. `ARCHITECTURE.md` documents ownership and import direction without adding an abstraction framework.

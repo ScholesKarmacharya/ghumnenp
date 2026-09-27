@@ -63,6 +63,7 @@ This performs one read-only request to Supabase Auth settings, validates the res
 ## Project records
 
 - [Repository audit](REPOSITORY_AUDIT.md)
+- [Source architecture](ARCHITECTURE.md)
 - [Progress and validation results](PROGRESS.md)
 - [Implementation decisions](DECISIONS.md)
 

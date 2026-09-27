@@ -4,9 +4,9 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-006.
-- Current task: TASK-007 — Project folder architecture.
-- Next task: TASK-008 — Design tokens.
+- Completed: TASK-001 through TASK-007.
+- Current task: TASK-008 — Design tokens.
+- Next task: TASK-009 — Typography.
 - Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
@@ -127,3 +127,15 @@ Updated: 2026-09-27.
 **Resume verification:** Re-read the full specification, progress log, implementation decisions, configuration, source, and tests. Working tree was clean. `npm run check` passed again: all 60 tests, format, lint, strict types, and production build. `npm ls --depth=0` and whitespace checks passed. No completed implementation needed rewriting.
 
 **Next steps:** Proceed with TASK-007. Run the read-only live check once configuration is supplied, before claiming live data/auth integration works.
+
+## TASK-007 — Complete
+
+**Understand/plan:** Match specification section 5.3 while preserving existing source and client boundaries.
+
+**Implement:** Established the remaining route, component, feature, library, and shared-type directories with `.gitkeep` markers. Added `ARCHITECTURE.md` with module responsibilities, dependency direction, server/browser boundaries, and rules for adding data access and protected routes. Existing `lib/env` and `tests/unit` are retained as justified refinements.
+
+**Test/review:** `npm run check` passed (60 tests, formatting, lint, strict types, production build). Build still exposes only `/` and the built-in not-found route. Markers create no endpoints, UI, domain implementations, or dependencies. Existing imports and files remain in place.
+
+**Files:** Created `ARCHITECTURE.md` and `.gitkeep` markers in the new directories listed there. Modified `README.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`, `DECISIONS.md`.
+
+**Environment/migrations:** None. **Issues/blockers:** None for the design system. Live service verification remains pending. **Next:** TASK-008.
