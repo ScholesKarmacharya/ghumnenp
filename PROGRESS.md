@@ -4,9 +4,9 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-007.
-- Current task: TASK-008 — Design tokens.
-- Next task: TASK-009 — Typography.
+- Completed: TASK-001 through TASK-008.
+- Current task: TASK-009 — Typography.
+- Next task: TASK-010 — Buttons and links.
 - Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
@@ -139,3 +139,15 @@ Updated: 2026-09-27.
 **Files:** Created `ARCHITECTURE.md` and `.gitkeep` markers in the new directories listed there. Modified `README.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`, `DECISIONS.md`.
 
 **Environment/migrations:** None. **Issues/blockers:** None for the design system. Live service verification remains pending. **Next:** TASK-008.
+
+## TASK-008 — Complete
+
+**Understand/plan:** Translate the specification's clean, mobile-first direction into shared semantic tokens; it defines no fixed brand palette.
+
+**Implement:** Added `src/app/tokens.css` and `DESIGN_SYSTEM.md`. Updated `globals.css` to use background, text, and focus tokens. Added semantic status colors, decorative/control borders, 44px control sizing, spacing, radii, containers, and restrained elevation/motion values.
+
+**Test/review:** `npm run check` passed (60 tests and all quality gates). One-off contrast calculation verified 19 intended pairings: normal text/status pairs exceed 4.5:1; focus/control boundaries exceed 3:1. Muted text has at least 5.87:1 contrast on supported surfaces. Production CSS check confirmed token emission and use by page/focus rules. No layout, content, or behavior changed. Soft borders are documented as decorative only.
+
+**Files:** Created `src/app/tokens.css`, `DESIGN_SYSTEM.md`; modified `src/app/globals.css`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`, `DECISIONS.md`.
+
+**Environment/migrations:** None. **Issues/blockers:** No local blocker. **Next:** TASK-009.

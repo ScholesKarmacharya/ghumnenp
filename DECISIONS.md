@@ -65,3 +65,9 @@ On resumption, all 60 existing tests and the quality gate passed. TASK-006 confi
 Date: 2026-09-27. Related task: TASK-007.
 
 Use the specification's folder architecture with `lib/env` for configuration and `tests/unit` for isolated tests. Retain database types beside the Supabase adapter until migration generation provides their source. Track unused module directories with markers; add implementations only in their assigned tasks. `ARCHITECTURE.md` documents ownership and import direction without adding an abstraction framework.
+
+## DEC-014 — Accessible semantic design defaults
+
+Date: 2026-09-27. Related tasks: TASK-008 onward.
+
+The specification gives visual principles rather than fixed brand values. Use forest-green primary actions, warm neutral surfaces, and a small clay accent. Semantic colors, dimensions, radii, and motion settings live in one CSS token file. Document supported contrast pairings and usage in `DESIGN_SYSTEM.md`; feature components should consume those roles. Tailwind's static theme output keeps tokens available to both utilities and plain CSS ([theme variables](https://tailwindcss.com/docs/theme)).

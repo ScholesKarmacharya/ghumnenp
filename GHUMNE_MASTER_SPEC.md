@@ -1161,7 +1161,7 @@ Codex should work sequentially unless a dependency makes a different order neces
 
 ## PHASE 2 - Design System
 
-- [ ] TASK-008 Define design tokens
+- [x] TASK-008 Define design tokens
 - [ ] TASK-009 Implement typography
 - [ ] TASK-010 Implement buttons and links
 - [ ] TASK-011 Implement form controls
