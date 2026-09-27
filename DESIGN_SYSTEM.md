@@ -28,6 +28,22 @@ Never use color alone to convey error, selection, or verification. Use strong bo
 - `shadow-card`: subtle elevation. Prefer spacing and borders to stacked shadows.
 - Default transition: 150ms for simple color/state feedback. Global reduced-motion rules shorten animation and transitions.
 
+## Typography
+
+Use the local Segoe UI / Noto Sans / Arial system stack. No remote font is required to render or build the app. Body text is 16px with a 1.65 line height; supporting text is 14px minimum. Preserve browser text scaling and never give text containers a fixed height.
+
+| Utility           | Size at the default root font   | Use                            |
+| ----------------- | ------------------------------- | ------------------------------ |
+| `text-display`    | Fluid 40–60px, 1.1 line height  | One primary hero heading       |
+| `text-title`      | Fluid 32–48px, 1.15 line height | Page title                     |
+| `text-heading`    | 24px, 1.3 line height           | Section heading                |
+| `text-subheading` | 18px, 1.4 line height           | Card/subsection title          |
+| `text-lead`       | 18px, 1.65 line height          | Short introductory copy        |
+| `text-body`       | 16px, 1.65 line height          | Body copy and form fields      |
+| `text-caption`    | 14px, 1.5 line height           | Supporting labels and metadata |
+
+Use one `h1` per page and a meaningful heading order. Choose the semantic element for the document structure; utilities can adjust its visual size. Keep sustained prose within `max-w-reading` (65ch), use sentence case, and let long text wrap. Dates, prices, and other estimates still need their uncertainty labels.
+
 ## Scope
 
-Typography and reusable UI are implemented in TASK-009 onward. Product pages will compose these primitives in Phase 4; do not invent destination data or routes for a component preview.
+Reusable controls follow in TASK-010 onward. Product pages will compose these primitives in Phase 4; do not invent destination data or routes for a component preview.

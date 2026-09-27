@@ -10,9 +10,44 @@
     min-width: 0;
     background: var(--color-background);
     color: var(--color-foreground);
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.5;
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
     overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--text-title);
+    line-height: var(--text-title--line-height);
+    letter-spacing: var(--text-title--letter-spacing);
+  }
+
+  h2 {
+    font-size: var(--text-heading);
+    line-height: var(--text-heading--line-height);
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: var(--text-subheading);
+    line-height: var(--text-subheading--line-height);
+  }
+
+  small {
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
   }
 
   :focus-visible {

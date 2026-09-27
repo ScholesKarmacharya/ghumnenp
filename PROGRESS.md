@@ -4,9 +4,9 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-008.
-- Current task: TASK-009 — Typography.
-- Next task: TASK-010 — Buttons and links.
+- Completed: TASK-001 through TASK-009.
+- Current task: TASK-010 — Buttons and links.
+- Next task: TASK-011 — Form controls.
 - Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
@@ -151,3 +151,15 @@ Updated: 2026-09-27.
 **Files:** Created `src/app/tokens.css`, `DESIGN_SYSTEM.md`; modified `src/app/globals.css`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`, `DECISIONS.md`.
 
 **Environment/migrations:** None. **Issues/blockers:** No local blocker. **Next:** TASK-009.
+
+## TASK-009 — Complete
+
+**Understand/plan:** Add readable, scalable typography without external font dependencies or fixed text heights.
+
+**Implement:** Added system-font and display/title/heading/body/lead/caption tokens, semantic heading defaults, and supporting typography guidance. The existing minimal home page uses the shared display/lead roles and readable line length.
+
+**Test/review:** Full quality gate passed (60 tests, types, lint, format, build). Headless Edge checked 320/390/768/1440px widths at 100% and 200% root text size: no overflow, one h1, correct font scaling, expected token background, no browser errors. Reviewed the mobile screenshot in ignored `test-results/typography-mobile.png`. No font download, new UI flow, or dependency introduced; temporary production server stopped.
+
+**Files modified:** `src/app/tokens.css`, `src/app/globals.css`, `src/app/(public)/page.tsx`, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
+
+**Environment/migrations:** None. **Issues/blockers:** None locally. **Next:** TASK-010.
