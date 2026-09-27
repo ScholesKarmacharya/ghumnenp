@@ -53,3 +53,9 @@ Use one `h1` per page and a meaningful heading order. Choose the semantic elemen
 Use `ButtonLink` for navigation styled as an action and `TextLink` for inline navigation. Links stay links, without a pretend disabled state. New-tab links retain supplied `rel` values and add `noopener noreferrer`; include the new-tab behavior in their label/context. Standalone actions have a 44px minimum target; inline text links retain normal text flow.
 
 Run `npm run dev` and open `/ui-preview` to inspect controls. This route returns 404 outside development, includes no live data, and is excluded from indexing. Product pages will compose these primitives in Phase 4.
+
+### Form controls
+
+`Input`, `Select`, `Textarea`, `Checkbox`, and `Radio` require a unique `id` and visible `label`. They connect optional `hint` and `error` text through `aria-describedby` while preserving additional caller descriptions. Errors set `aria-invalid` and render an alert with text. Native types, required/min/max/pattern attributes, disabled state, names, events, and React 19 refs pass through.
+
+Use actual input types (`email`, `number`, `date`, etc.) and `autoComplete` where appropriate. Group related radios/checkboxes in a `fieldset` with a `legend`; radios in one group share a name. Checkbox/radio labels provide the 44px target. Native selects retain platform keyboard behavior. Textareas resize vertically. Client/browser validation helps users but never replaces server-side Zod validation.

@@ -4,9 +4,9 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-010.
-- Current task: TASK-011 — Form controls.
-- Next task: TASK-012 — Cards and badges.
+- Completed: TASK-001 through TASK-011.
+- Current task: TASK-012 — Cards and badges.
+- Next task: TASK-013 — Responsive header/navigation.
 - Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
@@ -175,3 +175,15 @@ Updated: 2026-09-27.
 **Files created:** `src/components/ui/{button-styles.ts,button.tsx,link.tsx}`, `src/lib/utils/cn.ts`, `src/components/dev/ui-preview.tsx`, `src/app/(development)/ui-preview/page.tsx`. Removed the now-unneeded UI/utils directory markers. Updated `DESIGN_SYSTEM.md`, `ARCHITECTURE.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
 
 **Environment/migrations:** None; no dependencies added. **Issues/blockers:** Live service follow-up remains. **Next:** TASK-011.
+
+## TASK-011 — Complete
+
+**Understand/plan:** Provide native, labeled form primitives with predictable keyboard behavior, help/error associations, and correct input types. Keep feature-specific server validation out of presentation.
+
+**Implement:** Added shared field layout/feedback, `Input`, `Select`, `Textarea`, `Checkbox`, and `Radio`. Required IDs and visible labels link controls to hints/errors, preserve caller descriptions and native attributes/refs, and expose invalid/disabled states. Extended the development preview with inert examples.
+
+**Test/review:** Full quality gate passed (60 tests and all gates). Headless Edge checks passed: required/email/min-value native validation, successful valid submission, selected values, error/hint IDs and aria-invalid, disabled fields, label-click checkboxes, radio arrow-key selection, vertical textarea resizing, 44px targets, four widths without overflow, and no runtime errors. Screenshot recorded in ignored `test-results/fields-mobile.png`. Native browser validation is documented as supplementary to future server-side Zod validation.
+
+**Files created:** `src/components/ui/{field,input,select,textarea,choice}.tsx`. Modified `src/components/dev/ui-preview.tsx`, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
+
+**Environment/migrations:** None; no dependencies added. **Issues/blockers:** None locally. **Next:** TASK-012.
