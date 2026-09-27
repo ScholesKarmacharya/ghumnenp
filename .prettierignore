@@ -1,0 +1,16 @@
+node_modules/
+.next/
+.npm-cache/
+out/
+build/
+coverage/
+playwright-report/
+test-results/
+next-env.d.ts
+package-lock.json
+
+# Preserve the supplied specification's formatting.
+GHUMNE_MASTER_SPEC.md
+
+# Local configuration must not be read or rewritten by formatting.
+.env*

@@ -6,19 +6,19 @@ Reviewed: 2026-09-27. Authority: `GHUMNE_MASTER_SPEC.md`, read in full before ch
 
 The complete workspace, including hidden files, contained one file: `GHUMNE_MASTER_SPEC.md` (30,994 bytes). There was no Git repository. No applicable `AGENTS.md` was found in the workspace or checked ancestor paths.
 
-| Area | Existing state | Specification comparison |
-| --- | --- | --- |
-| Folders and source code | No application directories | Establish the modular `src/` structure in Phase 1 |
-| Dependencies and package manager | No manifest or lockfile | Add only dependencies required by each task |
-| Next.js | No configuration, routes, layouts, or pages | Create current stable App Router foundation in TASK-002 |
-| TypeScript | No configuration or types | Enable strict checking in TASK-002 |
-| Tailwind and design system | No configuration, styles, or components | Styling foundation in TASK-003; design system in Phase 2 |
-| Supabase and database | No clients, migrations, schema, seeds, or project configuration | Clients in TASK-006; database in Phase 3 |
-| Authentication and authorization | No implementation | Supabase Auth in Phase 7; enforce server authorization and RLS |
-| APIs and server actions | None | Introduce with their consuming features |
-| Environment | No environment files or application variable declarations | Example and validation in TASK-005; obtain credentials when required |
-| Assets | No images, fonts, icons, or licensed content | No existing assets to reuse; add when the relevant UI tasks need them |
-| Tests and automation | No tests, scripts, or CI | Establish checks with the foundation; test business logic and real flows as implemented |
+| Area                             | Existing state                                                  | Specification comparison                                                                |
+| -------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Folders and source code          | No application directories                                      | Establish the modular `src/` structure in Phase 1                                       |
+| Dependencies and package manager | No manifest or lockfile                                         | Add only dependencies required by each task                                             |
+| Next.js                          | No configuration, routes, layouts, or pages                     | Create current stable App Router foundation in TASK-002                                 |
+| TypeScript                       | No configuration or types                                       | Enable strict checking in TASK-002                                                      |
+| Tailwind and design system       | No configuration, styles, or components                         | Styling foundation in TASK-003; design system in Phase 2                                |
+| Supabase and database            | No clients, migrations, schema, seeds, or project configuration | Clients in TASK-006; database in Phase 3                                                |
+| Authentication and authorization | No implementation                                               | Supabase Auth in Phase 7; enforce server authorization and RLS                          |
+| APIs and server actions          | None                                                            | Introduce with their consuming features                                                 |
+| Environment                      | No environment files or application variable declarations       | Example and validation in TASK-005; obtain credentials when required                    |
+| Assets                           | No images, fonts, icons, or licensed content                    | No existing assets to reuse; add when the relevant UI tasks need them                   |
+| Tests and automation             | No tests, scripts, or CI                                        | Establish checks with the foundation; test business logic and real flows as implemented |
 
 Local tooling: Node.js 24.18.0, npm 11.16.0, Git 2.55.0 for Windows. npm is available; pnpm is not installed. No environment values outside this project were inspected.
 

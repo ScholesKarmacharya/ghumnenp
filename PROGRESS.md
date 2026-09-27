@@ -4,10 +4,10 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-003.
-- Current task: TASK-004 — Linting, formatting, and type checks.
-- Next task: TASK-005 — Environment example and validation.
-- Blockers: none for TASK-004. External service configuration has not been supplied.
+- Completed: TASK-001 through TASK-004.
+- Current task: TASK-005 — Environment example and validation.
+- Next task: TASK-006 — Supabase server/browser clients.
+- Blockers: none for TASK-005. External service configuration has not been supplied.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
 ## TASK-001 — Complete
@@ -67,3 +67,21 @@ Updated: 2026-09-27.
 **Environment/migrations:** Styling dependencies installed. Temporary Playwright CLI cached locally for browser verification, without adding it to application dependencies. No database or environment changes.
 
 **Known issues/follow-up:** Product colors, type system, controls, and components remain in Phase 2. ESLint compatibility limitation from TASK-002 remains.
+
+## TASK-004 — Complete
+
+**Understand/plan:** Complete the quality tooling begun in TASK-002, preserving strict typing and keeping the specification's formatting intact.
+
+**Implement:** Added Prettier, formatting scripts, editor defaults, lint auto-fix, and `npm run check` to run formatting, lint, types, and production build in order. Formatted the existing audit table and TypeScript config. Generated files, local configuration, caches, and the master specification are excluded from formatting.
+
+**Test:** `npm run format` and `npm run check` passed. Negative stdin checks confirmed ESLint rejects explicit `any` and Prettier rejects unformatted code. A compiler probe using the project's TypeScript options rejects implicit `any` and null assigned to a string. An initial check incorrectly expected `tsc --showConfig` to expand every inherited strict flag; corrected by checking actual compiler diagnostics. `git diff --check` passed. No UI behavior changed, so TASK-003's browser checks remain applicable.
+
+**Review:** Independent read-only tooling review found no concrete gaps. Commands stop on the first failure and do not suppress warnings. No broad lint disables or TypeScript exceptions added. Unit tests will join the gate when TASK-005 introduces validation logic.
+
+**Files created:** `.editorconfig`, `.prettierrc.json`, `.prettierignore`.
+
+**Files modified:** `package.json`, `package-lock.json`, `README.md`, `REPOSITORY_AUDIT.md` (formatting), `tsconfig.json` (formatting), `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
+
+**Environment/migrations:** Installed development formatter only. No database, application environment, or production changes.
+
+**Known issues/follow-up:** ESLint 9 compatibility limitation remains documented in DEC-008. Proceed to TASK-005.

@@ -16,6 +16,13 @@ Open http://localhost:3000. The current page is the minimal framework foundation
 ## Checks
 
 ```sh
+npm run check
+```
+
+The quality gate checks formatting, lint, strict types, and a production build, stopping at the first failure. Individual commands:
+
+```sh
+npm run format:check
 npm run typecheck
 npm run lint
 npm run build
@@ -23,6 +30,8 @@ npm start
 ```
 
 `typecheck` generates Next.js route types before running strict TypeScript checks. Lint is a separate required gate because Next.js builds do not run ESLint.
+
+Use `npm run format` and `npm run lint:fix` to apply safe formatting/lint fixes, then rerun the checks. Formatting excludes the supplied specification, generated files, build/test output, and local environment files. Add focused automated tests when implementation introduces testable business or validation logic; the current static foundation has browser and HTTP smoke validation recorded in `PROGRESS.md`.
 
 ## Project records
 
