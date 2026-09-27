@@ -59,3 +59,9 @@ Run `npm run dev` and open `/ui-preview` to inspect controls. This route returns
 `Input`, `Select`, `Textarea`, `Checkbox`, and `Radio` require a unique `id` and visible `label`. They connect optional `hint` and `error` text through `aria-describedby` while preserving additional caller descriptions. Errors set `aria-invalid` and render an alert with text. Native types, required/min/max/pattern attributes, disabled state, names, events, and React 19 refs pass through.
 
 Use actual input types (`email`, `number`, `date`, etc.) and `autoComplete` where appropriate. Group related radios/checkboxes in a `fieldset` with a `legend`; radios in one group share a name. Checkbox/radio labels provide the 44px target. Native selects retain platform keyboard behavior. Textareas resize vertically. Client/browser validation helps users but never replaces server-side Zod validation.
+
+### Cards and badges
+
+`Card` defaults to an article and can render a section or div to match its content. Use an actual heading and `aria-labelledby` for meaningful cards. `CardHeader`, `CardContent`, and `CardFooter` provide consistent spacing; actions remain explicit links/buttons so cards do not introduce nested interactive targets. Domain card content and responsive images belong to their feature tasks.
+
+`Badge` provides neutral, primary, success, warning, danger, and info tones. Every badge requires a text label. Badges are noninteractive; use a real button for selectable tags. Status wording must reflect actual data, not imply unverified quality or guaranteed availability.

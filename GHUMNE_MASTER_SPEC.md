@@ -1165,7 +1165,7 @@ Codex should work sequentially unless a dependency makes a different order neces
 - [x] TASK-009 Implement typography
 - [x] TASK-010 Implement buttons and links
 - [x] TASK-011 Implement form controls
-- [ ] TASK-012 Implement cards/badges
+- [x] TASK-012 Implement cards/badges
 - [ ] TASK-013 Implement responsive header/navigation
 - [ ] TASK-014 Implement footer
 - [ ] TASK-015 Add standard loading/error/empty states

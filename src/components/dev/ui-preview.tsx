@@ -8,6 +8,13 @@ import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox, Radio } from "@/components/ui/choice";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export function UiPreview() {
   const [clicks, setClicks] = useState(0);
@@ -16,6 +23,45 @@ export function UiPreview() {
 
   return (
     <div className="space-y-12">
+      <section aria-labelledby="cards-title" className="space-y-6">
+        <h2 id="cards-title">Cards and badges</h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card aria-labelledby="example-card-title">
+            <CardHeader>
+              <Badge tone="primary">Example category</Badge>
+              <h3 id="example-card-title">Room for a clear decision</h3>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted">
+                A reusable surface for concise information, supporting details,
+                and an explicit action.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <ButtonLink href="/" variant="secondary">
+                View home
+              </ButtonLink>
+            </CardFooter>
+          </Card>
+          <Card aria-labelledby="example-status-title">
+            <CardHeader>
+              <h3 id="example-status-title">Status examples</h3>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Neutral</Badge>
+                <Badge tone="success">Success</Badge>
+                <Badge tone="warning">Needs attention</Badge>
+                <Badge tone="danger">Error</Badge>
+                <Badge tone="info">Information</Badge>
+              </div>
+              <p className="text-muted">
+                Status text gives the meaning; color is supporting feedback.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
       <section aria-labelledby="buttons-title" className="space-y-6">
         <h2 id="buttons-title">Buttons and links</h2>
         <form

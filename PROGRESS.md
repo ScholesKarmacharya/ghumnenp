@@ -4,9 +4,9 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-011.
-- Current task: TASK-012 — Cards and badges.
-- Next task: TASK-013 — Responsive header/navigation.
+- Completed: TASK-001 through TASK-012.
+- Current task: TASK-013 — Responsive header/navigation.
+- Next task: TASK-014 — Footer.
 - Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
@@ -187,3 +187,15 @@ Updated: 2026-09-27.
 **Files created:** `src/components/ui/{field,input,select,textarea,choice}.tsx`. Modified `src/components/dev/ui-preview.tsx`, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
 
 **Environment/migrations:** None; no dependencies added. **Issues/blockers:** None locally. **Next:** TASK-012.
+
+## TASK-012 — Complete
+
+**Understand/plan:** Provide presentation structure and labeled status tones without introducing destination data or business rules.
+
+**Implement:** Added `Card`, header/content/footer parts, and text-required `Badge` with six tones. Cards support semantic article/section/div containers and explicit actions. Added preview examples and usage guidance.
+
+**Test/review:** Full quality gate passed (60 tests and all gates). Browser checks passed for named article semantics, all six badge text/background contrast ratios (at least 4.5:1), noninteractive badges, and no overflow at four widths with normal/doubled text. Cards do not nest interactive elements or imply unverified travel status.
+
+**Files created:** `src/components/ui/card.tsx`, `src/components/ui/badge.tsx`. Modified `src/components/dev/ui-preview.tsx`, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
+
+**Environment/migrations:** None. **Issues/blockers:** None locally. **Next:** TASK-013.
