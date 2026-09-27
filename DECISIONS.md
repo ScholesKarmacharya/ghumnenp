@@ -53,3 +53,9 @@ Keep an empty typed database boundary until migration-generated types exist. It 
 Use explicit ESM package configuration and TypeScript import extensions for the shared pure environment parser so Node.js 24 can run the connectivity script without an additional runner or duplicate validation.
 
 References: [Supabase SSR clients](https://supabase.com/docs/guides/auth/server-side/creating-a-client), [Supabase Auth settings response](https://github.com/supabase/auth/blob/master/internal/api/settings.go). Installed SDK types were also reviewed for cookie/cache-header behavior.
+
+## DEC-012 — Keep credential requirements scoped to live integration
+
+Date: 2026-09-27. Related tasks: TASK-006 onward.
+
+On resumption, all 60 existing tests and the quality gate passed. TASK-006 configures client code; its local acceptance checks are complete. The specification does not require a live connection before folder architecture or design-system work. Correct the prior blanket blocker and continue sequentially through work that does not consume a live service. Keep live verification explicitly pending and stop when a task actually requires a provisioned database or user-specific service settings. Do not invent credentials, weaken validation, or treat mocked tests as proof of live integration.

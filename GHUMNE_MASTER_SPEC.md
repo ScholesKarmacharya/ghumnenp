@@ -1156,7 +1156,7 @@ Codex should work sequentially unless a dependency makes a different order neces
 - [x] TASK-003 Configure Tailwind and global styling foundation
 - [x] TASK-004 Configure linting/formatting/type checks
 - [x] TASK-005 Add `.env.example` and environment validation
-- [!] TASK-006 Configure Supabase clients correctly for server/browser
+- [x] TASK-006 Configure Supabase clients correctly for server/browser
 - [ ] TASK-007 Establish project folder architecture
 
 ## PHASE 2 - Design System

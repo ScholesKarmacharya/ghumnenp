@@ -4,10 +4,10 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-005.
-- Current task: TASK-006 — Local implementation verified; blocked on live Supabase configuration.
-- Next task: TASK-007 — Project folder architecture, after TASK-006 verification.
-- Blockers: live Supabase verification needs the user's project URL and publishable key in `.env.local`. The file is absent. All independent local implementation and checks are complete.
+- Completed: TASK-001 through TASK-006.
+- Current task: TASK-007 — Project folder architecture.
+- Next task: TASK-008 — Design tokens.
+- Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
 ## TASK-001 — Complete
@@ -104,7 +104,7 @@ Updated: 2026-09-27.
 
 **Known issues/follow-up:** TASK-006 can be implemented and locally tested now, but live Supabase connectivity requires user configuration. ESLint compatibility limitation remains.
 
-## TASK-006 — Blocked on live configuration; local implementation verified
+## TASK-006 — Complete (local client scope); live verification pending
 
 **Understand/plan:** Configure the actual Supabase SSR SDK with explicit browser/server boundaries, typed access, cookie handling, and safe validation. Complete local implementation before requesting a live project check. Authentication UI, role guards, and database schema remain in their assigned phases.
 
@@ -120,8 +120,10 @@ Updated: 2026-09-27.
 
 **Environment/migrations:** Installed `@supabase/ssr`, `@supabase/supabase-js`, and `server-only`. No environment credentials created, remote project created, migrations applied, data changed, or deployment performed.
 
-**Blocker:** User must set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` in root `.env.local` using `.env.example`, then confirm readiness. No secret or service-role key is required. A clarification request was sent; no project configuration has been supplied yet.
+**External follow-up:** User must eventually set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` in root `.env.local` using `.env.example` for live integration. No secret or service-role key is required. The previous status treated the live check as a prerequisite for unrelated local tasks; the resume review corrected that overconstraint (DEC-012). No live integration is claimed as verified.
 
 **Known issues/follow-up:** No routes consume Supabase yet. Wire `updateSupabaseSession` through Next.js's `src/proxy.ts` before enabling authenticated server rendering, by TASK-055 at the latest. Future Route Handlers must preserve SDK cache headers on their own responses. Replace the empty database boundary with migration-generated types during Phase 3. ESLint compatibility limitation in DEC-008 remains.
 
-**Next steps:** Run the read-only live configuration check after the user supplies values. Resolve any failure, finish TASK-006's status, then proceed to TASK-007. TASK-007 and later tasks have not started.
+**Resume verification:** Re-read the full specification, progress log, implementation decisions, configuration, source, and tests. Working tree was clean. `npm run check` passed again: all 60 tests, format, lint, strict types, and production build. `npm ls --depth=0` and whitespace checks passed. No completed implementation needed rewriting.
+
+**Next steps:** Proceed with TASK-007. Run the read-only live check once configuration is supplied, before claiming live data/auth integration works.
