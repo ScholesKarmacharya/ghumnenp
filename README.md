@@ -42,6 +42,24 @@ Copy `.env.example` to `.env.local` at the root when configuring Supabase. Fill 
 
 Tests use inert fixtures and do not load `.env.local` or connect to a live project.
 
+## Supabase clients
+
+- `src/lib/supabase/client.ts`: browser client with SDK-managed cookie storage and browser singleton.
+- `src/lib/supabase/server.ts`: a new client per request, reading the current Next.js cookie store. Server Components use the default read-only mode. Server Actions that mutate sessions must explicitly use `{ cookieAccess: "read-write" }`; unexpected write errors propagate.
+- `src/lib/supabase/proxy.ts`: session refresh helper that verifies claims and forwards refreshed cookies to the downstream request and browser. It preserves the SDK's cache prevention headers across cookie writes.
+
+There are no Supabase-consuming routes yet. The refresh helper must be wired through `src/proxy.ts` for those routes before enabling authenticated server rendering (TASK-055 at the latest). Future Route Handlers must forward session cookies and the SDK cache headers to their own response; the Server Action write mode alone does not handle response headers. This infrastructure does not authorize a user or role; feature-level server checks and RLS remain mandatory.
+
+`database.types.ts` deliberately permits no application tables or RPCs until Phase 3 generates types from actual migrations. This prevents the SDK's untyped default from allowing arbitrary table access.
+
+After setting `.env.local`, run:
+
+```sh
+npm run supabase:check
+```
+
+This performs one read-only request to Supabase Auth settings, validates the response shape, and prints no keys or response content. It checks connectivity and configuration; it does not test login, session refresh, database permissions, or RLS. Those require the later authentication and database tasks. Live verification is currently pending user configuration.
+
 ## Project records
 
 - [Repository audit](REPOSITORY_AUDIT.md)

@@ -5,9 +5,9 @@ Updated: 2026-09-27.
 ## Current state
 
 - Completed: TASK-001 through TASK-005.
-- Current task: TASK-006 — Supabase server/browser clients.
+- Current task: TASK-006 — Local implementation verified; blocked on live Supabase configuration.
 - Next task: TASK-007 — Project folder architecture, after TASK-006 verification.
-- Blockers: live Supabase verification needs the user's project URL and publishable key. Local client implementation can proceed.
+- Blockers: live Supabase verification needs the user's project URL and publishable key in `.env.local`. The file is absent. All independent local implementation and checks are complete.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
 ## TASK-001 — Complete
@@ -103,3 +103,25 @@ Updated: 2026-09-27.
 **Environment/migrations:** Zod and Vitest installed. No `.env.local` or live credentials created; no database changes.
 
 **Known issues/follow-up:** TASK-006 can be implemented and locally tested now, but live Supabase connectivity requires user configuration. ESLint compatibility limitation remains.
+
+## TASK-006 — Blocked on live configuration; local implementation verified
+
+**Understand/plan:** Configure the actual Supabase SSR SDK with explicit browser/server boundaries, typed access, cookie handling, and safe validation. Complete local implementation before requesting a live project check. Authentication UI, role guards, and database schema remain in their assigned phases.
+
+**Implement:** Added browser and request-scoped server factories, a session refresh helper, and an empty typed database boundary that prevents queries to unimplemented tables. Server imports use `server-only`. Cookie writes are explicit; the proxy helper preserves session cookies and cache prevention headers across repeated writes. Added `npm run supabase:check` for a read-only Auth settings request with response validation, timeout, and no key/body logging. Configured ESM and explicit TS imports to reuse the environment parser directly from Node.js without a new runner.
+
+**Test:** Final `npm run check` passed: formatting, lint, strict types, **60 tests in 4 files**, and the production build. Coverage: 40 environment tests, 9 client boundary/cookie tests, 5 proxy/session tests, and 6 connectivity-command regression tests. `npm ls --depth=0` and `git diff --check` passed. The actual connectivity command correctly exits with missing-configuration field names when `.env.local` is absent; **no live connection or auth flow has been verified**. No user credentials were read or invented.
+
+**Review:** Independent review found and reproduced an HTTP 200 false-positive in the initial connectivity command. Fixed by validating JSON against the Auth settings response; regression tests reject HTML, unrelated JSON, invalid types, HTTP 401, and network failures. Final main-agent review removed warning suppression from the test subprocess and supplied its required `NODE_ENV=test`; all checks then passed. No concrete cookie isolation or cache-header findings remain.
+
+**Files created:** `src/lib/supabase/client.ts`, `src/lib/supabase/server.ts`, `src/lib/supabase/proxy.ts`, `src/lib/supabase/database.types.ts`, `scripts/check-supabase.mjs`, `src/tests/unit/supabase-clients.test.ts`, `src/tests/unit/supabase-proxy.test.ts`, `src/tests/unit/supabase-check.test.ts`.
+
+**Files modified:** `package.json`, `package-lock.json`, `next.config.ts`, `tsconfig.json`, `src/lib/env/public.ts`, `README.md`, `DECISIONS.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
+
+**Environment/migrations:** Installed `@supabase/ssr`, `@supabase/supabase-js`, and `server-only`. No environment credentials created, remote project created, migrations applied, data changed, or deployment performed.
+
+**Blocker:** User must set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` in root `.env.local` using `.env.example`, then confirm readiness. No secret or service-role key is required. A clarification request was sent; no project configuration has been supplied yet.
+
+**Known issues/follow-up:** No routes consume Supabase yet. Wire `updateSupabaseSession` through Next.js's `src/proxy.ts` before enabling authenticated server rendering, by TASK-055 at the latest. Future Route Handlers must preserve SDK cache headers on their own responses. Replace the empty database boundary with migration-generated types during Phase 3. ESLint compatibility limitation in DEC-008 remains.
+
+**Next steps:** Run the read-only live configuration check after the user supplies values. Resolve any failure, finish TASK-006's status, then proceed to TASK-007. TASK-007 and later tasks have not started.

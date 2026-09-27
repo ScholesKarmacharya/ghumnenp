@@ -41,3 +41,15 @@ Validate at use time and also when Next.js loads configured values before bundli
 Add Vitest at TASK-005 because validation now introduces security-sensitive testable logic. Tests use inert fixtures and do not load local credentials or contact Supabase. The unit suite is part of `npm run check`.
 
 References: [Supabase API keys](https://supabase.com/docs/guides/getting-started/api-keys), [Next.js environment variables](https://nextjs.org/docs/app/guides/environment-variables).
+
+## DEC-011 — Supabase session boundaries
+
+Date: 2026-09-27. Related task: TASK-006.
+
+Use `@supabase/ssr` factories with publishable configuration. Server clients are request scoped and marked `server-only`. Server Components use read-only cookies; Server Actions explicitly enable writes. Do not suppress arbitrary cookie errors. The refresh helper forwards request/response cookies and preserves the SDK's cache prevention headers. Wire it to consuming routes before authenticated server rendering; no such routes exist yet. Route Handler responses must also carry cache prevention headers when setting auth cookies.
+
+Keep an empty typed database boundary until migration-generated types exist. It represents no implemented application tables and prevents accidental untyped queries. Do not invent a schema ahead of Phase 3.
+
+Use explicit ESM package configuration and TypeScript import extensions for the shared pure environment parser so Node.js 24 can run the connectivity script without an additional runner or duplicate validation.
+
+References: [Supabase SSR clients](https://supabase.com/docs/guides/auth/server-side/creating-a-client), [Supabase Auth settings response](https://github.com/supabase/auth/blob/master/internal/api/settings.go). Installed SDK types were also reviewed for cookie/cache-header behavior.

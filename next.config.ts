@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-import { getSupabaseEnv } from "./src/lib/env/public";
+import { getSupabaseEnv } from "./src/lib/env/public.ts";
 
 // Reject invalid public configuration before Next.js can bundle its values.
 // An entirely unconfigured foundation can still build its static routes.

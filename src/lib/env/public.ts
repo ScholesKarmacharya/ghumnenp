@@ -1,4 +1,4 @@
-import { parseSupabaseEnv } from "./schema";
+import { parseSupabaseEnv } from "./schema.ts";
 
 export function getSupabaseEnv() {
   // Keep direct reads so Next.js can inline these two public build-time values.
