@@ -4,9 +4,9 @@ Updated: 2026-09-27.
 
 ## Current state
 
-- Completed: TASK-001 through TASK-012.
-- Current task: TASK-013 — Responsive header/navigation.
-- Next task: TASK-014 — Footer.
+- Completed: TASK-001 through TASK-013.
+- Current task: TASK-014 — Footer.
+- Next task: TASK-015 — Standard loading/error/empty states.
 - Blockers: none for local architecture/design work. Live Supabase verification remains pending project configuration; it is required before live integration, not for unrelated local work.
 - Source of truth: `GHUMNE_MASTER_SPEC.md`.
 
@@ -199,3 +199,15 @@ Updated: 2026-09-27.
 **Files created:** `src/components/ui/card.tsx`, `src/components/ui/badge.tsx`. Modified `src/components/dev/ui-preview.tsx`, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
 
 **Environment/migrations:** None. **Issues/blockers:** None locally. **Next:** TASK-013.
+
+## TASK-013 — Complete
+
+**Understand/plan:** Add responsive, keyboard-accessible navigation while linking only to implemented destinations in the application.
+
+**Implement:** Added brand/header/navigation components, a shared list of existing routes, and public route-group layout. Added a skip link with a focusable main target. Mobile disclosure closes on Escape, outside click, focus leaving, selection, route changes, or desktop resize; current-page links expose aria-current. Removed duplicate brand text from the minimal homepage. Preview navigation uses real in-page anchors to exercise multiple items without inventing product routes.
+
+**Test/review:** Full quality gate passed (60 tests and all gates). Browser checks passed for skip-link focus, Tab navigation, Escape focus restoration, outside-click and link dismissal, breakpoint reset, active-page semantics, one banner/main, no overflow at four widths with doubled text, and no runtime errors. Mobile screenshot reviewed. Navigation does not expose unfinished routes, auth state, or fake actions.
+
+**Files created:** `src/components/layout/{navigation.ts,brand-link.tsx,site-header.tsx,site-navigation.tsx}`, `src/app/(public)/layout.tsx`. Removed the layout marker. Modified the public home page, development preview page, `DESIGN_SYSTEM.md`, `GHUMNE_MASTER_SPEC.md`, `PROGRESS.md`.
+
+**Environment/migrations:** None. **Issues/blockers:** More navigation items will be added only when their routes exist. **Next:** TASK-014.

@@ -1,7 +1,10 @@
 export default function HomePage() {
   return (
-    <main className="mx-auto min-h-svh max-w-5xl px-6 py-16 sm:py-24">
-      <p className="mb-6 text-lg font-semibold">Ghumne</p>
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="mx-auto w-full max-w-page px-gutter py-16 sm:py-24"
+    >
       <h1 className="max-w-3xl text-display">
         Discover Nepal. Plan your trip.
       </h1>

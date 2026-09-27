@@ -65,3 +65,9 @@ Use actual input types (`email`, `number`, `date`, etc.) and `autoComplete` wher
 `Card` defaults to an article and can render a section or div to match its content. Use an actual heading and `aria-labelledby` for meaningful cards. `CardHeader`, `CardContent`, and `CardFooter` provide consistent spacing; actions remain explicit links/buttons so cards do not introduce nested interactive targets. Domain card content and responsive images belong to their feature tasks.
 
 `Badge` provides neutral, primary, success, warning, danger, and info tones. Every badge requires a text label. Badges are noninteractive; use a real button for selectable tags. Status wording must reflect actual data, not imply unverified quality or guaranteed availability.
+
+### Header and navigation
+
+The public layout includes `SiteHeader`, a skip-to-content link, and a compact brand link. Each public page must provide `<main id="main-content" tabIndex={-1}>`. Navigation uses existing routes from `components/layout/navigation.ts`; add links with their completed features.
+
+Below 768px, a disclosure button controls the mobile navigation. It supports Tab, Escape with focus restoration, outside clicks, link selection, and resets when the route or desktop breakpoint changes. It is ordinary site navigation, not an ARIA menu or modal. Desktop and mobile navigation are never simultaneously visible/focusable. Current-page links expose `aria-current="page"`.
