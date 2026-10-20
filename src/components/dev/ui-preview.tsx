@@ -15,14 +15,49 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  EmptyState,
+  ErrorState,
+  SuccessMessage,
+} from "@/components/ui/feedback";
+import { LoadingState } from "@/components/ui/loading-state";
 
 export function UiPreview() {
   const [clicks, setClicks] = useState(0);
   const [submissions, setSubmissions] = useState(0);
   const [formResult, setFormResult] = useState("");
+  const [retries, setRetries] = useState(0);
 
   return (
     <div className="space-y-12">
+      <section aria-labelledby="feedback-title" className="space-y-6">
+        <h2 id="feedback-title">Loading and feedback</h2>
+        <LoadingState label="Loading example content…" />
+        <EmptyState
+          headingAs="h3"
+          title="Nothing to show yet"
+          description="This example demonstrates an empty collection with a useful next action."
+          action={
+            <ButtonLink href="/" variant="secondary">
+              Explore home
+            </ButtonLink>
+          }
+        />
+        <ErrorState
+          headingAs="h3"
+          title="Example loading error"
+          description="Try the action again."
+          action={
+            <Button onClick={() => setRetries((value) => value + 1)}>
+              Retry example
+            </Button>
+          }
+        />
+        <SuccessMessage>Example action completed successfully.</SuccessMessage>
+        <p role="status" aria-label="Retry result">
+          Retry attempts: {retries}.
+        </p>
+      </section>
       <section aria-labelledby="cards-title" className="space-y-6">
         <h2 id="cards-title">Cards and badges</h2>
         <div className="grid gap-6 md:grid-cols-2">

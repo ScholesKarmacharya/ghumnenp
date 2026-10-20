@@ -1168,7 +1168,7 @@ Codex should work sequentially unless a dependency makes a different order neces
 - [x] TASK-012 Implement cards/badges
 - [x] TASK-013 Implement responsive header/navigation
 - [x] TASK-014 Implement footer
-- [ ] TASK-015 Add standard loading/error/empty states
+- [~] TASK-015 Add standard loading/error/empty states
 
 ## PHASE 3 - Database Foundation
 

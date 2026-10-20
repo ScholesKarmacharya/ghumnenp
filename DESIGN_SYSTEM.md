@@ -75,3 +75,9 @@ Below 768px, a disclosure button controls the mobile navigation. It supports Tab
 ### Footer
 
 `SiteFooter` is a Server Component with the shared brand, product positioning, copyright, and a separately named navigation landmark. It wraps into one column on small screens and sits after content using the public layout's minimum viewport height. Add policy/contact links only when their real content and routes are available; never invent addresses or legal claims.
+
+### Loading and feedback
+
+Use `LoadingState` for a named loading status and decorative skeletons; skeletons are hidden from assistive technology and stop pulsing for reduced-motion users. Use `EmptyState` for a clear explanation and a relevant next action. Use `ErrorState` for a safe error message and a real recovery action; never pass database errors, stack traces, or tokens into user-facing copy. `SuccessMessage` announces a completed action politely.
+
+Choose `headingAs` to preserve the page's heading order. Public loading/error conventions provide a main landmark; the 404 page offers a working home link, and the global error boundary provides its own document shell. Error boundaries call Next.js's reset function and do not render the supplied error object. Actual feature data loading/mutation flows must adopt these primitives when those features are implemented.
