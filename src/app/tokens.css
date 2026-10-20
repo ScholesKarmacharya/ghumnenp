@@ -1,5 +1,6 @@
 @theme static {
-  --font-sans: "Segoe UI", "Noto Sans", Arial, sans-serif;
+  --font-sans: var(--font-jakarta, "Segoe UI"), Arial, sans-serif;
+  --font-display: var(--font-editorial, Georgia), serif;
   --text-display: clamp(2.5rem, 1.5rem + 4vw, 3.75rem);
   --text-display--line-height: 1.1;
   --text-display--letter-spacing: -0.035em;
@@ -17,18 +18,29 @@
   --text-caption: 0.875rem;
   --text-caption--line-height: 1.5;
 
-  --color-background: #faf9f6;
+  --color-forest: #173d38;
+  --color-sand: #d5c6ad;
+  --color-terracotta: #c26a43;
+  --color-ivory: #f6f2e9;
+  --color-charcoal: #26342f;
+  --color-home-inset: color-mix(
+    in srgb,
+    var(--color-sand) 22%,
+    var(--color-ivory)
+  );
+
+  --color-background: var(--color-ivory);
   --color-surface: #ffffff;
-  --color-surface-muted: #f0f4ef;
-  --color-foreground: #172d26;
+  --color-surface-muted: var(--color-sand);
+  --color-foreground: var(--color-charcoal);
   --color-muted: #52615a;
-  --color-border: #d6dfd7;
+  --color-border: var(--color-sand);
   --color-border-strong: #708277;
-  --color-primary: #17634a;
-  --color-primary-hover: #104c39;
+  --color-primary: var(--color-forest);
+  --color-primary-hover: #102d29;
   --color-on-primary: #ffffff;
-  --color-accent: #925134;
-  --color-focus: #1966a5;
+  --color-accent: var(--color-terracotta);
+  --color-focus: var(--color-forest);
   --color-success: #1a674b;
   --color-success-surface: #e9f5ed;
   --color-warning: #815514;
@@ -45,6 +57,7 @@
   --radius-card: 1.25rem;
   --radius-pill: 9999px;
   --container-page: 75rem;
+  --container-home: 85rem;
   --container-reading: 65ch;
   --shadow-card: 0 2px 12px rgb(23 45 38 / 0.06);
   --default-transition-duration: 150ms;

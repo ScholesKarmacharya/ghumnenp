@@ -11,6 +11,7 @@ package-lock.json
 
 # Preserve the supplied specification's formatting.
 GHUMNE_MASTER_SPEC.md
+supabase/stitch-reference/
 
 # Local configuration must not be read or rewritten by formatting.
 .env*

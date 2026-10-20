@@ -6,6 +6,10 @@ Authority: master specification section 4. Implementation tokens live in `src/ap
 
 Use warm neutral backgrounds, forest-green primary actions, and a restrained clay accent. Keep travel images as the visual focus when destination content is implemented. Use semantic tokens instead of introducing a new palette in each feature.
 
+The approved V1 palette is Forest Green `#173D38`, Sand `#D5C6AD`, Terracotta `#C26A43`, Warm Ivory `#F6F2E9`, and Deep Charcoal `#26342F`. Named brand tokens feed the existing semantic roles: forest primary/focus, ivory page background, charcoal foreground, sand muted surfaces/decorative borders, and terracotta accents. White control/card surfaces and the existing semantic status colors remain available. Primary hover uses a darker forest shade.
+
+Forest text on ivory has 10.67:1 contrast; charcoal on ivory 11.64:1; charcoal on sand 7.75:1; supporting text on ivory 5.84:1. Terracotta on ivory/white has only 3.46:1/3.86:1 contrast: use it for decorative accents or sufficiently large text, not ordinary text or white-text standard-size buttons. The existing brand dot is decorative. Keep strong control borders and explicit focus indicators; sand borders are decorative only.
+
 | Role                   | Utility examples                                           | Usage                                                      |
 | ---------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
 | Page / card / inset    | `bg-background`, `bg-surface`, `bg-surface-muted`          | Page canvas, content surfaces, secondary regions           |
@@ -23,6 +27,7 @@ Never use color alone to convey error, selection, or verification. Use strong bo
 - Base spacing unit: 4px. Prefer 8, 12, 16, 24, 32, 48, and 64px for layout rhythm.
 - `min-h-control` / `min-w-control`: 44px minimum target for interactive controls.
 - `px-gutter`: 24px horizontal content padding; keep content within `max-w-page` (1200px).
+- The approved homepage uses `max-w-home` (1360px), 48px desktop/20px mobile gutters, 16px destination-grid gaps, and smaller reference-shaped cards. Keep the existing shared primitive defaults for other surfaces.
 - `max-w-reading`: 65 characters for sustained text.
 - `rounded-control`: 12px for controls; `rounded-card`: 20px for content cards; `rounded-pill`: tags only.
 - `shadow-card`: subtle elevation. Prefer spacing and borders to stacked shadows.
@@ -30,7 +35,7 @@ Never use color alone to convey error, selection, or verification. Use strong bo
 
 ## Typography
 
-Use the local Segoe UI / Noto Sans / Arial system stack. No remote font is required to render or build the app. Body text is 16px with a 1.65 line height; supporting text is 14px minimum. Preserve browser text scaling and never give text containers a fixed height.
+Use the reference's locally hosted Plus Jakarta Sans for body/control text and Playfair Display for editorial headings, including the italic hero accent. `next/font/local` supplies variable font faces with swap and system fallbacks; OFL licenses are alongside the WOFF2 files in `src/app/fonts`. Rendering/builds do not fetch Google Fonts. Body text is 16px with a 1.65 line height; supporting copy is 14px, with 12px reference-style short labels. Homepage headings scale from 36 to 56px for the hero and 28 to 40px for sections. Preserve browser text scaling and never give text containers a fixed height.
 
 | Utility           | Size at the default root font   | Use                            |
 | ----------------- | ------------------------------- | ------------------------------ |
@@ -70,7 +75,7 @@ Use actual input types (`email`, `number`, `date`, etc.) and `autoComplete` wher
 
 The public layout includes `SiteHeader`, a skip-to-content link, and a compact brand link. Each public page must provide `<main id="main-content" tabIndex={-1}>`. Navigation uses existing routes from `components/layout/navigation.ts`; add links with their completed features.
 
-Below 768px, a disclosure button controls the mobile navigation. It supports Tab, Escape with focus restoration, outside clicks, link selection, and resets when the route or desktop breakpoint changes. It is ordinary site navigation, not an ARIA menu or modal. Desktop and mobile navigation are never simultaneously visible/focusable. Current-page links expose `aria-current="page"`.
+Below 1024px, a disclosure button controls the mobile navigation. It supports Tab, Escape with focus restoration, outside clicks, link selection, and resets when the route or desktop breakpoint changes. It is ordinary site navigation, not an ARIA menu or modal. Desktop and mobile navigation are never simultaneously visible/focusable. Current-page links expose `aria-current="page"`; homepage section links use their real anchors.
 
 ### Footer
 

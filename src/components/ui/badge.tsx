@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils/cn";
 
 const tones = {
-  neutral: "bg-surface-muted text-muted",
+  neutral: "bg-surface-muted text-foreground",
   primary: "bg-surface-muted text-primary",
   success: "bg-success-surface text-success",
   warning: "bg-warning-surface text-warning",

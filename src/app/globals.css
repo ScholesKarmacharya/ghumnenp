@@ -1,9 +1,63 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+@layer components {
+  .home-container {
+    @apply mx-auto w-full max-w-home px-5 lg:px-12;
+  }
+  .home-action {
+    @apply inline-flex min-h-control max-w-full flex-wrap items-center justify-center gap-2 rounded-control px-6 py-3.5 text-sm font-semibold transition-colors;
+  }
+  .home-text-link {
+    @apply inline-flex min-h-control max-w-full flex-wrap items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline;
+  }
+  .home-filter {
+    @apply min-h-control rounded-control px-4 py-2 text-sm font-medium transition-colors hover:shadow-sm;
+  }
+  .home-search-field {
+    @apply min-w-0 rounded px-2 py-1;
+  }
+  .home-search-field label {
+    @apply block text-xs font-semibold tracking-wider text-muted uppercase;
+  }
+  .home-search-field > div {
+    @apply flex items-center gap-2;
+  }
+  .home-search-field svg {
+    @apply shrink-0 text-primary;
+  }
+  .home-search-field input,
+  .home-search-field select {
+    @apply min-h-control w-full min-w-0 rounded bg-transparent py-2 text-sm text-foreground;
+  }
+  .home-choice {
+    @apply flex min-h-control min-w-0 cursor-pointer items-center justify-between gap-3 rounded bg-home-inset p-3 transition-colors;
+  }
+  .home-choice:has(input:checked) {
+    @apply bg-primary text-white;
+  }
+  .home-choice > span {
+    @apply min-w-0;
+  }
+  .home-choice:focus-within {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+  .home-planning-input {
+    @apply mt-2 block min-h-control w-full rounded border border-border-strong bg-white px-3 py-2 font-normal text-foreground;
+  }
+  .home-story-preview summary {
+    @apply flex min-h-control cursor-pointer flex-wrap items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline;
+  }
+  #for-agencies a:focus-visible {
+    outline-color: var(--color-sand);
+  }
+}
+
 @layer base {
   html {
     color-scheme: light;
+    scroll-padding-top: 7rem;
   }
 
   body {

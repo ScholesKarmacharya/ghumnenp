@@ -1,0 +1,56 @@
+# Local stack identity only. This is NOT a hosted project reference.
+# Prepared configuration: no CLI initialization/start/link has been executed.
+project_id = "ghumne-development"
+
+[api]
+enabled = true
+port = 54821
+# Keep private helpers outside the exposed PostgREST schemas.
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 100
+
+[db]
+port = 54822
+shadow_port = 54820
+major_version = 17
+
+[db.migrations]
+enabled = true
+schema_paths = []
+
+[db.seed]
+enabled = false
+sql_paths = []
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = []
+jwt_expiry = 3600
+enable_signup = true
+enable_anonymous_sign_ins = false
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+
+[auth.sms]
+enable_signup = false
+enable_confirmations = false
+
+[analytics]
+enabled = false
+
+[studio]
+enabled = false
+
+[inbucket]
+enabled = true
+port = 54824
+
+[storage]
+enabled = false
+
+[realtime]
+enabled = false

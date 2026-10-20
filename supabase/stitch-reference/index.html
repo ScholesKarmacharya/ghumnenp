@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-container-low": "#e7f7f0",
+          "on-tertiary-fixed": "#360f00",
+          "on-secondary-fixed": "#221b0b",
+          "on-secondary-container": "#6c614d",
+          "tertiary-container": "#632201",
+          "surface-container-highest": "#d6e6df",
+          "on-error-container": "#93000a",
+          "on-error": "#ffffff",
+          "primary": "#002723",
+          "on-secondary": "#ffffff",
+          "on-primary": "#ffffff",
+          "error-container": "#ffdad6",
+          "on-tertiary-fixed-variant": "#78310e",
+          "inverse-on-surface": "#e4f4ed",
+          "inverse-surface": "#25332e",
+          "on-primary-fixed": "#00201c",
+          "tertiary-fixed-dim": "#ffb597",
+          "outline": "#717977",
+          "error": "#ba1a1a",
+          "on-tertiary": "#ffffff",
+          "secondary": "#685d49",
+          "on-surface-variant": "#414847",
+          "secondary-container": "#eedec4",
+          "surface-container": "#e1f2ea",
+          "outline-variant": "#c0c8c6",
+          "on-secondary-fixed-variant": "#504532",
+          "secondary-fixed": "#f0e1c7",
+          "surface-container-high": "#dcece4",
+          "tertiary": "#401300",
+          "primary-container": "#173d38",
+          "surface": "#edfdf5",
+          "on-tertiary-container": "#e7875e",
+          "surface-variant": "#d6e6df",
+          "on-primary-container": "#81a8a1",
+          "background": "#edfdf5",
+          "primary-fixed-dim": "#a7cec7",
+          "on-surface": "#101e1a",
+          "surface-dim": "#ceded6",
+          "secondary-fixed-dim": "#d4c5ac",
+          "tertiary-fixed": "#ffdbcd",
+          "surface-tint": "#40655f",
+          "surface-bright": "#edfdf5",
+          "inverse-primary": "#a7cec7",
+          "on-primary-fixed-variant": "#284d48",
+          "primary-fixed": "#c3ebe3",
+          "surface-container-lowest": "#ffffff",
+          "on-background": "#101e1a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-xs": "0.25rem",
+          "space-sm": "0.5rem",
+          "space-xl": "2.5rem",
+          "margin": "3rem",
+          "space-lg": "1.5rem",
+          "margin-mobile": "1.25rem",
+          "gutter": "1.5rem",
+          "gutter-mobile": "1rem",
+          "space-md": "1rem"
+        },
+        "fontFamily": {
+          "display-hero-mobile": [
+            "Playfair Display"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "caption-editorial": [
+            "Playfair Display"
+          ],
+          "display-hero": [
+            "Playfair Display"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ]
+        },
+        "fontSize": {
+          "display-hero-mobile": [
+            "2.25rem",
+            {
+              "lineHeight": "1.2",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "0.875rem",
+            {
+              "lineHeight": "1.5",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "1.75rem",
+            {
+              "lineHeight": "1.25",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-sm": [
+            "1.25rem",
+            {
+              "lineHeight": "1.35",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "1rem",
+            {
+              "lineHeight": "1.6",
+              "fontWeight": "400"
+            }
+          ],
+          "body-lg": [
+            "1.125rem",
+            {
+              "lineHeight": "1.65",
+              "fontWeight": "400"
+            }
+          ],
+          "caption-editorial": [
+            "0.875rem",
+            {
+              "lineHeight": "1.4",
+              "fontWeight": "400"
+            }
+          ],
+          "display-hero": [
+            "3.5rem",
+            {
+              "lineHeight": "1.15",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-lg": [
+            "0.875rem",
+            {
+              "lineHeight": "1.2",
+              "letterSpacing": "0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-md": [
+            "1.75rem",
+            {
+              "lineHeight": "1.3",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "0.75rem",
+            {
+              "lineHeight": "1.2",
+              "letterSpacing": "0.04em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "2.5rem",
+            {
+              "lineHeight": "1.2",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 w-full px-gutter-mobile lg:px-margin max-w-[1360px] mx-auto flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-baseline text-decoration-none group" data-path="home" href="#"><span class="font-headline-md text-headline-md tracking-tight text-primary-container font-semibold transition-colors duration-200">ghumne</span><span class="inline-block w-2 h-2 rounded-full bg-on-tertiary-container ml-0.5 transform group-hover:scale-125 transition-transform duration-200"></span></a></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary-container font-semibold"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="explore-destinations" href="#">Explore Destinations</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="travel-packages" href="#">Travel Packages</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="find-my-trip" href="#">Find My Trip</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="travel-guides" href="#">Travel Guides</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface px-space-md py-space-sm transition-colors" data-path="sign-in" href="#">Sign In</a><a class="inline-flex items-center justify-center font-label-lg text-label-lg bg-primary-container text-surface-container-lowest px-space-lg py-space-sm rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary" data-path="list-your-packages" href="#">List Your Packages</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- 1. HERO SECTION -->
+<section class="relative w-full -mt-20 pt-20 overflow-hidden bg-primary min-h-[942px] flex flex-col justify-between">
+<!-- Atmospheric Himalayan Mountain Background Image with Depth Gradients -->
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 transform motion-safe:transition-transform motion-safe:duration-1000" data-alt="Cinematic atmospheric panoramic view of snowcapped Himalayan giants at dawn, Machapuchare and Annapurna range with soft alpenglow, mist rising through rhododendron and pine slopes, ethereal warm golden and deep forest green tones, luxury travel photography style" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8BJNX663XrPkjJM2lBVPAaWBUhLpg4Ev1qoIiHuBrC8Sx8B9wQlx1QgFzDCqMj65-QY77oPtXZoLsmGzq5h6Ji9BInSypVo1czp5Ly-WuuBSO9qkxG9l-9D3L0sprHDTeoc9RywlGpSfvp3p-Ot8FJr0ld__SQ2tCAsutooYbvkS-oktXRN9IeSCeArj1INF-r0FlQmPkrEIzAGNfF6V77ptgcI11fqPDleVPhkTxTScwwAqNOre_')"></div>
+<!-- Scrim & Vignette Layers -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-primary/40"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-transparent to-primary/40"></div>
+<!-- Hero Content Container -->
+<div class="relative z-10 w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin pt-space-xl lg:pt-32 pb-space-lg flex-1 flex flex-col justify-center">
+<div class="max-w-3xl space-y-space-md">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest/15 backdrop-blur-md text-surface-container-lowest font-label-md text-label-md tracking-wider uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container animate-pulse"></span>
+          The Definitive Himalayan Marketplace
+        </div>
+<h1 class="font-display-hero text-display-hero text-surface-container-lowest font-semibold tracking-tight leading-[1.08]">
+          Your next story starts in <span class="italic font-normal text-tertiary-fixed font-caption-editorial">Nepal.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-surface-variant max-w-2xl font-light">
+          Discover extraordinary places, compare verified agency packages side-by-side, and craft journeys worth remembering across the roof of the world.
+        </p>
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center justify-center gap-2 px-space-lg py-3.5 rounded-full bg-surface-container-lowest text-primary font-label-lg text-label-lg font-semibold hover:bg-secondary-fixed transition-all duration-200 shadow-md hover:-translate-y-0.5" href="#featured-packages">
+<span>Explore Packages</span>
+<span class="material-symbols-outlined text-[18px]">south_east</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 px-space-lg py-3.5 rounded-full bg-surface-container-lowest/10 backdrop-blur-md text-surface-container-lowest font-label-lg text-label-lg font-semibold hover:bg-surface-container-lowest/20 transition-all duration-200" href="#trip-finder">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Find My Trip</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Embedded Floating Travel Search Bar Widget -->
+<div class="relative z-20 w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin -mb-10 lg:-mb-12">
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-xl p-space-sm lg:p-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-sm items-center">
+<!-- Segment 1: Destination -->
+<div class="lg:col-span-4 p-space-sm hover:bg-surface-container-low/60 rounded-lg transition-colors">
+<label class="block font-label-md text-label-md text-secondary uppercase tracking-wider mb-0.5">Destination</label>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">pin_drop</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none" placeholder="Where to? e.g. Mustang, Pokhara..." type="text"/>
+</div>
+</div>
+<!-- Divider -->
+<div class="hidden lg:block lg:col-span-0.5 w-[1px] h-10 bg-outline-variant/40 mx-auto"></div>
+<!-- Segment 2: Departure Hub -->
+<div class="lg:col-span-2 p-space-sm hover:bg-surface-container-low/60 rounded-lg transition-colors">
+<label class="block font-label-md text-label-md text-secondary uppercase tracking-wider mb-0.5">Starting Hub</label>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">flight_takeoff</span>
+<select class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none cursor-pointer">
+<option value="ktm">Kathmandu</option>
+<option value="pkr">Pokhara</option>
+<option value="chw">Chitwan</option>
+<option value="air">Airport Direct</option>
+</select>
+</div>
+</div>
+<!-- Divider -->
+<div class="hidden lg:block lg:col-span-0.5 w-[1px] h-10 bg-outline-variant/40 mx-auto"></div>
+<!-- Segment 3: Travel Dates -->
+<div class="lg:col-span-2 p-space-sm hover:bg-surface-container-low/60 rounded-lg transition-colors">
+<label class="block font-label-md text-label-md text-secondary uppercase tracking-wider mb-0.5">Season / Date</label>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_month</span>
+<select class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none cursor-pointer">
+<option value="spring">Spring (Mar – May)</option>
+<option value="autumn">Autumn (Sep – Nov)</option>
+<option value="winter">Winter Escapes</option>
+<option value="monsoon">Summer Mid-Hills</option>
+</select>
+</div>
+</div>
+<!-- Divider -->
+<div class="hidden lg:block lg:col-span-0.5 w-[1px] h-10 bg-outline-variant/40 mx-auto"></div>
+<!-- Segment 4: Group & Duration -->
+<div class="lg:col-span-2 p-space-sm hover:bg-surface-container-low/60 rounded-lg transition-colors">
+<label class="block font-label-md text-label-md text-secondary uppercase tracking-wider mb-0.5">Travelers</label>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">group</span>
+<select class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none cursor-pointer">
+<option value="2">2 Trekkers</option>
+<option value="1">Solo Traveler</option>
+<option value="4">Small Group (3-6)</option>
+<option value="8">Expedition (7+)</option>
+</select>
+</div>
+</div>
+<!-- Search Button -->
+<div class="lg:col-span-2 p-1">
+<button class="w-full flex items-center justify-center gap-2 py-3.5 px-space-md rounded-lg bg-primary-container text-surface-container-lowest font-label-lg text-label-lg font-semibold hover:bg-primary transition-all duration-200 shadow-md">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<span>Search</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. DISCOVER DESTINATIONS SECTION -->
+<section class="w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin pt-24 lg:pt-32 pb-space-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-sm">
+<div class="max-w-2xl">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-1">Topography &amp; Regions</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Where will Nepal take you?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Curated micro-climates, from high Himalayan rain-shadow deserts to subtropical sal jungles and ancient Newar kingdoms.</p>
+</div>
+<a class="inline-flex items-center gap-1.5 font-label-lg text-label-lg text-primary font-semibold hover:text-on-tertiary-container transition-colors group" href="#">
+<span>View all 24 regional guides</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">east</span>
+</a>
+</div>
+<!-- Asymmetric Editorial Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-md">
+<!-- Mustang (Large 7-Col Anchor) -->
+<div class="lg:col-span-7 group relative rounded-xl overflow-hidden shadow-sm bg-surface-container-high min-h-[380px] lg:min-h-[440px] flex flex-col justify-end p-space-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Upper Mustang Tibetan plateau landscape, ancient ochre cliff dwellings carved into canyons, Lo Manthang walled city under expansive cobalt sky with prayer flags, earthy terracotta and bone white palette" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABO0vCEIAr17YalOb_Nsm-MpC_FnDXk3pqdFVrx2caPN_oCMpkl0HUMOYRAnn5_FclRFDWpKotBGvq2LTP6gOnw6Fu99FaZ4sKeuNryaVhTqQMhpH5q3Em5DJwa4DyhhJMhgE7RRjyFAPOV6gGyW9-04z8D_jITCjDNwvkHKp6k6Bavszp-jOuNRmuLWukha_5PctfGIjSIYG80xrzoJ_dZl1HiSo65SCZkwWe7Ei4awG8FUg2Kodn')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="relative z-10 space-y-1.5 text-surface-container-lowest">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/20 backdrop-blur-md font-label-md text-label-md uppercase tracking-wider text-surface-container-lowest">Ancient Kingdom of Lo</span>
+<span class="font-label-md text-label-md text-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">altitude</span> 3,840m
+            </span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-surface-container-lowest">Mustang</h3>
+<p class="font-body-sm text-body-sm text-surface-variant max-w-md line-clamp-2">Wind-carved ochre gorges, walled monastic citadels, and centuries of preserved Tibetan Buddhist architecture beyond the Annapurna massif.</p>
+<div class="pt-2">
+<span class="inline-flex items-center gap-1 text-on-tertiary-container font-label-md text-label-md font-semibold group-hover:underline">Explore Guides &amp; 14 Packages →</span>
+</div>
+</div>
+</div>
+<!-- Pokhara (5-Col Anchor) -->
+<div class="lg:col-span-5 group relative rounded-xl overflow-hidden shadow-sm bg-surface-container-high min-h-[380px] lg:min-h-[440px] flex flex-col justify-end p-space-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Serene Phewa Lake in Pokhara with colorful wooden paddle boats on water, pristine mirrored reflection of snow-capped Machapuchare Fishtail mountain at sunrise, gentle morning mist and quiet mountain reflection" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSX6XwX_SqWM8_yFBwU-g_X2E3v4jkfuUdYDv7NjnWqyBADTyxTllGNHYgdXjnaIIKXUtZfxOUGloNJflkjbslxaPwiiLXt8NZZ_f2eFPciWnQ8Dm798gBP9PUfQ2fC0eeU946VPndqJQOiDSqDl6O16ODuugkZ7CIo3qNJ_EDi8d2VIFyKkh8CF7mS4nbc6qMIU4x61_D0B11VCE7p8n7jgdeuAFeiMGCnZFPw_mSrfPY-M4yF8TY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="relative z-10 space-y-1.5 text-surface-container-lowest">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/20 backdrop-blur-md font-label-md text-label-md uppercase tracking-wider text-surface-container-lowest">Lakeside Sanctuary</span>
+<span class="font-label-md text-label-md text-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">altitude</span> 820m
+            </span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-surface-container-lowest">Pokhara Valley</h3>
+<p class="font-body-sm text-body-sm text-surface-variant line-clamp-2">The gateway to the Annapurnas, where quiet shoreline cafes meet paragliding thermals beneath Fishtail Peak.</p>
+<div class="pt-2">
+<span class="inline-flex items-center gap-1 text-on-tertiary-container font-label-md text-label-md font-semibold group-hover:underline">Explore Guides &amp; 22 Packages →</span>
+</div>
+</div>
+</div>
+<!-- Chitwan (4-Col) -->
+<div class="lg:col-span-4 group relative rounded-xl overflow-hidden shadow-sm bg-surface-container-high min-h-[320px] flex flex-col justify-end p-space-md">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Dense subtropical sal forest mist in Chitwan National Park with an armored Greater One-Horned Rhinoceros grazing by a quiet jungle river at morning golden hour, tranquil deep green atmosphere" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAiHkXTnl2YdhOgPk26dh2E0k-EbN-FL03F8L9mhFrSxsKq2N-sxAe0PRkTNfk8zBc7eHH88MM9vwX25S1g9m03RAAawkv-eMLZONXYBmAaB9yX2ObWLece7GOLSDlc2BFIJXmJJjEh6mbLcEZoi2T7I-MmPsc27ByrV0w7GJCe404dplweONgJrAkKm2pBCReMOv6vTFdZT7wm0CUBvROVKkn8ExsZTGuMQS8hdcBUAZpIaBnDdnJ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
+<div class="relative z-10 space-y-1 text-surface-container-lowest">
+<span class="font-label-md text-label-md uppercase tracking-wider text-surface-variant">Subtropical Lowlands</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-surface-container-lowest">Chitwan</h3>
+<p class="font-body-sm text-body-sm text-surface-variant line-clamp-2">Dense sal jungles, gharial crocodiles, and quiet safari trails alongside resident Tharu communities.</p>
+<span class="inline-block pt-1 text-on-tertiary-container font-label-md text-label-md font-semibold">8 Packages →</span>
+</div>
+</div>
+<!-- Rara Lake (4-Col) -->
+<div class="lg:col-span-4 group relative rounded-xl overflow-hidden shadow-sm bg-surface-container-high min-h-[320px] flex flex-col justify-end p-space-md">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Remote jewel Rara Lake in Karnali Nepal, crystal clear turquoise deep water fringed by virgin pine and juniper forests, untouched wilderness and silent alpine shoreline" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQjmfzwZIhXF__rva-ZQkBWBMvHpvFwsWhzok8FXTcJQeb4O1v1C7IBf85qwKS91zN49VS3h6jqIOtkWajiW0zuJgG0YtODI9QiDSN3YsSTLSCnKHcgsHMBIiV7-s0oxuNjkr682CmAZBrGgRDGSCG3aoQnkknqP2KNEUuBZnGDIH5zJVTmvr_WB4hCPyJPDLxNJB_ZQseg0rD6o8fckrUSnuDPreFUMWbO-gfy-aW-oJusT6lFhvT')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
+<div class="relative z-10 space-y-1 text-surface-container-lowest">
+<span class="font-label-md text-label-md uppercase tracking-wider text-surface-variant">Untamed West</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-surface-container-lowest">Rara Lake</h3>
+<p class="font-body-sm text-body-sm text-surface-variant line-clamp-2">Nepal’s deepest, most secluded alpine water body wrapped in whispering blue pine forests.</p>
+<span class="inline-block pt-1 text-on-tertiary-container font-label-md text-label-md font-semibold">5 Packages →</span>
+</div>
+</div>
+<!-- Bandipur & Annapurna (4-Col) -->
+<div class="lg:col-span-4 group relative rounded-xl overflow-hidden shadow-sm bg-surface-container-high min-h-[320px] flex flex-col justify-end p-space-md">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Preserved 18th-century Newari architecture cobblestone bazaar in Bandipur hilltop village, wooden carved balconies, warm evening lanterns and distant Annapurna Himalayan range on horizon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvGJGRhUCJQQxRw8CQFg1tYP-CaZ6yVI3e3iCfJ7a1hSKrkRkndNJ2SdNKU63T0SizVGnMWwFC5vYTTqvtV_4OCyF0pDl0MVc9GqVfxKqg0Jkp1QCFp1GELNUW_52wcDXF7qDfz5GEVVhck5y-ndnWPLNazS573R44usA87op9BMwAaptUsfid3gxf9Wc9DUFaWm6ClIyDDg4b1Adv8U7677gxaRWELY0O82CL-wjSxhp12EtjJioL')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
+<div class="relative z-10 space-y-1 text-surface-container-lowest">
+<span class="font-label-md text-label-md uppercase tracking-wider text-surface-variant">Living Living Heritage</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-surface-container-lowest">Bandipur Ridge</h3>
+<p class="font-body-sm text-body-sm text-surface-variant line-clamp-2">Cobblestone, vehicle-free Newari trading streets with unhindered Himalayan panoramas.</p>
+<span class="inline-block pt-1 text-on-tertiary-container font-label-md text-label-md font-semibold">6 Packages →</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. FEATURED TRAVEL PACKAGES -->
+<section class="w-full bg-surface-container-low py-space-xl" id="featured-packages">
+<div class="w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-1">Direct from Local Operators</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Journeys worth taking.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Handpicked itineraries from Nepal’s verified, registered trekking and safari specialists.</p>
+</div>
+<div class="flex items-center gap-2 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span>100% Licensed Himalayan Agencies</span>
+</div>
+</div>
+<!-- Filter Pill Bar -->
+<div class="flex items-center gap-2 overflow-x-auto pb-space-sm mb-space-lg no-scrollbar">
+<button class="px-4 py-2 rounded-full bg-primary-container text-surface-container-lowest font-label-sm text-label-sm font-medium whitespace-nowrap shadow-sm">All Regions</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors">Annapurna</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors">Mustang &amp; Dolpo</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors">Everest &amp; Khumbu</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors">Chitwan &amp; Bardia</button>
+<span class="h-5 w-[1px] bg-outline-variant/60 mx-1"></span>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors">Under 7 Days</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors">8 – 14 Days</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors">Cultural &amp; Wildlife</button>
+</div>
+<!-- Package Cards 3-Column Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Package Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Sturdy 4x4 expedition vehicle driving along dramatic mountain riverbed cliff road in Upper Mustang with dry barren Himalayan peaks and blue sky" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVh9XzJs-rBqd7v_TvowNc5LzT0n4alIebsCEU9b01tncJasamEO6yx4qoGZ-C0E6VKs3PMJMEkx5rZL1VqgVAOOcYmM6RKVVZ5ydhGFngTj_shPrGM2DTroAxkEBzC5b2DEsIcauCD7ytGhMhgRxq3aR9FJ-N8jdAH-woIkTbM66VXO2LVDn9BqgO8S1NaSmL0yN4ux3AizQSytXCm9vK3occrHutNC6NXM7M03vF00EdG7VD1TqF')"></div>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-md text-label-md font-semibold">
+                Upper Mustang
+              </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-surface-container-lowest font-label-md text-label-md">
+                10 Days Overland
+              </div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Highland Sherpa Expeditions</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Upper Mustang Overland 4x4 Expedition
+              </h3>
+<div class="flex flex-wrap items-center gap-2 pt-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">terrain</span> Max 3,840m</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">directions_car</span> 4x4 Mahindra</span>
+<span class="text-outline-variant">•</span>
+<span class="text-primary font-medium">Moderate</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 pt-1">
+                Traverse Kali Gandaki gorge into the walled capital Lo Manthang with heritage homestays, royal palace visit, and Cave monasteries.
+              </p>
+<div class="pt-2 flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Special Permit Included</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">ACAP Pass</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-secondary block">Starting from</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-primary">NPR 145,000</span>
+<span class="font-label-md text-label-md text-secondary"> / person</span>
+</div>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-primary transition-colors">
+                View Details
+              </button>
+</div>
+</div>
+</article>
+<!-- Package Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Trekker standing at Poon Hill viewpoint at golden sunrise overlooking Annapurna South and Dhaulagiri mountain peaks with prayer flags fluttering gently" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLPZvuScCSVXOrqKE-PeYBXy6VDJI3g8qf5Ig4BADlm0C1h7JC2JsS-ZDQoy0Ilg37cbh_f5UpSIuADo27uTjX-2P6NyRZwlwIdaZFV-8faOVclFXrR_lvVVRWJC3dYD_kZII5SPzF0YJUrHg0vVRQjyM6J0cZjfa9tuiQpHfMdDBGaqp4EL0VV35LB-eYFAazlQ_Lyo-Yqg8pQclZEWMsHRtzHGQ1OMAcmUFhkNao5zs4C-3PjKdp')"></div>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-md text-label-md font-semibold">
+                Annapurna Sanctuary
+              </div>
+<div class="absolute top-3 right-3 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-md text-label-md font-semibold">
+                Popular
+              </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-surface-container-lowest font-label-md text-label-md">
+                12 Days Trek
+              </div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Himalayan Footsteps Adventure</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Annapurna Sanctuary &amp; Poon Hill Dawn
+              </h3>
+<div class="flex flex-wrap items-center gap-2 pt-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">terrain</span> 4,130m ABC</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">hiking</span> Active</span>
+<span class="text-outline-variant">•</span>
+<span class="text-tertiary font-medium">Challenging</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 pt-1">
+                Walk through bamboo groves and rhododendron forests straight into the colossal 360-degree glacier amphitheater of ABC.
+              </p>
+<div class="pt-2 flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">TIMS &amp; ACAP</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Porter Welfare Insured</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-secondary block">Starting from</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-primary">NPR 88,000</span>
+<span class="font-label-md text-label-md text-secondary"> / person</span>
+</div>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-primary transition-colors">
+                View Details
+              </button>
+</div>
+</div>
+</article>
+<!-- Package Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Traditional wooden dugout canoe gliding along misty Rapti river in Chitwan with water birds and jungle riverbank in morning light" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-U5D45xjN3Cznmne8JPm4dby1QnP3nB0cFJ-2C-m2bdK-5DzOX5E06vh7znUimh71iUfbGBFfC6VaSzdfqAkMCTgsjX_zlCuIHZLypQN6T2SujH2lJMPUVOEc2gfVWvABhkwlb4tc5Y42rG7ElKmkYniWLJa3qnwCEobQombd0fRr20fZPAeTB9VzQ2VRlwvWAcZAmBDnyuj-_ZwdLTFapvvJmqjZGBqZOQ9Gq18PdBzKSD5u7WJv')"></div>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-md text-label-md font-semibold">
+                Chitwan National Park
+              </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-surface-container-lowest font-label-md text-label-md">
+                4 Days Wildlife
+              </div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Barahi Jungle Safaris</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Royal Bengal Tiger &amp; River Canoe Safari
+              </h3>
+<div class="flex flex-wrap items-center gap-2 pt-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">hotel</span> Eco-Lodge</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">nature</span> Jungle Patrol</span>
+<span class="text-outline-variant">•</span>
+<span class="text-primary font-medium">Easy / Family</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 pt-1">
+                Ethical jeep tracking, quiet birding canoe cruises on Rapti River, and intimate traditional Tharu cultural exchanges.
+              </p>
+<div class="pt-2 flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Elephant-Free</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">All Inclusions</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-secondary block">Starting from</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-primary">NPR 52,000</span>
+<span class="font-label-md text-label-md text-secondary"> / person</span>
+</div>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-primary transition-colors">
+                View Details
+              </button>
+</div>
+</div>
+</article>
+<!-- Package Card 4 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Expedition dome camping tents pitched along the shore of deep blue alpine Rara lake with pine forest and clear starry dusk sky" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZIZlUX29cPefnQg5onfMVh6cTjuv6r3K257hKKFRxi7E2HVrNOPgn1iihhi97AfTp5J38vGWfGUxSq79VxC_9CoI4JX7Ig_jySoqPdtWbkTHKaKO80lwJEgM_-l4bmxKJwNLTew4vqGFsN4ceK4hVYegf6B9GT3r00HXSOAG49Di8EkklNNlE9gz6vL6Q-Vt5lzjcjIWOZKnstze5UPJidJKWBYJEe7VpUOcRaTRdPQ_D736c3r0g')"></div>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-md text-label-md font-semibold">
+                Mugu, Karnali
+              </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-surface-container-lowest font-label-md text-label-md">
+                8 Days Wilderness
+              </div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Wild West Nepal Treks</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Rara Lake Wilderness Camping Trail
+              </h3>
+<div class="flex flex-wrap items-center gap-2 pt-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">flight</span> Talcha Bush Flight</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">camping</span> Camp Chef</span>
+<span class="text-outline-variant">•</span>
+<span class="text-primary font-medium">Moderate</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 pt-1">
+                Explore the untouched Far West, hike Chuchemara Danda for expansive vistas over shimmering waters and silent pine plateaus.
+              </p>
+<div class="pt-2 flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Full Camp Rig</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Park Passes</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-secondary block">Starting from</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-primary">NPR 95,000</span>
+<span class="font-label-md text-label-md text-secondary"> / person</span>
+</div>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-primary transition-colors">
+                View Details
+              </button>
+</div>
+</div>
+</article>
+<!-- Package Card 5 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Intricate Newari carved wood window frame and warm terracotta brick courtyard with brass lamps and cultural artifacts in Patan Kathmandu Valley" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDpw7qa0xvab1SQRLsuKHS64L38bWlKvtAXVbCchx9ManGQ1dPDtD4ZxRysmFbIoJnmfGfc2fZ7UhkboDorlxr3JizqXBxw9HhdD4NnhMrJplOxMKcGXriF-e2lfCmkND9xl6vUFUZtaMvJWyzQ_bXZXgpjv9i3lWfSnoWkflX8S5lyeyLYjsl4jdmO45N6IIKncNqsVKCJrCDWYnUm7341AsoqcTUWnRRWPBhAXW3cvduu1zmx1Tth')"></div>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-md text-label-md font-semibold">
+                Kathmandu &amp; Bandipur
+              </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-surface-container-lowest font-label-md text-label-md">
+                6 Days Cultural
+              </div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Heritage Trails Nepal</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Sacred Valley &amp; Newari Living Heritage
+              </h3>
+<div class="flex flex-wrap items-center gap-2 pt-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">museum</span> Historian Lead</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">home</span> Heritage Stay</span>
+<span class="text-outline-variant">•</span>
+<span class="text-primary font-medium">Leisure</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 pt-1">
+                Deep architectural walks through Patan Durbar, pottery courtyards of Bhaktapur, and tranquil historic stays in hilltop Bandipur.
+              </p>
+<div class="pt-2 flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Boutique Homestays</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Private Vehicle</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-secondary block">Starting from</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-primary">NPR 64,000</span>
+<span class="font-label-md text-label-md text-secondary"> / person</span>
+</div>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-primary transition-colors">
+                View Details
+              </button>
+</div>
+</div>
+</article>
+<!-- Package Card 6 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full h-56 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Modern helicopter on mountain helipad overlooking Mount Everest, Nuptse, and Ama Dablam from high ridge terrace in Khumbu under crisp morning sunlight" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuArsZ6cgOb0QG-_tYen9-KiLkpWsocj_HZe15p9Kase2hMLXcDJahPH-r69YY7_5Hb3WW73DoXU6hmMtxd3VGIhNRrA9SdFUN_f7zIaMcdTqbRuMC6D25MrS2JHF7kQ6UhKjg1j6N9N9lD80fdfgzz9OTeiQzrqgAoDrmu2pn1sTH5KGwpWgcENmOZIj-KGAICFKxKlvegoqKb3ME_JUHrNPa7APiipMMcKcAVPM5gzBFwBZpcJULjg')"></div>
+<div class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-md text-label-md font-semibold">
+                Khumbu Region
+              </div>
+<div class="absolute top-3 right-3 px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-semibold">
+                Luxury Flight
+              </div>
+<div class="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-primary/80 backdrop-blur-sm text-surface-container-lowest font-label-md text-label-md">
+                1 Day Aerial
+              </div>
+</div>
+<div class="p-space-md space-y-space-xs">
+<div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+<span>Simrik Mountain Aviation</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+                Everest Heli-Tour with Breakfast at Kongde
+              </h3>
+<div class="flex flex-wrap items-center gap-2 pt-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">mode_fan</span> Airbus H125</span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">restaurant</span> High Altitude Meal</span>
+<span class="text-outline-variant">•</span>
+<span class="text-primary font-medium">Easy</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 pt-1">
+                Fly over Khumbu icefall with landing at Kongde terrace lodge (4,250m) for breakfast looking straight into Mount Everest.
+              </p>
+<div class="pt-2 flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Oxygen Backup</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Direct Heliport Transfer</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="pt-space-sm border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-secondary block">Starting from</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-primary">NPR 165,000</span>
+<span class="font-label-md text-label-md text-secondary"> / person</span>
+</div>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-surface-container-lowest font-label-md text-label-md font-semibold hover:bg-primary transition-colors">
+                View Details
+              </button>
+</div>
+</div>
+</article>
+</div>
+<!-- Footnote Disclaimer -->
+<div class="mt-space-lg text-center">
+<p class="font-caption-editorial text-caption-editorial text-secondary italic">
+          * Prices and itineraries are illustrative examples from verified partner operators. All bookings include traveler protection, licensed guide compliance, and transparent porter wage policies.
+        </p>
+</div>
+</div>
+</section>
+<!-- 4. SMART TRIP FINDER (INTERACTIVE PLANNING STUDIO) -->
+<section class="w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin py-space-xl" id="trip-finder">
+<div class="bg-surface-container-lowest rounded-2xl shadow-xl overflow-hidden p-space-lg lg:p-space-xl">
+<div class="max-w-2xl mb-space-lg">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-1">Tailored Journey Studio</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Not sure where to go?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Tell us your timing, pace, and passions. We’ll filter through hundreds of Himalayan routes to surface your perfect match.</p>
+</div>
+<div class="space-y-space-lg">
+<!-- Step 1: Starting Hub -->
+<div class="space-y-space-xs">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold">
+<span class="text-on-tertiary-container font-mono mr-1.5">01</span> Where will you start?
+          </label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<label class="flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors group has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input checked="" class="accent-primary w-4 h-4" name="start-hub" type="radio" value="ktm"/>
+<span class="font-body-sm text-body-sm font-medium">Kathmandu Valley</span>
+</label>
+<label class="flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors group has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary w-4 h-4" name="start-hub" type="radio" value="pkr"/>
+<span class="font-body-sm text-body-sm font-medium">Pokhara Lakeside</span>
+</label>
+<label class="flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors group has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary w-4 h-4" name="start-hub" type="radio" value="brt"/>
+<span class="font-body-sm text-body-sm font-medium">Biratnagar / East</span>
+</label>
+<label class="flex items-center gap-2 p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors group has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary w-4 h-4" name="start-hub" type="radio" value="cst"/>
+<span class="font-body-sm text-body-sm font-medium">Custom Route</span>
+</label>
+</div>
+</div>
+<!-- Step 2: Duration -->
+<div class="space-y-space-xs">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold">
+<span class="text-on-tertiary-container font-mono mr-1.5">02</span> Trip Duration
+          </label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<label class="flex flex-col p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<div class="flex items-center justify-between mb-1">
+<span class="font-body-sm text-body-sm font-semibold">3 – 5 Days</span>
+<input class="accent-primary" name="duration" type="radio" value="short"/>
+</div>
+<span class="text-xs opacity-75">Quick hill escapes &amp; safaris</span>
+</label>
+<label class="flex flex-col p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<div class="flex items-center justify-between mb-1">
+<span class="font-body-sm text-body-sm font-semibold">6 – 9 Days</span>
+<input checked="" class="accent-primary" name="duration" type="radio" value="mid"/>
+</div>
+<span class="text-xs opacity-75">Short treks &amp; heritage circuits</span>
+</label>
+<label class="flex flex-col p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<div class="flex items-center justify-between mb-1">
+<span class="font-body-sm text-body-sm font-semibold">10 – 14 Days</span>
+<input class="accent-primary" name="duration" type="radio" value="long"/>
+</div>
+<span class="text-xs opacity-75">Full circuits &amp; high sanctuaries</span>
+</label>
+<label class="flex flex-col p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<div class="flex items-center justify-between mb-1">
+<span class="font-body-sm text-body-sm font-semibold">15+ Days</span>
+<input class="accent-primary" name="duration" type="radio" value="expedition"/>
+</div>
+<span class="text-xs opacity-75">Trans-Himalayan expeditions</span>
+</label>
+</div>
+</div>
+<!-- Step 3: Budget Range -->
+<div class="space-y-space-xs">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold">
+<span class="text-on-tertiary-container font-mono mr-1.5">03</span> Total Budget per Person (NPR)
+          </label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<label class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center justify-between has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<span class="font-body-sm text-body-sm font-medium">30k – 50k</span>
+<input class="accent-primary" name="budget" type="radio" value="b1"/>
+</label>
+<label class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center justify-between has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<span class="font-body-sm text-body-sm font-medium">50k – 100k</span>
+<input checked="" class="accent-primary" name="budget" type="radio" value="b2"/>
+</label>
+<label class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center justify-between has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<span class="font-body-sm text-body-sm font-medium">100k – 200k</span>
+<input class="accent-primary" name="budget" type="radio" value="b3"/>
+</label>
+<label class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center justify-between has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<span class="font-body-sm text-body-sm font-medium">200k+ (Luxury)</span>
+<input class="accent-primary" name="budget" type="radio" value="b4"/>
+</label>
+</div>
+</div>
+<!-- Step 4: Group Configuration -->
+<div class="space-y-space-xs">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold">
+<span class="text-on-tertiary-container font-mono mr-1.5">04</span> Who is Traveling?
+          </label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<label class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary" name="group-type" type="radio" value="solo"/>
+<span class="font-body-sm text-body-sm">Solo Trekker</span>
+</label>
+<label class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input checked="" class="accent-primary" name="group-type" type="radio" value="couple"/>
+<span class="font-body-sm text-body-sm">Couple / Duo</span>
+</label>
+<label class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary" name="group-type" type="radio" value="family"/>
+<span class="font-body-sm text-body-sm">Family with Kids</span>
+</label>
+<label class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary" name="group-type" type="radio" value="friends"/>
+<span class="font-body-sm text-body-sm">Group of Friends</span>
+</label>
+</div>
+</div>
+<!-- Step 5: Interests -->
+<div class="space-y-space-xs">
+<label class="block font-label-lg text-label-lg text-on-surface font-semibold">
+<span class="text-on-tertiary-container font-mono mr-1.5">05</span> Travel Passions &amp; Pace (Select all that apply)
+          </label>
+<div class="flex flex-wrap gap-2">
+<label class="px-3.5 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 text-on-surface has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input checked="" class="accent-primary rounded" type="checkbox"/>
+<span class="material-symbols-outlined text-[18px]">hiking</span>
+<span class="font-body-sm text-body-sm">High-Altitude Trekking</span>
+</label>
+<label class="px-3.5 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 text-on-surface has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input checked="" class="accent-primary rounded" type="checkbox"/>
+<span class="material-symbols-outlined text-[18px]">nature</span>
+<span class="font-body-sm text-body-sm">Wildlife &amp; Jungles</span>
+</label>
+<label class="px-3.5 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 text-on-surface has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary rounded" type="checkbox"/>
+<span class="material-symbols-outlined text-[18px]">temple_buddhist</span>
+<span class="font-body-sm text-body-sm">Spirituality &amp; Monasteries</span>
+</label>
+<label class="px-3.5 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 text-on-surface has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary rounded" type="checkbox"/>
+<span class="material-symbols-outlined text-[18px]">villa</span>
+<span class="font-body-sm text-body-sm">Heritage Architecture</span>
+</label>
+<label class="px-3.5 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 text-on-surface has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary rounded" type="checkbox"/>
+<span class="material-symbols-outlined text-[18px]">spa</span>
+<span class="font-body-sm text-body-sm">Luxury &amp; Wellness Lodges</span>
+</label>
+<label class="px-3.5 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors flex items-center gap-2 text-on-surface has-[:checked]:bg-primary-container has-[:checked]:text-surface-container-lowest">
+<input class="accent-primary rounded" type="checkbox"/>
+<span class="material-symbols-outlined text-[18px]">kayaking</span>
+<span class="font-body-sm text-body-sm">Adrenaline &amp; Rivers</span>
+</label>
+</div>
+</div>
+<!-- Studio Submit Action -->
+<div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md border-t border-surface-container">
+<div class="flex items-center gap-2 text-secondary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[20px] text-primary">auto_awesome</span>
+<span>Real-time algorithm dynamically balances elevation profiles &amp; seasonal roads.</span>
+</div>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-space-xl py-3.5 rounded-full bg-primary-container text-surface-container-lowest font-label-lg text-label-lg font-semibold hover:bg-primary transition-all duration-200 shadow-md">
+<span>Find My Trip (42 Matched Itineraries)</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. WHY GHUMNE (VALUE PILLARS) -->
+<section class="w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin py-space-xl">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-1">Clear Principles</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Built with intention for Nepal travelers.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">No dark patterns, no opaque middleman markups, and no compromised safety on mountain passes.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Pillar 1 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between hover:bg-surface-container transition-colors group">
+<div class="space-y-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[24px]">map</span>
+</div>
+<span class="font-mono text-label-md text-secondary block">01 / UNBIASED EXPLORATION</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Discover Across Nepal</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Detailed regional topography, seasonal weather windows, and complex permit guidelines mapped without marketing fluff.</p>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between hover:bg-surface-container transition-colors group">
+<div class="space-y-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[24px]">balance</span>
+</div>
+<span class="font-mono text-label-md text-secondary block">02 / FAIR MARKETPLACE</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Compare Verified Packages</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Side-by-side day breakdowns, porter welfare compliance, gear allowances, and lodging categories from registered agencies.</p>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between hover:bg-surface-container transition-colors group">
+<div class="space-y-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[24px]">payments</span>
+</div>
+<span class="font-mono text-label-md text-secondary block">03 / RADICAL TRANSPARENCY</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Realistic Budgeting</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Clear NPR figures highlighting conservation entry fees, guide day rates, helicopter rescue provisions, and gear rental realities.</p>
+</div>
+</div>
+<!-- Pillar 4 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between hover:bg-surface-container transition-colors group">
+<div class="space-y-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[24px]">forum</span>
+</div>
+<span class="font-mono text-label-md text-secondary block">04 / ZERO COMMISSIONS</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Direct Agency Connect</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Chat directly with the licensed expedition leads who will physically stand with you on the trail. Customize freely.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. TRAVEL STORIES AND GUIDES (EDITORIAL SPREAD) -->
+<section class="w-full bg-surface-container-high/40 py-space-xl">
+<div class="w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-1">The Himalayan Dispatch</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Travel stories &amp; field guides.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Written by mountaineers, high-altitude medics, and lifelong Himalayan trail researchers.</p>
+</div>
+<a class="inline-flex items-center gap-1 font-label-lg text-label-lg text-primary font-semibold hover:text-on-tertiary-container transition-colors" href="#">
+<span>View all 48 field guides</span>
+<span class="material-symbols-outlined text-[18px]">east</span>
+</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Lead Editorial Feature (7 cols) -->
+<article class="lg:col-span-7 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col group">
+<div class="relative w-full h-80 lg:h-96 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700" data-alt="Remote rocky Himalayan pass in Upper Dolpo with yak caravan carrying traditional woven packs along narrow mountain ridge under sweeping clouds" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9LQUlpsvet2bhapkopsL9WygmQR9Hpks_N6xKlLSs9zofVKYKj9StclzaUkqrRFTzX4uBrnHJ8-OMFuy5h5dCytoUFkmNpuDj7gGIEw6oLT_jBG5Lut57c4OGY2VwLugOkg9DQ3w1YGNxm3q9oQjbBVANJzMxr_mbf6pLsan2A9OjKRdy2OIvMUy3gVTTuBfFN3xex0lzlCY95TNtUhpFgFdkMTWROzbOdFRBtlfp1ltG89bDdhPn')"></div>
+<div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-primary font-label-md text-label-md font-semibold">
+              Expedition Longform
+            </div>
+</div>
+<div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-sm">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-3 text-secondary font-label-md text-label-md">
+<span>By Dawa Norbu Sherpa</span>
+<span>•</span>
+<span>12 min read</span>
+<span>•</span>
+<span>Updated Spring 2025</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold group-hover:text-primary transition-colors">
+                The Hidden Salt Routes of Upper Dolpo: What Modern Trekkers Need to Know Before Crossing Numa La
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Beyond the rain shadow of Dhaulagiri lies one of the last bastions of pure Bon-Buddhist culture. A breakdown of supply staging, wilderness autonomy, pack yak etiquette, and navigating restricted border zone checkpoints.
+              </p>
+</div>
+<div class="pt-2">
+<a class="inline-flex items-center gap-1.5 text-primary font-label-lg text-label-lg font-semibold hover:text-on-tertiary-container transition-colors" href="#">
+<span>Read Full Field Guide</span>
+<span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Side Stories (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Side Story 1 -->
+<article class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow group flex gap-space-md items-center">
+<div class="w-28 h-28 rounded-lg overflow-hidden flex-shrink-0 relative">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300" data-alt="Lush green terraced hills shrouded in gentle monsoon rain mist near Bandipur Nepal with traditional slate roof house" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCv8R4w_vvdz26YcK1-Qp37lcZaNWraEG-DpjekIWh1o6zlzU_D3qvTUcJ1C9lBYYdgrXXfI0DErkeOZ1S7ogxmLNFbHl4iS6r7odx4p-cuP55FYM7D7DonXFa402pXW_Y17286AKyzd_EY4X35nxZvEdRbwGRT127N6PBri9ltRth4uJ2JRHhBgBxNGNUSkFTcYAC5ohudVRBs0jVHj7aVEMjO7q9ZYD1oaZKorGoqQYOWrKGzUH-T')"></div>
+</div>
+<div class="space-y-1">
+<span class="font-label-md text-label-md text-secondary">Seasonal Travel • 5 min read</span>
+<h4 class="font-headline-sm text-[1.05rem] text-on-surface font-semibold leading-snug group-hover:text-primary transition-colors">
+                Monsoon Magic: Why Bandipur &amp; Pokhara Shine Between July and September
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">Empty walking streets, emerald rice terraces, and dramatic cloud theater.</p>
+</div>
+</article>
+<!-- Side Story 2 -->
+<article class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow group flex gap-space-md items-center">
+<div class="w-28 h-28 rounded-lg overflow-hidden flex-shrink-0 relative">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300" data-alt="Cozy Himalayan teahouse dining hall with steaming metal bowls of Dal Bhat and warm wood stove stove in evening" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAPiOR4U7YrRuIJ0cHEk0B6o6dQSq4zyUR4Pe3OXQ2StKbejpU11kJTmRK_nZn32aG23Sqv9a7JdKTfNWr5CtTcSJtyi_AJIssIZit-HMVyjDEex4PZ8jVJhL22WJzcb8e1sRiRkXF3Qmbj8Dv4iciH7pVjSKyBb2GIHpg-MNv5mHM3jZ2h-m0wo918m3GVDX7uWT7Ghn7fxVBooOMsDDjxg3Q0MmLp5cmKxHxZg8PYV79xYlhH-F4r')"></div>
+</div>
+<div class="space-y-1">
+<span class="font-label-md text-label-md text-secondary">Culture &amp; Ethics • 7 min read</span>
+<h4 class="font-headline-sm text-[1.05rem] text-on-surface font-semibold leading-snug group-hover:text-primary transition-colors">
+                A Beginner’s Guide to Teahouse Etiquette: Dal Bhat Refills, Solar Showers, and Altitude Wisdom
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">How to respectfully co-exist in communal lodge halls above 3,500m.</p>
+</div>
+</article>
+<!-- Side Story 3 -->
+<article class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow group flex gap-space-md items-center">
+<div class="w-28 h-28 rounded-lg overflow-hidden flex-shrink-0 relative">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300" data-alt="Official Nepal mountain permit document stamps and hiking trail checkpoint sign with prayer flags in Annapurna Conservation Area" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBFSfdbIaUtS-AsgzpIQSbCFQ2cwO5c_FF-c7mbkjRJ2qQGbQvvVgKPcjr3HqbTU8LEMLfteHDbj4jm1bAC-m9wrmzaF4QXJC5YLLtNOuFZptc_ToLoT3PCVjHWS6fNJvslz8MPQ3OxU7HOUF0zrWHI1HQFkBUziGgYAAXmgJ-MYb47VfHhRJhbX2IfBMCUhFgcnTA8R4KvFxEekyVioW07J5wiIaeaxdZEQB-UX2HUEhvYRrfEB_J')"></div>
+</div>
+<div class="space-y-1">
+<span class="font-label-md text-label-md text-secondary">Logistics &amp; Rules • 6 min read</span>
+<h4 class="font-headline-sm text-[1.05rem] text-on-surface font-semibold leading-snug group-hover:text-primary transition-colors">
+                Permits Demystified: ACAP, TIMS, and Restricted Area Regulations for 2025
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">The latest government rules regarding mandatory licensed guides and solo trek zones.</p>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. AGENCY PARTNERSHIP SECTION -->
+<section class="w-full bg-primary-container text-surface-container-lowest py-space-xl relative overflow-hidden">
+<!-- Subtle Himalayan Contour Line Illustration SVG Accent in Background -->
+<div class="absolute right-0 top-0 bottom-0 w-1/2 opacity-5 pointer-events-none overflow-hidden">
+<svg class="w-full h-full" fill="none" viewbox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 300C150 200 250 400 400 300C550 200 600 350 600 350V600H0V300Z" fill="currentColor"></path>
+<path d="M0 200C120 150 200 300 350 220C500 140 580 250 600 250V600H0V200Z" stroke="currentColor" stroke-width="2"></path>
+<path d="M0 100C180 80 280 220 420 120C520 60 580 150 600 150V600H0V100Z" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+<div class="w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-7 space-y-space-md">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest/10 backdrop-blur-md text-surface-variant font-label-md text-label-md tracking-wider uppercase">
+<span>For Nepal Travel Providers</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-semibold tracking-tight leading-tight">
+            Take your travel business further with Ghumne.
+          </h2>
+<p class="font-body-lg text-body-lg text-surface-variant leading-relaxed max-w-xl">
+            Showcase your unique trekking, cultural, and safari packages to qualified national and international travelers. Manage booking inquiries directly without high OTA commissions using Zenlabs travel infrastructure.
+          </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md pt-space-sm">
+<div class="space-y-1">
+<span class="block font-headline-md text-headline-md font-semibold text-secondary-fixed">100%</span>
+<span class="font-body-sm text-body-sm text-surface-variant">Verified Agencies Only</span>
+</div>
+<div class="space-y-1">
+<span class="block font-headline-md text-headline-md font-semibold text-secondary-fixed">Direct</span>
+<span class="font-body-sm text-body-sm text-surface-variant">Client Inquiry Pipeline</span>
+</div>
+<div class="space-y-1">
+<span class="block font-headline-md text-headline-md font-semibold text-secondary-fixed">0%</span>
+<span class="font-body-sm text-body-sm text-surface-variant">Early Partner Commission</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-md pt-space-sm">
+<a class="inline-flex items-center justify-center px-space-lg py-3.5 rounded-full bg-surface-container-lowest text-primary font-label-lg text-label-lg font-semibold hover:bg-secondary-fixed transition-colors shadow-sm" href="#">
+              Become a Ghumne Partner
+            </a>
+<a class="inline-flex items-center justify-center gap-2 px-space-lg py-3.5 rounded-full bg-surface-container-lowest/10 backdrop-blur-md text-surface-container-lowest font-label-lg text-label-lg font-semibold hover:bg-surface-container-lowest/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download Agency Deck</span>
+</a>
+</div>
+</div>
+<!-- Right Side Verification Trust Card -->
+<div class="lg:col-span-5 bg-surface-container-lowest text-on-surface p-space-lg rounded-2xl shadow-xl space-y-space-md">
+<div class="flex items-center justify-between border-b border-surface-container pb-space-sm">
+<div>
+<span class="font-label-md text-label-md text-secondary uppercase block">Platform Standard</span>
+<h4 class="font-headline-sm text-headline-sm font-semibold text-primary">Agency Accreditation</h4>
+</div>
+<span class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+</span>
+</div>
+<ul class="space-y-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+<span><strong>Department of Tourism (DoT)</strong> registered enterprise check.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+<span><strong>TAAN / NMA</strong> active membership validation.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+<span>Documented porter wage and evacuation insurance compliance.</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check_circle</span>
+<span>Transparent payment and cancellation protection escrow.</span>
+</li>
+</ul>
+<div class="pt-2">
+<div class="p-space-sm rounded-lg bg-surface-container-low text-xs text-secondary leading-relaxed">
+              Have questions regarding onboarding? Email our Operator Desk at <a class="text-primary font-semibold underline" href="mailto:partners@ghumne.com">partners@ghumne.com</a> or call our Kathmandu liaison office.
+            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface-variant pt-space-xl pb-space-lg"><div class="w-full max-w-[1360px] mx-auto px-gutter-mobile lg:px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-lg pb-space-xl"><div class="space-y-space-md lg:pr-space-md"><a class="flex items-baseline text-decoration-none" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-primary-container font-semibold">ghumne</span><span class="inline-block w-1.5 h-1.5 rounded-full bg-on-tertiary-container ml-0.5"></span></a><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Nepal’s verified travel discovery and multi-agency tour package marketplace. Developed by Zenlabs.</p><div class="pt-space-xs"><p class="font-label-md text-label-md uppercase tracking-wider text-secondary">HQ: Kathmandu, Bagmati, Nepal</p></div><div class="flex items-center gap-space-sm pt-space-xs text-on-surface-variant"><a aria-label="Expedition Dispatch" class="p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors" data-path="social-expeditions" href="#"><span class="material-symbols-outlined text-[20px]">explore</span></a><a aria-label="Community Updates" class="p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors" data-path="social-community" href="#"><span class="material-symbols-outlined text-[20px]">public</span></a><a aria-label="Himalayan Operations Desk" class="p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors" data-path="social-support" href="#"><span class="material-symbols-outlined text-[20px]">contact_support</span></a></div></div><div class="space-y-space-sm"><h4 class="font-label-lg text-label-lg font-semibold text-on-surface tracking-wide uppercase">Explore</h4><ul class="space-y-space-xs font-body-sm text-body-sm"><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="pokhara-valley" href="#">Pokhara</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="annapurna-circuit" href="#">Annapurna Circuit</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="mustang-and-lo-manthang" href="#">Mustang &amp; Lo Manthang</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="chitwan-safari" href="#">Chitwan Safari</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="rara-lake" href="#">Rara Lake</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="bandipur-heritage" href="#">Bandipur Heritage</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="langtang-valley" href="#">Langtang Valley</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-label-lg text-label-lg font-semibold text-on-surface tracking-wide uppercase">Travel Packages</h4><ul class="space-y-space-xs font-body-sm text-body-sm"><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="trekking-and-mountaineering" href="#">Trekking &amp; Mountaineering</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="cultural-heritage" href="#">Cultural Heritage</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="wildlife-safaris" href="#">Wildlife Safaris</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="luxury-lodges" href="#">Luxury Lodges</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="helicopter-expeditions" href="#">Helicopter Expeditions</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="custom-itineraries" href="#">Custom Itineraries</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-label-lg text-label-lg font-semibold text-on-surface tracking-wide uppercase">For Agencies</h4><ul class="space-y-space-xs font-body-sm text-body-sm"><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="partner-portal" href="#">Partner Portal</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="agency-verification" href="#">Agency Verification</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="list-your-packages" href="#">List Your Packages</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="inquiry-management" href="#">Inquiry Management</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="agency-guidelines" href="#">Agency Guidelines</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-label-lg text-label-lg font-semibold text-on-surface tracking-wide uppercase">Company</h4><ul class="space-y-space-xs font-body-sm text-body-sm"><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="about-zenlabs-and-ghumne" href="#">About Zenlabs &amp; Ghumne</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="editorial-standards" href="#">Editorial Standards</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="safety-and-permitting" href="#">Safety &amp; Permitting</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="terms-of-service" href="#">Terms of Service</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="privacy-policy" href="#">Privacy Policy</a></li><li><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="contact-support" href="#">Contact Support</a></li></ul></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-sm font-label-md text-label-md text-on-surface-variant"><p>© 2025 Ghumne Technologies Pvt. Ltd. / Zenlabs. Made with love for the Himalayas.</p><p class="text-secondary">All illustrative sample packages marked.</p></div></div></footer></body></html>

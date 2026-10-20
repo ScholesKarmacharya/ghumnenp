@@ -12,6 +12,10 @@
 .env*
 !.env.example
 /.vercel/
+/supabase/.temp/
+/supabase/.branches/
+/supabase/.env*
+/supabase/dev-target.local.json
 
 # Test artifacts
 /coverage/

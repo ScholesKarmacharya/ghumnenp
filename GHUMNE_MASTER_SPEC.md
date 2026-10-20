@@ -1,1260 +1,398 @@
 # GHUMNE - MASTER PRODUCT & DEVELOPMENT SPECIFICATION
 
-> Single source of truth for product, design, architecture, data, security, testing, and implementation.
-> Codex must read this entire file before making changes.
+> Product authority for Ghumne, developed by Zenlabs.
+> Revised: 2026-10-20. Read this file before implementation.
+> This product/database plan supersedes the former secondary-marketplace direction. It does not represent implemented features or permission to apply migrations.
 
----
+## 0. Purpose and product direction
 
-# 0. DOCUMENT PURPOSE
+Ghumne is a Nepal-focused B2C travel discovery, multi-agency package marketplace and smart trip-planning platform. All three experiences are core to the MVP. Marketplace foundations precede public package matching; agencies are no longer a late optional partner layer.
 
-This file defines the complete direction for **Ghumne**, a Nepal-focused B2C travel discovery and trip-planning platform.
+Traveler promise: **Discover Nepal, compare trips from approved agencies, or plan your own trip around your budget and time.**
 
-Ghumne is NOT primarily a travel-agency marketplace and is NOT another generic tourism information website.
+Journey: **DISCOVER -> COMPARE PACKAGES / PLAN -> SAVE / SHARE -> INQUIRE / VISIT AGENCY**. The product remains useful with no agency inventory. Agencies may retain their existing websites as booking destinations. Initial conversion uses inquiry forms, WhatsApp and external booking links. No payment processing, inventory reservations, booking settlement or booking commissions are included.
 
-The core consumer promise is:
+Current authorization covers TASK-015 verification, provisional V1 policies and reviewable SQL migrations/tests. Preserve completed foundation code. Stop before executing any database migrations or destructive changes; do not introduce paid services without explicit approval. [V1_BUSINESS_POLICIES.md](V1_BUSINESS_POLICIES.md) records the owner's provisional decisions and remaining final commercial choices.
 
-> **Tell Ghumne your budget, available days, starting location, travel month, group size, transport preference, and interests. Ghumne helps you decide where to go and how to plan the trip.**
+## 1. Product requirements
 
-Core journey:
+### 1.1 Market and problem
 
-**DISCOVER -> PLAN -> SAVE/SHARE -> CONNECT**
+Serve domestic Nepal travelers first: solo travelers, couples, friends and families starting from Kathmandu and other cities. International travelers researching Nepal are secondary. Approved agencies are core marketplace suppliers.
 
-Travel agencies, tour packages, hotels, activities, and other partners are a secondary monetization and fulfillment layer.
+Travel research is fragmented across maps, social media, blogs, transport operators and agency websites. Travelers need to know where to go, what a whole group can afford, how long a trip takes, and which actual agency offers fit. Agencies need owned profiles, accurate listings and qualified inquiries without replacing their websites.
 
----
+Working positioning: **Discover Nepal. Compare packages. Plan your trip.** Update existing foundation copy with its assigned UI task; this revision does not redesign the application.
 
-# 1. PRD - PRODUCT REQUIREMENTS
+### 1.2 Three core experiences
 
-## 1.1 Product Name
+1. **Travel Discovery:** Search Nepal destinations by name/location or discover places using total group budget, duration, origin, interests, group size, transport and month/dates. Show destination guidance and relevant eligible agency packages automatically.
+2. **Travel Package Marketplace:** Multiple approved agencies may list offers for the same destination. Travelers browse/filter/compare agency, itinerary, duration, group total, inclusions, exclusions, origin and availability. Eligible published offers enter organic matching results without manual featured assignment.
+3. **Smart Trip Planning:** Explore destination information, estimate component budgets, generate/edit itineraries, save trips and compare the same group/date assumptions against actual agency packages. Clearly distinguish estimates from agency prices.
 
-**Ghumne**
+### 1.3 Roles
 
-Suggested positioning:
+| Role          | Capabilities                                                                                                                                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Traveler      | Explore/search without login, compare packages, use Finder and planner, submit inquiries, open contacts/booking links; save/favorite/share with an account                                                            |
+| Travel Agency | Onboard company, manage its own profile, view/request subscription changes, author packages/revisions, maintain prices/itinerary/availability, publish when eligible, handle its own inquiries and entitled analytics |
+| Ghumne Admin  | Approve/suspend agencies, manage destinations, review/unpublish listings, control plans/subscriptions, manage labeled featured placements, inspect freshness and oversee marketplace activity                         |
 
-**Discover Nepal. Plan your trip.**
+These are capabilities, not client-editable profile labels. An agency member can also plan personal travel. Trusted role grants plus agency membership determine access. Admin access is assigned through a controlled process, never self-sign-up.
 
-Alternative consumer message:
+### 1.4 Mandatory business rules
 
-**Kata jane? Ghumne ma hera.**
+- Consumer usefulness, truthful data, mobile usability and accessibility remain central. Ghumne works with zero agency packages.
+- Never invent real agencies, live package prices, availability, reviews or ratings.
+- One destination can have packages from many agencies; one package can visit many destinations.
+- Agencies manage only their own company data, drafts, subscriptions, inquiries and analytics. Travelers own their saved content.
+- Public eligibility requires an approved active agency, a current publishing subscription, an approved published revision and valid pricing. Date/seat compatibility additionally requires applicable confirmed availability. Enforce eligibility on every public surface, including direct links and caches.
+- Eligible offers appear automatically in matching organic results. Subscription tier does not secretly boost organic rank.
+- Budget means the **total for all selected travelers** by default. Explicit per-person input must be converted before matching.
+- Calculate whole-group package charges and mandatory fees using explicit units. Unknown/excluded costs and unconfirmed dates are visible.
+- Sponsored placements use a visible **Sponsored** text label on every placement. Sponsorship never bypasses matching or eligibility.
+- Plans may limit published listings, analytics and promotional privileges. A subscription record does not imply payment integration.
+- An agency may keep its booking website. Initially use inquiry forms, WhatsApp and validated external links; no claim that Ghumne reserves seats or confirms bookings.
+- No exact package match: show labeled alternatives explaining mismatches and offer a self-planned itinerary. Never silently relax constraints.
 
-## 1.2 Vision
+### 1.5 MVP scope
 
-Build a trusted Nepal travel-planning platform that helps people answer:
+**Public:** Homepage, destination directory/details, package directory/details, public agency profiles, unified destination/package search, Smart Trip Finder, exact/alternative/no-inventory states, group-price comparison, estimated budgets, suggested itineraries and contact actions.
 
-- Where should I go?
-- Can I afford it?
-- How many days do I need?
-- How do I get there?
-- What should I do there?
-- Where should I stay?
-- What should I pack?
-- When should I visit?
-- Can someone arrange the trip for me?
+**Traveler:** Email authentication/reset, profile, favorites, saved/editable trips and revocable unlisted sharing. Google authentication is optional after configuration review.
 
-## 1.3 Initial Market
+**Agency:** Company onboarding/profile, approval and subscription status, entitlement/change-request view, package drafts/revisions, itinerary, price rules, availability, review/publication flow, inquiry inbox/status and plan-gated analytics.
 
-Primary launch market:
+**Admin:** Destination/attraction/activity/transport/cost/season CRUD, freshness, agency approval, package review, plan versions, manual subscription assignment/renewal/suspension, listing limits, sponsored placements and audit history.
 
-- Domestic travelers in Nepal
-- Travelers starting from Kathmandu and other major cities
-- Young adults, couples, friend groups, families, solo travelers
+**Conversion:** Inquiry acknowledgement, agency inbox, WhatsApp and external booking actions. Automated email/SMS or external message delivery needs a separate decision; an inquiry is not a booking.
 
-Secondary market:
+### 1.6 Out of MVP
 
-- International travelers researching Nepal
-- Travel agencies and tour operators seeking qualified leads
+No payment collection, checkout, automated subscription billing, escrow, settlement, refunds, commissions, booking engine, inventory reservations, airline/hotel/vehicle inventory, microservices, native apps, social feed, loyalty or cryptocurrency. No dependency on paid maps, AI or analytics. Agency subscriptions and labeled featured placements are now MVP scope, but commercial terms remain unapproved.
 
-## 1.4 Problem
+### 1.7 Metrics
 
-Travel planning in Nepal is fragmented. Users often jump between Google, Maps, TikTok, Instagram, Facebook groups, travel blogs, hotel sites, agency sites, and friends to determine basic trip information.
+Measure Finder completion, destination/package engagement, comparisons, trip creation/save/share, returning travelers, inquiry conversion and website/WhatsApp clicks. Track agency activation, review turnaround, eligible listing count and freshness. Separate organic/sponsored attribution. Do not infer confirmed sales or bookings from clicks/inquiries or market an undefined AI score.
 
-Users frequently need answers to combinations such as:
+## 2. Data strategy
 
-- Rs. 15,000 budget, 3 days, where can two people go from Kathmandu?
-- Where can I see snow this month?
-- What is a good weekend destination for a couple?
-- Can I reach a destination by bike?
-- What will transport, hotel, food, and activities approximately cost?
+### 2.1 Destination knowledge
 
-Ghumne should bring these decisions into one coherent flow.
+Start with approximately 15-25 researched destinations across city, culture, nature, weekend and trekking categories. Candidates include Pokhara, Chitwan, Bandipur, Mustang, Manang, Rara, Ilam, Nagarkot, Janakpur, Lumbini and Kathmandu Valley trips. This is editorial scope, not a claim that current data exists or is verified.
 
-## 1.5 Product Principles
+Support name/slug, province/district/region, coordinates, overview/descriptions, licensed hero/gallery images, suggested duration, difficulty/accessibility, traveler types, interests, seasons, getting there, travel-time ranges, estimated costs, attractions, activities, accommodation/food guidance, packing, safety/permit notes, publish state and source/verification metadata.
 
-1. Consumer usefulness comes before monetization.
-2. Ghumne must remain useful even with zero agency packages.
-3. Recommendations must explain why a destination matches.
-4. Never present uncertain prices, travel times, weather, road conditions, or availability as guaranteed facts.
-5. Data freshness must be visible internally and, where useful, to users.
-6. Mobile-first UX is mandatory.
-7. Avoid cluttered travel-agency aesthetics.
-8. Do not make AI the product. AI may improve the experience, but trustworthy travel planning is the product.
-9. Do not require login just to explore destinations or use the basic trip finder.
-10. Partner content must not secretly override organic recommendations.
+Prefer official tourism/local-government/park information, transport operators, direct agency confirmations and manual verification. Crowdsourced content is supplementary. No external data service is selected.
 
-## 1.6 Core User Journey
+### 2.2 Estimates versus agency claims
 
-### Discovery
+Planning data uses low/high cost components with explicit units: per-person/vehicle transport, per-room/night accommodation and occupancy, food per-person/day, activities, permits and contingency. Never store one misleading destination trip price. Travel times are origin/mode ranges, not guaranteed road arrival times.
 
-User provides:
+Agency price rules are commercial claims for a specific package revision, group and validity period. Availability is agency-reported and timestamped. Platform approval is not a price, inventory or service guarantee.
 
-- Starting location
-- Budget
-- Number of travelers
-- Number of days
-- Travel month/date
-- Interests
-- Transport preference
-- Travel style
-
-Ghumne returns matching destinations.
-
-### Planning
-
-User selects a destination and receives:
-
-- Destination overview
-- Suggested duration
-- Estimated budget
-- Transport options
-- Suggested itinerary
-- Attractions
-- Activities
-- Accommodation guidance
-- Food guidance
-- Best season
-- Packing suggestions
-- Travel tips
-- Map/location context
-
-### Save / Share
-
-Authenticated users can:
-
-- Save destination
-- Favorite destination
-- Save generated trip
-- Edit trip
-- Share trip via public link
-
-### Connect
-
-Where partners exist, users can optionally:
-
-- View relevant packages
-- Visit agency website
-- Send inquiry
-- Open WhatsApp/contact channel
-
-## 1.7 MVP Features
-
-### Public
-
-- Homepage
-- Destination directory
-- Destination detail pages
-- Smart Trip Finder
-- Recommendation results
-- Basic trip planner
-- Budget estimate
-- Suggested itinerary
-- Search
-- Filters
-- Responsive navigation
-
-### Authentication
-
-- Email authentication
-- Google authentication if practical
-- User profile
-
-### Logged-in Traveler
-
-- Saved destinations
-- Favorites
-- Saved trips
-- Edit trip
-- Share trip
-
-### Admin
-
-- Admin authentication/role
-- Destination CRUD
-- Attraction CRUD
-- Activity CRUD
-- Transport data CRUD
-- Budget data CRUD
-- Seasonal data CRUD
-- Content publish/unpublish
-- Data freshness tracking
-
-### Partner Layer - after consumer foundation
-
-- Agency profile
-- Agency verification status
-- Agency dashboard
-- Package CRUD
-- Package-to-destination association
-- Inquiry/lead capture
-- Website and WhatsApp outbound actions
-- Basic analytics
-
-## 1.8 Explicitly Out of MVP
-
-Do NOT build these until core discovery/planning is validated:
-
-- Full payment processing
-- Escrow
-- Refund management
-- Complex booking engine
-- Airline ticketing
-- Hotel inventory management
-- Real-time vehicle inventory
-- Native mobile applications
-- Social network/feed
-- Complex loyalty program
-- Cryptocurrency
-- Microservices
-
-## 1.9 Success Metrics
-
-Consumer metrics:
-
-- Trip Finder completion rate
-- Recommendation click-through rate
-- Destination page engagement
-- Trips created
-- Trips saved
-- Trips shared
-- Returning users
-- Search-to-plan conversion
-
-Partner metrics later:
-
-- Package impressions
-- Package views
-- Website clicks
-- WhatsApp clicks
-- Inquiries generated
-- Qualified lead rate
-
-Never invent a single universal "AI score" or recommendation score for external marketing without defining its methodology.
-
----
-
-# 2. DATA STRATEGY
-
-## 2.1 Why Data Is Critical
-
-The hardest part of Ghumne is not UI development. Recommendation quality depends on structured and maintainable Nepal travel data.
-
-## 2.2 Core Destination Data
-
-Each destination should support:
-
-- Name
-- Slug
-- Province/district/region
-- Latitude/longitude
-- Short description
-- Long description
-- Hero image
-- Gallery
-- Recommended minimum days
-- Recommended maximum days
-- Difficulty/accessibility
-- Suitable traveler types
-- Interest tags
-- Best months
-- Less suitable months
-- Typical transport methods
-- Approximate travel time from common origins
-- Approximate budget ranges
-- Accommodation range
-- Food range
-- Activity costs
-- Attractions
-- Activities
-- Packing notes
-- Safety/travel notes
-- Permit requirements where relevant
-- Last verified date
-- Source notes/internal evidence
-- Published status
-
-## 2.3 Price Data
-
-Do not store one misleading fixed trip price.
-
-Use ranges and components:
-
-- Transport low/high
-- Accommodation low/high per night
-- Food low/high per person/day
-- Activities low/high
-- Permit/entry costs
-- Miscellaneous buffer
-
-Store currency and last-verified date.
-
-## 2.4 Travel Time
-
-Travel time should support:
-
-- Origin
-- Destination
-- Transport mode
-- Minimum estimate
-- Maximum estimate
-- Notes
-- Last verified
-
-Do not promise exact road travel time.
-
-## 2.5 Seasonality
-
-For each destination/month, store useful structured attributes such as:
-
-- Suitability score or category
-- Weather notes
-- Crowding level
-- Trekking suitability
-- Snow possibility where relevant
-- Monsoon considerations
-- Accessibility notes
+Dynamic destination data, price rules and availability carry verification/source context and timestamps. Show appropriate confirmation context publicly. Admin can identify stale records. The provisional V1 package/availability reconfirmation interval is 30 days, enforced against the exact published revision; absent/expired confirmation is never treated as confirmed availability. Material changes still require moderation.
 
-Any score must have a documented meaning and should not pretend to be scientific if it is editorial.
+Seasonality records store month, documented editorial suitability category, weather/crowding/monsoon/access notes and verification. Do not imply live weather or scientific precision.
 
-## 2.6 Data Sources
+### 2.3 Development and launch data
 
-Prefer reliable sources such as:
+Synthetic agencies/packages/prices are restricted to isolated test/development fixtures with conspicuous demo labels and no production publishing path. Launch inventory requires real agency consent, reviewed agency-supplied prices/dates and licensed media. Zero inventory is an acceptable honest state.
 
-- Official tourism authorities
-- Local government information
-- Transport operators
-- Official park/conservation sources
-- Direct partner confirmations
-- Verified accommodation/operator information
-- Manual editorial verification
+## 3. Search, matching, pricing and planning
 
-Crowdsourced information may supplement, but should not automatically become authoritative data.
+### 3.1 Shared search contract
 
-## 2.7 Data Freshness
+Destination search and Finder normalize destination/query, origin, `budget_total_minor`, currency, travelers, days/nights, exact dates or month, interests, transport and travel style. Nepal travel dates use `Asia/Kathmandu` calendar dates; subscription/publish timestamps use UTC instants. Validate positive integer travelers/days, date order and consistency between dates and duration.
 
-Every dynamic record should support:
+One deterministic package eligibility/matching service serves search, destination details, Finder and plan comparison. Results distinguish destination recommendations, organic exact package matches, labeled alternatives and sponsored placements. A destination recommendation does not imply an agency offer exists.
 
-- `last_verified_at`
-- `verified_by`
-- `source_note`
+### 3.2 Eligibility and exact matching
 
-Admin should be able to identify stale data.
+Apply these checks before ranking/promotion:
 
-## 2.8 Initial Seed Scope
+1. Agency is approved/active, subscription permits publishing now, listing quota is resolved, package has a published approved revision, and associated destination content is public.
+2. Destination associations satisfy explicit destination selection. Multi-stop offers explain which requested place they visit; a stop is not represented as the whole trip.
+3. Travelers fit package min/max and one price-rule tier. Requested days match fixed duration; flexible duration is not inferred.
+4. Origin matches the selected departure location, or the traveler explicitly accepts another origin. Unknown transfers/time/cost are not silently included.
+5. A calculable full-group quote fits total budget/currency. Unknown mandatory fees or necessary excluded expenses prevent claiming the entire trip fits the budget.
+6. Exact dates match a confirmed fixed departure or operating window covering the whole trip, with sufficient agency-reported capacity and valid applicable pricing. Month searches show actual departures/windows within that month; they do not confirm the traveler's unspecified dates.
+7. Package interests overlap the selected interests (V1: at least one, with explanation). Explicit must-have filters remain strict. Transport/style preferences are strict when marked required, otherwise explained ranking factors.
 
-Do not attempt all Nepal destinations at launch.
+No dates supplied means availability is **not checked**: label preference matches "Choose dates to confirm availability". Missing, stale, `on_request`, closed or sold-out availability, or unknown remaining capacity, cannot qualify as exact available matches. Search/inquiry never holds seats; travelers reconfirm with the agency.
 
-Start with approximately 15-25 high-quality destinations across categories such as:
+### 3.3 Ranking and alternatives
 
-- Pokhara
-- Chitwan
-- Bandipur
-- Mustang
-- Manang
-- Rara
-- Ilam
-- Nagarkot
-- Janakpur
-- Lumbini
-- Kathmandu Valley day/weekend destinations
-- Selected trekking destinations
+Use transparent deterministic relevance factors and stable tie-breakers. Explain budget/duration/interests/origin fit. Subscription tiers do not affect organic rank.
 
-Quality is more important than destination count.
+Alternatives can relax budget, duration, destination, origin, interests or date preferences only with reasons such as "One additional day", "Over your group budget" or "Dates require agency confirmation". Never relax approval, subscription, moderation or tenant isolation. Closed/sold-out offers are not available alternatives. Unpriced/on-request offers, if shown, are separate and cannot claim affordability.
 
----
+No exact match always offers changed filters and a self-planned itinerary. Sponsored candidates use the same eligibility checks and exact/alternative category, with their own label and placement. Promotional entitlement cannot insert mismatched offers among exact matches.
 
-# 3. RECOMMENDATION ENGINE
+### 3.4 Package group prices
 
-## 3.1 Inputs
+Store integer minor units plus currency; initially NPR (100 minor units per rupee). No floating point arithmetic or implicit currency conversion. `price_from` may be derived for display but is never the matching source of truth.
 
-Trip Finder should accept:
+A price rule defines nonoverlapping travel-date and traveler scopes, one basis (`per_person` or `per_group`), base amount, sales validity/verification and fee components. A group-tier rate is a rule for an interval, not another multiplier. V1 uses a uniform traveler rate; child/room-specific offers require an explicit supported model before publication.
 
-- Origin
-- Budget
-- Travelers
-- Days
-- Month/date
-- Interests
-- Transport preference
-- Travel style
+`group_total = base_amount * (travelers if per_person else 1) + sum(mandatory_fee_amount * fee_quantity)`
 
-Optional later:
+Fee quantities specify per-person/per-group and per-trip/day/night basis. Avoid double-counting included fees. Quantify taxes/mandatory charges; unknown required charges mean "Quote required". Itemize optional extras and exclusions. Unknown necessary whole-trip exclusions prevent certifying total-trip budget fit even when package charges are known.
 
-- Children
-- Accessibility needs
-- Trekking difficulty
-- Accommodation preference
+Synthetic arithmetic example only: NPR 5,000 per person for 3 travelers plus NPR 600 per group = NPR 15,600. NPR 12,000 per group remains NPR 12,000 for a group within the tier. Out-of-tier, overlapping, expired or missing rules cannot yield an automatic quote.
 
-## 3.2 Recommendation Logic V1
+Recalculate server-side at comparison/inquiry time. Snapshot inputs, price revision, components, exclusions, computed time and confirmation status. Historical snapshots are not price locks or booking confirmations.
 
-Do NOT start with an LLM deciding everything.
+### 3.5 Self-planned estimates and itinerary
 
-Use deterministic filtering/scoring based on structured data.
+Estimate low/high totals from transport + accommodation + food + activities + permits + contingency. Multiply by actual units; shared rooms/vehicles use required units (ceiling of travelers / occupancy), not blindly traveler count. Distinguish days/nights, return/one-way and group/person costs. Missing components make an estimate incomplete, never zero by default.
 
-Example factors:
+Display group ranges, source dates, assumptions and uncertainty. Generate itinerary suggestions from structured content, permit editing/reordering and save owned trips. Compare packages/plans using the same group, origin, dates and duration, explaining differences in inclusions/exclusions.
 
-- Budget compatibility
-- Duration compatibility
-- Seasonal suitability
-- Interest match
-- Origin/travel-time compatibility
-- Transport compatibility
-- Traveler-type match
+### 3.6 AI later
 
-Return a match explanation such as:
+Start with pure deterministic pricing/matching. Later AI can interpret natural language or phrase/summarize verified content. It cannot invent agencies, prices, inventory, permits, travel times, road conditions or safety facts.
 
-> Good for your 3-day nature trip because it fits your estimated budget, is reachable from Kathmandu within the selected duration, and October is a recommended month.
+## 4. Design specification
 
-## 3.3 Budget Calculation
+Preserve the existing forest-green/warm-neutral semantic tokens, restrained clay accents, system typography and accessible shared controls. Use clean, trustworthy, image-rich, Nepal-inspired mobile-first pages without crowded brochure styling.
 
-Estimated trip total should derive from components:
+- Homepage: destination/package search, Finder, real eligible offers when present, seasonal/weekend/budget discovery, interests and explanation of Ghumne. Honest empty inventory.
+- Destination cards: image, name/location, suggested duration, labeled estimated group budget and tags/season context.
+- Destination detail: overview, best time, transport, estimates, attractions/activities, itinerary, stay/food guidance, packing/permit/safety notes, location context and automatically matched packages.
+- Package cards/details: agency, stops, duration/origin, group total and basis, inclusions/exclusions, dates/availability and confirmation time, compare/inquire/WhatsApp/external booking actions. Every sponsored placement has a text label.
+- Finder: destination suggestions, exact offers, separate alternatives and self-planning path. Preserve filters on errors/no results.
+- Planner: summary, ordered itinerary, transport, accommodation, activities, notes, estimated range and package comparison.
+- Agency workspace: approval/subscription status, remaining allowance, publication requirements, draft/published revisions, prices, availability, inquiries and entitled analytics.
+- Admin: content CRUD, review reasons, subscription controls, placement periods, freshness and audit history.
 
-`transport + accommodation + food + activities + permits + buffer`
+Semantic HTML, headings, keyboard use, visible focus, labels, useful alt text, sufficient contrast and reduced motion are mandatory. Target 44px controls, no horizontal overflow, mobile filters and optimized images. Reuse existing loading/error/empty/success primitives. Never expose internal errors or link to unfinished routes, fake contacts, ratings or policies.
 
-Multiply traveler-dependent components correctly.
+## 5. Technical architecture
 
-Display ranges, not fake precision.
+Keep the existing Next.js App Router, React, strict TypeScript, Tailwind, Zod, Vitest and Supabase SSR clients. Runtime versions are preserved. Playwright/axe and a PostgreSQL WebAssembly parser are development-only additions for the authorized verification. Planned persistence is Supabase PostgreSQL/Auth/Storage. No live application schema or auth flow exists yet. Feedback E2E is implemented; full product E2E and production hosting remain later work.
 
-Example:
+Use one modular monolith, Server Components by default, thin Server Actions/Route Handlers, centralized request-scoped data access and pure matching/pricing services. No speculative dependencies. Maps can start with sourced coordinates/external links; no paid maps, analytics, billing, AI or messaging is assumed.
 
-**Estimated trip budget: Rs. 14,000 - 18,500 for 2 travelers**
+`ARCHITECTURE.md` maps current versus planned folders. Extend feature boundaries with packages, pricing, availability, subscriptions, search, moderation, promotions and analytics when needed. Keep traveler, agency and admin workspaces distinct. Reuse existing `components/partner` without a cosmetic directory rename.
 
-Include a disclaimer that actual costs vary.
+Use one shared public eligibility predicate/projection, tenant-scoped agency queries and verified admin operations. Publication/quota/subscription transitions are transactional. Server checks complement RLS. Private content is never publicly cached. Public caches cannot outlive subscription/price/availability/placement expiry; invalidate on affected mutations. Eligibility is evaluated at reads and important writes, not solely by scheduled jobs.
 
-## 3.4 AI Usage Later
+## 6. Planned database entities and relationships
 
-AI may later help with:
+**Logical design plus unapplied SQL drafts.** Nine ordered migration files and a guarded pgTAP test bundle now exist in `supabase/`; SQL/procedure syntax and static security contracts pass locally. No migrations or database tests were executed and no application tables/data were created. [DATABASE_IMPLEMENTATION_REVIEW.md](DATABASE_IMPLEMENTATION_REVIEW.md) describes the physical design, tests and outstanding runtime risks. Generate types only from the subsequently approved, applied and verified schema.
 
-- Natural-language trip input
-- Itinerary wording
-- Conversational travel discovery
-- Summarizing destination information
+Use UUID primary keys except composite joins. Mutable records have timestamps. Enforce foreign keys, same-tenant ownership, nonnegative integer money, valid intervals and unique keys in PostgreSQL. Use UTC instants and Nepal calendar dates as specified above.
 
-AI must consume verified structured Ghumne data where possible. It must not freely invent prices, road conditions, permits, opening hours, or safety information.
+### 6.1 Identity and tenant ownership
 
----
+| Entity               | Key fields and relationships                                                                                                                                                                                   |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profiles`           | `id -> auth.users.id`, display name/avatar; no self-editable authorization field. Private profile is not public agency contact data.                                                                           |
+| `user_roles`         | `(user_id, role)` grants: traveler/agency/admin. Controlled signup can grant traveler; agency/admin grants are not self-assigned.                                                                              |
+| `agencies`           | Name, unique slug, description/logo, website/public contacts/WhatsApp, approval status (pending/approved/rejected), operational status (active/suspended/archived), review reason/actor/time and verification. |
+| `agency_memberships` | `(agency_id, user_id)`, membership role/status. Proposal: one active owner initially, staff later. Controlled ownership creation/transfer; active membership and capability required.                          |
 
-# 4. DESIGN SPECIFICATION
+Onboarding creates agency capability/membership through controlled operations, never automatic approval. Members cannot update their role grants, agency approval, suspension or ownership through profile forms. Private verification evidence, if required, stays admin-scoped.
 
-## 4.1 Design Direction
+### 6.2 Destination knowledge
 
-Ghumne should feel:
+| Entity                               | Key fields and relationships                                                                                                                                                                              |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locations`                          | Normalized Nepal places/origins, names/slugs/aliases, geography/coordinates; shared by routes/packages/search. An origin need not be a published destination.                                             |
+| `destinations`                       | Unique slug, optional location FK, descriptions/geography/coordinates, min/max days, difficulty/traveler types, packing/permit/safety/stay/food notes, publish and verification metadata.                 |
+| `destination_media`                  | Destination FK, path/URL, alt text, credit/license/source, hero/gallery role/order.                                                                                                                       |
+| `interests`, `destination_interests` | Unique interest slugs; destination/interest composite join with documented editorial weight.                                                                                                              |
+| `destination_seasons`                | Destination FK, month 1-12, suitability/access/weather notes, verification; unique destination/month.                                                                                                     |
+| `attractions`, `activities`          | Destination FKs, descriptions, coordinates/duration where applicable, cost ranges/currency/unit, publish and verification metadata.                                                                       |
+| `transport_routes`                   | Origin location FK, destination FK, mode, time/cost ranges, person/vehicle basis, capacity, one-way/return assumption, verification/notes.                                                                |
+| `destination_costs`                  | Destination FK, component category, min/max amount/currency, person/group/room/vehicle unit, trip/day/night frequency, occupancy/capacity, validity/source. Replaces ambiguous flat accommodation fields. |
 
-- Modern
-- Exploratory
-- Trustworthy
-- Nepal-inspired without visual clichés
-- Image-rich
-- Clean
-- Mobile-first
+### 6.3 Subscriptions
 
-Avoid overcrowded cards, excessive gradients, unnecessary animations, and traditional agency brochure styling.
+| Entity                         | Key fields and relationships                                                                                                                                                         |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `subscription_plans`           | Stable code/name and active status; commercial terms not invented.                                                                                                                   |
+| `subscription_plan_versions`   | Plan FK/version, can_publish, max_published_packages, analytics capability, promotional eligibility/allowance. Immutable once assigned; null unlimited differs from zero disallowed. |
+| `agency_subscriptions`         | Agency FK, plan-version FK, pending/active/suspended/expired/cancelled, start/end instants, admin actor/reason. No payment or commission integration.                                |
+| `subscription_change_requests` | Agency FK, requested plan-version/term, requester, pending/approved/rejected status, admin reviewer/reason/time. A request never activates entitlement by itself.                    |
 
-## 4.2 Homepage Structure
+At most one effective publishing subscription per agency at any instant; prevent overlapping effective periods. Eligibility requires active status and `starts_at <= now < ends_at`. Admin initially activates/renews manually; agencies can request changes but cannot grant entitlement. V1 supports free pilot, monthly and annual models with configurable immutable prices/entitlements. Monthly/annual periods use one Nepal calendar month/year; pilot duration is explicit admin input. Final names, fees, limits, trials and grace terms remain open.
 
-1. Navigation
-2. Hero / Smart Trip Finder
-3. Perfect for this month
-4. Weekend trips
-5. Budget-based discovery
-6. Categories/interests
-7. Trending destinations
-8. How Ghumne works
-9. Travel stories/content later
-10. Footer
+Provisional expiry/downgrade behavior: immediately hide ineligible packages, retain all data, resolve over-limit published selections before activation. No automatic grace, arbitrary deletion or hidden grandfathering. Expiry never deletes agency records. Commercial grace/renewal policy remains a final decision.
 
-Suggested hero:
+### 6.4 Packages, moderation, pricing and availability
 
-> **Not sure where to go?**
-> Tell us your budget and time. We'll help you find a trip.
+| Entity                                              | Key fields and relationships                                                                                                                                                                                                                              |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages`                                          | Agency FK, unique `(agency_id, slug)`, draft/published/paused/archived state, published_revision_id and publication timestamps. Public route includes agency slug.                                                                                        |
+| `package_revisions`                                 | Package/agency FKs, version, draft/pending_review/approved/rejected, title/descriptions, days/nights, min/max travelers, transport/style, booking URL, inclusions/exclusions, media, verification, reviewer/reason/time. Approved versions are immutable. |
+| `package_destinations`                              | Revision/destination join, stop order and primary/visit role. Many-to-many; never unique on destination across agencies.                                                                                                                                  |
+| `package_origins`, `package_interests`              | Revision/location and revision/interest joins. Missing data is unknown, not an automatic match.                                                                                                                                                           |
+| `package_media`                                     | Revision/agency FK, ordered HTTPS URL, alt text, credit/license; approved media metadata is immutable with its revision. Storage uploads remain a separate implementation.                                                                                |
+| `package_itinerary_days`, `package_itinerary_items` | Revision -> ordered days -> ordered items; unique day/order within parent; typed destination/activity references where needed.                                                                                                                            |
+| `package_price_rules`                               | Revision FK, person/group basis, amount/currency, traveler interval, travel-date scope or explicit undated scope, sales validity and verification. Optional departure-specific rule belongs to the same revision.                                         |
+| `package_price_components`                          | Rule FK, label/category, amount, unit/frequency, included/mandatory/optional classification. Required unpriced exclusions make quote incomplete.                                                                                                          |
+| `package_availability`                              | Revision FK, fixed-departure/operating-window type, start/end local dates, open/on_request/closed/sold_out, capacity/remaining travelers when known, confirmation/source/time.                                                                            |
 
-Fields:
+The published pointer references an approved revision belonging to the same package/agency. Child rows carry or derive tenant ownership; composite foreign keys prevent cross-agency references. Draft edits do not mutate the published revision. Material content/price edits create a reviewable revision; availability can be refreshed separately, timestamped/audited, without rewriting price terms.
 
-- From
-- Budget
-- Days
-- Travelers
-- Month
-- Interests
-- Find My Trip
+Quota counts published packages, not draft revisions. Publication checks and transitions are atomic under an agency lock. Review approval alone does not publish, activate subscription or override suspension. Require complete public fields and a valid pricing path to publish; confirmed dated matching additionally needs valid availability. Reject ambiguous overlapping price scopes and availability rows.
 
-## 4.3 Destination Card
+### 6.5 Traveler plans and comparison
 
-Show only decision-useful information:
+| Entity                     | Key fields and relationships                                                                                                                                                                     |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `trips`                    | Owner FK, primary destination FK, title/origin location FK, days/nights, travelers, total budget/currency, optional dates, private/unlisted visibility, versioned estimate snapshot/assumptions. |
+| `trip_days`, `trip_items`  | Trip -> ordered days/items, title/notes/time, quantities/units/estimated ranges; explicit destination/attraction/activity FKs or user text instead of unenforced polymorphic reference_id.       |
+| `favorites`                | Composite user/destination FK, created time.                                                                                                                                                     |
+| `trip_shares`              | Trip FK, hashed unguessable token, expiry/revocation. Safe read-only projection excludes contacts/private notes; trip UUID alone is not permission.                                              |
+| `trip_package_comparisons` | Owner/trip FK, package/revision FKs, selected availability/rule, input/quote/estimate snapshots, computed time/version and mismatch reasons. Revalidate live eligibility/quote on reopening.     |
 
-- Image
-- Destination name
-- Location
-- Suggested duration
-- Approximate budget indicator/range
-- Key tags
-- Best-season indicator when appropriate
+### 6.6 Inquiries, promotion and oversight
 
-## 4.4 Recommendation Result Card
+| Entity                | Key fields and relationships                                                                                                                                                                                                        |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `inquiries`           | Package/revision/agency FKs with tenant consistency, optional traveler FK, contacts/consent, travelers/dates/message, quote/input snapshot, new/contacted/closed status and timestamps. Agency is derived server-side from package. |
+| `featured_placements` | Package/agency FKs, surface, start/end instants, admin status/approval, label fixed to Sponsored, entitlement allocation. Recheck eligibility and allowance when serving.                                                           |
+| `marketplace_events`  | Minimal event/time, package/revision/agency/placement references, organic/sponsored source, short-lived deduplication context. No contacts/message bodies or implied bookings.                                                      |
+| `audit_logs`          | Actor, tenant/target/action, reason, safe change metadata/time for roles, approvals, subscriptions, reviews, price, availability, publishing and placement. Trusted append operations only.                                         |
 
-Include:
+Inquiry creation uses server validation, durable abuse controls and a narrow database write path. Guests cannot browse or insert arbitrary rows/tenant/status fields. Travelers can read their own inquiries; owning agencies update workflow status without rewriting identity/submission/quote history. No inquiry sends an external message automatically.
 
-- Destination
-- Match explanation
-- Estimated total budget
-- Suggested duration
-- Travel time summary
-- Interest tags
-- CTA: View Trip
+### 6.7 Relationship summary
 
-## 4.5 Destination Page
+- auth.users -> profiles -> user_roles / agency_memberships -> agencies.
+- agencies -> agency_subscriptions -> subscription_plan_versions -> subscription_plans.
+- agencies -> packages -> package_revisions -> destinations / origins / interests / itinerary / prices / availability.
+- profiles -> trips -> days -> items; trips -> comparisons -> package revision.
+- package + agency + optional traveler -> inquiries; packages -> featured placements / events.
 
-Recommended sections:
-
-- Hero
-- Overview
-- Why visit
-- Best time
-- Getting there
-- Estimated budget
-- Things to do
-- Attractions
-- Suggested itinerary
-- Where to stay
-- Food guidance
-- Packing list
-- Important travel notes
-- Map
-- Packages, if available
-
-## 4.6 Trip Planner
-
-Trip planner should organize:
-
-- Trip summary
-- Day-by-day itinerary
-- Budget
-- Transport
-- Accommodation notes
-- Activities
-- Personal notes
-
-Users should be able to edit and reorder items later.
-
-## 4.7 Responsive Rules
-
-- Mobile-first
-- Touch targets >= 44px where practical
-- No horizontal overflow
-- Filters must work on small screens
-- Forms should use correct input types
-- Images optimized responsively
-- Navigation should remain simple
-
-## 4.8 Accessibility
-
-- Semantic HTML
-- Keyboard support
-- Visible focus states
-- Labels for inputs
-- Useful alt text
-- Sufficient contrast
-- Do not rely only on color to communicate state
-- Respect reduced-motion preference
-
----
-
-# 5. TECHNICAL ARCHITECTURE
-
-## 5.1 Preferred Stack
-
-- Next.js, current stable App Router
-- TypeScript
-- Tailwind CSS
-- PostgreSQL via Supabase
-- Supabase Auth
-- Supabase Storage
-- Zod for validation
-- React Hook Form where appropriate
-- Playwright for E2E
-- Vitest or suitable current unit-test solution
-- Vercel deployment
-
-Optional based on actual need:
-
-- Mapbox or Google Maps
-- PostHog and/or Google Analytics
-
-## 5.2 Architecture Principles
-
-- Start as a modular monolith
-- Prefer Server Components by default
-- Use Client Components only when interaction requires them
-- Keep business logic outside UI components
-- Validate all external/user input server-side
-- Do not expose privileged Supabase keys to the browser
-- Keep data access centralized
-- Avoid premature abstraction
-- Avoid unnecessary dependencies
-
-## 5.3 Suggested Source Structure
-
-```text
-src/
-├── app/
-│   ├── (public)/
-│   ├── (auth)/
-│   ├── dashboard/
-│   ├── admin/
-│   └── api/
-├── components/
-│   ├── ui/
-│   ├── layout/
-│   ├── destination/
-│   ├── trip/
-│   └── partner/
-├── features/
-│   ├── destinations/
-│   ├── recommendations/
-│   ├── trips/
-│   ├── auth/
-│   ├── agencies/
-│   └── inquiries/
-├── lib/
-│   ├── supabase/
-│   ├── validation/
-│   ├── auth/
-│   └── utils/
-├── types/
-└── tests/
-```
-
-Codex may refine this structure if justified in `DECISIONS.md`.
-
----
-
-# 6. DATABASE SPECIFICATION
-
-Use UUID primary keys unless a strong reason exists otherwise.
-
-## 6.1 Core Tables
-
-### profiles
-
-- id
-- display_name
-- avatar_url
-- role (`traveler`, `partner`, `admin`)
-- created_at
-- updated_at
-
-### destinations
-
-- id
-- name
-- slug
-- short_description
-- description
-- province
-- district
-- latitude
-- longitude
-- min_days
-- max_days
-- hero_image_url
-- published
-- last_verified_at
-- created_at
-- updated_at
-
-### interests
-
-- id
-- name
-- slug
-
-Examples: nature, adventure, culture, relaxation, food, trekking, wildlife, photography, family, couple.
-
-### destination_interests
-
-- destination_id
-- interest_id
-- weight
-
-### destination_seasons
-
-- id
-- destination_id
-- month
-- suitability
-- notes
-- last_verified_at
-
-### attractions
-
-- id
-- destination_id
-- name
-- description
-- latitude
-- longitude
-- estimated_cost_min
-- estimated_cost_max
-- currency
-- published
-
-### activities
-
-- id
-- destination_id
-- name
-- description
-- estimated_cost_min
-- estimated_cost_max
-- duration_minutes
-- published
-
-### transport_routes
-
-- id
-- origin_name
-- destination_id
-- transport_mode
-- duration_min_minutes
-- duration_max_minutes
-- cost_min
-- cost_max
-- currency
-- notes
-- last_verified_at
-
-### destination_costs
-
-- id
-- destination_id
-- accommodation_min_per_night
-- accommodation_max_per_night
-- food_min_per_person_day
-- food_max_per_person_day
-- misc_min_per_person_day
-- misc_max_per_person_day
-- currency
-- last_verified_at
-
-### trips
-
-- id
-- user_id
-- destination_id
-- title
-- origin
-- start_date nullable
-- end_date nullable
-- days
-- travelers
-- budget
-- currency
-- visibility (`private`, `unlisted`)
-- created_at
-- updated_at
-
-### trip_days
-
-- id
-- trip_id
-- day_number
-- title
-- notes
-
-### trip_items
-
-- id
-- trip_day_id
-- item_type
-- reference_id nullable
-- title
-- notes
-- start_time nullable
-- estimated_cost nullable
-- sort_order
-
-### favorites
-
-- user_id
-- destination_id
-- created_at
-
-### agencies
-
-- id
-- owner_user_id
-- name
-- slug
-- description
-- logo_url
-- website_url
-- phone
-- whatsapp
-- email
-- verification_status
-- published
-- created_at
-- updated_at
-
-### packages
-
-- id
-- agency_id
-- destination_id
-- title
-- slug
-- description
-- duration_days
-- price_from
-- currency
-- itinerary
-- inclusions
-- exclusions
-- website_url
-- published
-- created_at
-- updated_at
-
-### inquiries
-
-- id
-- package_id
-- agency_id
-- user_id nullable
-- name
-- email nullable
-- phone
-- travel_date nullable
-- travelers
-- message
-- status
-- created_at
-
-## 6.2 Database Rules
-
-- Unique slugs where required
-- Foreign keys enforced
-- Appropriate indexes for search/filter fields
-- RLS enabled on Supabase tables containing private/user-owned data
-- Travelers can modify only their own trips/favorites
-- Partners can modify only their own agency/packages and view authorized leads
-- Admin privileges must be server-verified
-
----
-
-# 7. API / SERVER ACTIONS
-
-Prefer server actions for application mutations where appropriate and route handlers for public/API-style endpoints.
-
-Potential interfaces:
-
-### Public
-
-- Get destinations
-- Get destination by slug
-- Search destinations
-- Get recommendation results
-- Calculate budget estimate
-
-### Traveler
-
-- Create trip
-- Update trip
-- Delete trip
-- Save favorite
-- Remove favorite
-- Share/unshare trip
-
-### Partner
-
-- Create/update agency profile
-- Create package
-- Update package
-- Delete/unpublish package
-- Get agency inquiries
-- Update inquiry status
-
-### Admin
-
-- CRUD destination data
-- Publish/unpublish content
-- Verify agency
-- Review stale data
-
-Every mutation requires:
-
-1. Authentication where applicable
-2. Authorization
-3. Zod validation
-4. Safe error handling
-5. Database operation
-6. Useful response/result
-
----
-
-# 8. SECURITY
-
-## 8.1 Authentication
-
-Use Supabase Auth.
-
-Never trust role information sent from the client.
-
-## 8.2 Authorization
-
-Enforce authorization server-side and through database RLS where appropriate.
-
-Roles:
-
-- traveler
-- partner
-- admin
-
-## 8.3 Input Security
-
-- Validate with Zod
-- Sanitize/render user-generated content safely
-- Validate URLs
-- Restrict uploads by MIME type and size
-- Generate safe storage paths
-- Do not expose internal errors to users
-
-## 8.4 Secrets
-
-- `.env.local` must not be committed
-- Provide `.env.example`
-- Service-role keys only on server
-- No secrets in client bundles
-
-## 8.5 Abuse Prevention
-
-For public inquiry/contact features:
-
-- Rate limiting where feasible
-- Spam prevention
-- Server validation
-- Logging of suspicious failures without collecting unnecessary sensitive information
-
-## 8.6 Privacy
-
-Collect only data needed for product functionality.
-
-Do not expose traveler contact information publicly.
-
----
-
-# 9. SEO AND AI SEARCH READINESS
-
-Ghumne should be technically strong for traditional and AI-assisted search discovery.
-
-Implement:
-
-- Semantic HTML
-- Metadata per destination
-- Canonical URLs
-- XML sitemap
-- robots.txt
-- Open Graph metadata
-- Structured data where genuinely applicable
-- Breadcrumbs
-- Fast pages
-- Crawlable destination content
-- Descriptive internal linking
-- Image alt text
-
-Destination pages should directly answer common traveler questions instead of hiding useful information behind generic marketing copy.
-
-Do not create fake FAQ content or spam schema.
-
----
-
-# 10. TEST PLAN
-
-## 10.1 Unit Tests
-
-Prioritize business logic:
-
-- Budget calculations
-- Recommendation scoring
-- Duration filtering
-- Season matching
-- Interest matching
-- Validation schemas
-- Utility functions
+### 6.8 Integrity, indexes and RLS
 
-## 10.2 Integration Tests
+Enforce same-tenant composite FKs, unique slugs/joins, ordered children, positive group/duration counts, month/coordinate bounds and ordered nonnegative ranges. Exclude ambiguous pricing scopes and overlapping subscriptions. Validate state transitions and ownership in transactional operations.
 
-Test:
+Index tenant/status, package/publication/revision, destination/interest/origin joins, durations/group ranges, price/availability dates, subscription periods, agency inquiry status/time and placement surface/period. Add search indexes from measured query plans, not a paid search dependency.
 
-- Authentication flows
-- Destination retrieval
-- Trip creation/update
-- Favorites
-- Partner package ownership
-- Inquiry creation
-- Authorization boundaries
+RLS and least-privilege grants cover every application table, including public catalog/lookup tables. Anon reads published destination and eligible agency/package projections only. Drafts, memberships, subscriptions, private contacts, raw events and audits are not public. Traveler policies cover owned profile/favorites/trips/children/comparisons/shares. Agency policies require active membership and field-sensitive mutation paths. Admin policies use trusted grants, never self-editable metadata.
 
-## 10.3 E2E Tests
+Public views/functions must preserve RLS/eligibility and expose safe columns. Review privileged function search paths and execution grants. No browser service-role access. Storage mirrors owner/tenant restrictions; approved public media is separate from private verification documents. Schema application requires RLS, constraints, grants and tests together, never temporarily unprotected tables.
 
-Playwright critical journeys:
+## 7. Server interfaces
 
-### Journey A
+Use Server Actions for mutations and Route Handlers for explicit endpoints/callbacks. Public services cover destination/agency/package reads, unified search, matching, group quotes, estimates and safe shared plans. Traveler services cover favorites, owned trip CRUD/reordering/sharing/comparison and inquiries. Agency services cover owned onboarding/profile/revisions, review requests, publishing, availability, subscription change requests, inquiry workflow and entitled analytics. Admin services cover destination data, review/approval/suspension, plan assignments, placements, freshness and audit inspection.
 
-Homepage -> Trip Finder -> Results -> Destination
+Each operation validates with Zod, verifies identity when applicable, role/tenant/field permissions, calls RLS-protected or narrow transactional data access and returns a safe typed result. Never trust client role, agency ID, quote, quota or entitlement. Recheck quote and eligibility at inquiry time; use retry/idempotency handling for duplicate submissions and publication races.
 
-### Journey B
+## 8. Security and privacy
 
-Sign up -> Save destination -> View saved destination
+Use Supabase Auth with verified server identity. Existing SSR factories are infrastructure only: wire refresh through `src/proxy.ts` before authenticated rendering, preserve cookies/cache headers, and add feature authorization/RLS. Keep `.env.local` uncommitted and privileged credentials out of browser configuration. Retain the existing modern publishable-key validation boundary.
 
-### Journey C
+Safely render content, validate URL protocols, restrict upload type/size/path and disallow executable HTML. Inquiry writes need durable rate limiting/spam controls, deduplication and contact consent. Do not log raw contacts/messages/tokens. Private notes/contacts never enter public shares or analytics. Retention periods, verification evidence and consent wording require policy approval before launch.
 
-Create trip -> Edit trip -> Save -> Share
+## 9. SEO and discovery
 
-### Journey D later
+Use crawlable destination/package content, semantic HTML, metadata, canonicals, sitemap, robots.txt, Open Graph, breadcrumbs, meaningful links, alt text and fast images. Agency-scoped package routes avoid slug collisions. Exclude private dashboards, drafts, internal preview and share tokens from indexing. Structured data describes real published content only; no invented reviews, availability, FAQs or bookable offers. Expired/unpublished direct routes must honor eligibility.
 
-Partner login -> Create package -> Publish -> Public package visible
+## 10. Verification plan
 
-### Journey E later
+**Unit:** Group/person/tier pricing, mandatory fees, integer money, day/night/occupancy units, missing data/expiry; origin/duration/interests/date/month matching; exact/alternative categories; estimate/scoring/explanation/validation. Fixtures are explicitly synthetic.
 
-Traveler -> Package -> Inquiry -> Partner receives inquiry
+**Database/integration:** Approved local/test project with anon, traveler A/B, agency A/B and admin. Test RLS, cross-tenant child/FK attacks, protected fields, draft leakage, expiry/downgrade, concurrent quotas, immutable revisions, overlapping price/subscription scopes, inquiry tenant derivation/privacy, share revocation and promotion allowance. Mocked clients do not prove RLS.
 
-## 10.4 Quality Gates
+**Critical E2E:** Search/Finder -> automatic relevant package -> group quote -> inquiry in owning inbox; approved subscribed agency -> draft/review/publish -> organic visibility without manual placement; unapproved/suspended/expired/over-limit agency blocked; no exact match -> alternative/self-plan -> save/compare; traveler save/edit/share/revoke; Sponsored label and expiry behavior.
 
-Before a task is complete:
+**Gates:** Formatting, lint, strict types, relevant tests and production build. Changed UI needs mobile/desktop, keyboard, loading/error/empty and accessibility checks. Real integration needs configured authorized test infrastructure. Passing tests does not approve migrations, services or deployment.
 
-- TypeScript passes
-- Lint passes
-- Relevant tests pass
-- No obvious responsive regression
-- No accessibility regression in changed UI
-- No unauthorized data access
+## 11. Implementation rules
 
----
+Read existing source and instructions first. Preserve working foundation, strict types and semantic UI. Separate domain logic/data access/presentation. Avoid duplicate utilities, broad rewrites, speculative dependencies, unrelated future work or undocumented any.
 
-# 11. CODING RULES FOR CODEX
+Draft migrations/RLS together. Never apply migrations, delete data or introduce paid services without approval. Keep fixtures apart from live data. The task list is not automatic deployment authorization.
 
-Codex MUST follow these rules.
+For each coding task: understand -> plan -> implement -> test -> review -> document -> focused commit when user scope/permissions permit. A feature is done when behavior, validation/access, tests, responsive/accessibility checks and completion record are complete. Documentation-only work does not authorize the next coding task.
 
-## 11.1 Before Coding
+## 12. Decisions and approval register
 
-1. Read this entire file.
-2. Inspect the existing repository before creating/replacing files.
-3. Do not destroy working functionality without justification.
-4. Understand the current task and dependencies.
-5. If architecture changes, document them.
+Product decisions DEC-001 through DEC-006 originated here. History and revision decisions are in `DECISIONS.md`.
 
-## 11.2 Implementation
+- DEC-001 superseded by DEC-015: replace secondary-marketplace sequencing with three core experiences and early marketplace foundations; retain consumer usefulness.
+- DEC-002 retained: agency websites may remain booking destinations.
+- DEC-003 retained: deterministic recommendations from structured data first.
+- DEC-004 expanded: no payment processing, automated billing or commissions; inquiry/contact conversion.
+- DEC-005 retained: modular monolith.
+- DEC-006 retained: structured travel data with verification/freshness.
 
-- TypeScript strictness should remain enabled.
-- Avoid `any` unless unavoidable and documented.
-- Keep components focused.
-- Separate domain/business logic from presentation.
-- Reuse existing components where appropriate.
-- Do not create duplicate utilities/components.
-- Prefer clear names over clever abstractions.
-- Do not install packages without a concrete need.
-- Do not implement future phases while completing an earlier task unless required as a dependency.
+Already directed by the user: core marketplace, multiple agency offers per destination, approved subscribed publishers, automatic matching, whole-group prices, tenant isolation, labeled sponsorship, no invented live data, no payments/commissions.
 
-## 11.3 UI
+| Pending decision     | Proposed starting point requiring approval before dependent live behavior                                                                                                          |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Commercial plans     | Pilot/monthly/annual configurable versions are provisional V1. Final names, fees, limits and pilot/grace terms remain open.                                                        |
+| Expiry/downgrade     | Preserve all data; immediate loss of eligibility and resolving excess listings are V1 assumptions. Final grace/renewal terms remain open.                                          |
+| Agency/review policy | Free registration, manual approval, moderation and 30-day reconfirmation are provisional V1. One owner is an assumption; evidence, appeals and transfer rules remain open.         |
+| Pricing/date scope   | NPR/person/group pricing is provisional V1; reviewed group-tier reductions and rejection of unsupported discounts are confirmed for preparation. Child/room/coupon/percentage-discount expansion remains open. |
+| Sponsorship          | Separate labeled placements preserving eligibility/relevance; define allowance/allocation/duration/commercial terms before activation.                                             |
+| Privacy/operations   | Minimal collection, configurable retention categories and disabled-by-default inquiries are prepared. Final periods, consent, evidence handling and cleanup execution remain open. |
+| Database application | Review final migrations/RLS, designate local/test project and obtain explicit permission before application; production separately approved.                                       |
 
-- Follow the design specification.
-- Mobile-first.
-- Do not redesign unrelated pages during a task.
-- Preserve visual consistency.
-- Include loading, empty, success, and error states where relevant.
+The owner's V1 provisional rules supersede earlier unresolved-policy wording: free registration/manual approval, moderated changes, 30-day reconfirmation, NPR/group pricing, inquiry/contact conversion, free pilot/monthly/annual configurable subscriptions, preserved data on expiry, labeled sponsorship and relevance-first organic results. See [V1_BUSINESS_POLICIES.md](V1_BUSINESS_POLICIES.md) for assumptions and final commercial decisions. No response is assumed to approve a final commercial proposal. This request stops after SQL/test preparation and reporting, before database execution.
 
-## 11.4 Database
+## 13. Revised implementation sequence
 
-- Never make destructive production migrations casually.
-- Migrations must be reviewable.
-- RLS policies must accompany user-owned/private tables.
-- Seed data must be clearly separated from production data.
+Keep historical IDs and completed work. Reorder unstarted tasks by dependency; moving a task never completes it. `[ ]` not started, `[~]` in progress, `[x]` complete, `[!]` blocked. This is the new order; `PROGRESS.md` records evidence/mapping.
 
-## 11.5 Git
+### Phase A - Preserve foundation and reconcile direction
 
-Recommended commit pattern:
+- [x] TASK-001 Original repository audit (historical baseline)
+- [x] TASK-002 Next.js App Router + TypeScript
+- [x] TASK-003 Tailwind/global styling
+- [x] TASK-004 Lint/format/type checks
+- [x] TASK-005 Environment template/validation
+- [x] TASK-006 Supabase clients (local scope; live verification pending)
+- [x] TASK-007 Folder architecture
+- [x] TASK-008 Design tokens
+- [x] TASK-009 Typography
+- [x] TASK-010 Buttons/links
+- [x] TASK-011 Form controls
+- [x] TASK-012 Cards/badges
+- [x] TASK-013 Responsive header/navigation
+- [x] TASK-014 Footer
+- [x] TASK-124 Audit current code and reconcile marketplace product/data/architecture/plan docs
+- [x] TASK-015 Verify feedback components, accessibility/reflow, tests and completion record
+- [x] TASK-125 Establish provisional V1 policies and record final commercial decisions still open
 
-`feat: implement destination directory`
+### Phase B - Reviewable database and tenant foundation
 
-`fix: correct trip budget calculation`
+- [x] TASK-016 Draft initial identity/schema migration; do not apply
+- [x] TASK-018 Draft destination/location/cost/media schema
+- [x] TASK-019 Draft traveler/trip/favorite/share/comparison schema
+- [x] TASK-087 Draft agency/membership schema and ownership policies (moved forward)
+- [x] TASK-126 Draft plan/version/subscription/change-request schema
+- [x] TASK-127 Draft package/revision/price/itinerary/availability schema
+- [x] TASK-128 Draft inquiry/promotion/event/audit schema
+- [x] TASK-020 Draft indexes, constraints and transactional tenant/state integrity
+- [x] TASK-017 Draft RLS/grants/protected fields alongside all schema drafts
+- [ ] TASK-021 Isolated development fixture/seed system
+- [ ] TASK-129 Review bundle, obtain permission and apply only to designated local/test database
+- [ ] TASK-130 Generate database types and run live database/RLS/constraint tests
+- [ ] TASK-022 Verified destination dataset with source/license evidence; no fake agency inventory
 
-`test: add recommendation engine coverage`
+016/018/019/087/126-128 are one design bundle with 017/020. Their completion marks **local authoring/static validation only**. No SQL is applied or live RLS certified. Owner review/application approval remains TASK-129, followed by generated types and actual database tests in TASK-130. Development seed/import tooling and real destination data remain unfinished.
 
-Do not combine unrelated work into one commit.
+### Phase C - Identity and access
 
-## 11.6 Task Completion Report
+- [ ] TASK-055 Supabase Auth and session-refresh proxy wiring
+- [ ] TASK-056 Sign-up
+- [ ] TASK-057 Login
+- [ ] TASK-058 Logout
+- [ ] TASK-059 Callback/reset
+- [ ] TASK-060 Traveler profile/controlled role grants
+- [ ] TASK-061 Server-protected routes
+- [ ] TASK-077 Admin authorization (moved ahead of operations)
+- [ ] TASK-131 Agency membership guards and cross-tenant access tests
 
-After each task, Codex should state:
+### Phase D - Content operations and marketplace supply
 
-- Task completed
-- Files created
-- Files modified
-- Tests run
-- Test result
-- Any migration/environment change
-- Any blocker or follow-up
-
-Then update task status before moving on.
-
----
-
-# 12. DECISIONS
-
-Maintain this section as development progresses.
-
-## DEC-001 - B2C First
-
-Ghumne is primarily a consumer travel discovery/planning platform. Agency marketplace functionality is secondary.
-
-## DEC-002 - Marketplace Does Not Replace Agency Websites
-
-Partners may use Ghumne as a discovery/lead channel and redirect travelers to their own website or contact channel.
-
-## DEC-003 - Deterministic Recommendations First
-
-V1 recommendations use structured data and transparent matching logic instead of relying entirely on generative AI.
-
-## DEC-004 - No Payment System in Initial MVP
-
-Initial partner conversion is inquiry/redirect based. Payments and booking settlement are deferred.
-
-## DEC-005 - Modular Monolith
-
-Use one Next.js application with a clear modular structure rather than microservices.
-
-## DEC-006 - Structured Travel Data
-
-Travel data is a first-class product asset and must include verification/freshness metadata.
-
-Implementation decisions beginning with DEC-007 are maintained in `DECISIONS.md`.
-
----
-
-# 13. IMPLEMENTATION TASKS
-
-Status values:
-
-- `[ ]` Not started
-- `[~]` In progress
-- `[x]` Complete
-- `[!]` Blocked
-
-Codex should work sequentially unless a dependency makes a different order necessary.
-
-## PHASE 1 - Repository Foundation
-
-- [x] TASK-001 Audit existing repository and document reusable code/assets
-- [x] TASK-002 Confirm/create Next.js App Router + TypeScript foundation
-- [x] TASK-003 Configure Tailwind and global styling foundation
-- [x] TASK-004 Configure linting/formatting/type checks
-- [x] TASK-005 Add `.env.example` and environment validation
-- [x] TASK-006 Configure Supabase clients correctly for server/browser
-- [x] TASK-007 Establish project folder architecture
-
-## PHASE 2 - Design System
-
-- [x] TASK-008 Define design tokens
-- [x] TASK-009 Implement typography
-- [x] TASK-010 Implement buttons and links
-- [x] TASK-011 Implement form controls
-- [x] TASK-012 Implement cards/badges
-- [x] TASK-013 Implement responsive header/navigation
-- [x] TASK-014 Implement footer
-- [~] TASK-015 Add standard loading/error/empty states
-
-## PHASE 3 - Database Foundation
-
-- [ ] TASK-016 Create initial schema migration
-- [ ] TASK-017 Configure RLS
-- [ ] TASK-018 Create destination-related tables
-- [ ] TASK-019 Create traveler/trip tables
-- [ ] TASK-020 Create initial indexes/constraints
-- [ ] TASK-021 Create seed system for development
-- [ ] TASK-022 Seed first high-quality destination dataset
-
-## PHASE 4 - Destination Experience
-
-- [ ] TASK-023 Build homepage shell
-- [ ] TASK-024 Build destination directory
-- [ ] TASK-025 Add destination search
-- [ ] TASK-026 Add destination filters
-- [ ] TASK-027 Build destination card
-- [ ] TASK-028 Build destination detail page
-- [ ] TASK-029 Add attractions section
-- [ ] TASK-030 Add activities section
-- [ ] TASK-031 Add transport section
-- [ ] TASK-032 Add budget section
-- [ ] TASK-033 Add season/best-time section
-- [ ] TASK-034 Add packing/travel-notes section
-- [ ] TASK-035 Add map integration or map placeholder abstraction
-
-## PHASE 5 - Smart Trip Finder
-
-- [ ] TASK-036 Build Trip Finder form
-- [ ] TASK-037 Validate Trip Finder input
-- [ ] TASK-038 Implement budget compatibility logic
-- [ ] TASK-039 Implement duration compatibility logic
-- [ ] TASK-040 Implement seasonal matching
-- [ ] TASK-041 Implement interest matching
-- [ ] TASK-042 Implement transport/origin matching
-- [ ] TASK-043 Create recommendation scoring service
-- [ ] TASK-044 Create recommendation explanation generator
-- [ ] TASK-045 Build recommendation results page
-- [ ] TASK-046 Add no-results/fallback experience
-- [ ] TASK-047 Add recommendation unit tests
-
-## PHASE 6 - Budget Engine
-
-- [ ] TASK-048 Implement transport cost calculation
-- [ ] TASK-049 Implement accommodation calculation
-- [ ] TASK-050 Implement food calculation
-- [ ] TASK-051 Implement activity/permit calculation
-- [ ] TASK-052 Add contingency/buffer logic
-- [ ] TASK-053 Display estimated range and assumptions
-- [ ] TASK-054 Add budget engine tests
-
-## PHASE 7 - Authentication
-
-- [ ] TASK-055 Configure Supabase Auth
-- [ ] TASK-056 Build sign-up
-- [ ] TASK-057 Build login
-- [ ] TASK-058 Build logout
-- [ ] TASK-059 Build auth callback/reset flows
-- [ ] TASK-060 Create traveler profile
-- [ ] TASK-061 Protect authenticated routes
-
-## PHASE 8 - Saved Content
-
-- [ ] TASK-062 Favorite destination
-- [ ] TASK-063 Remove favorite
-- [ ] TASK-064 Saved destinations page
-- [ ] TASK-065 Verify ownership/RLS tests
-
-## PHASE 9 - Trip Planner
-
-- [ ] TASK-066 Create trip from recommendation/destination
-- [ ] TASK-067 Create trip overview
-- [ ] TASK-068 Create day-by-day itinerary
-- [ ] TASK-069 Add/edit/remove itinerary item
-- [ ] TASK-070 Reorder itinerary items
-- [ ] TASK-071 Integrate budget estimate into trip
-- [ ] TASK-072 Save trip
-- [ ] TASK-073 Delete trip
-- [ ] TASK-074 Build My Trips dashboard
-- [ ] TASK-075 Create unlisted share link
-- [ ] TASK-076 Add trip planner E2E tests
-
-## PHASE 10 - Admin CMS
-
-- [ ] TASK-077 Implement admin authorization
 - [ ] TASK-078 Admin dashboard
 - [ ] TASK-079 Destination CRUD
 - [ ] TASK-080 Attraction CRUD
@@ -1262,134 +400,131 @@ Codex should work sequentially unless a dependency makes a different order neces
 - [ ] TASK-082 Transport CRUD
 - [ ] TASK-083 Cost data CRUD
 - [ ] TASK-084 Seasonality CRUD
-- [ ] TASK-085 Publish/unpublish workflow
-- [ ] TASK-086 Data freshness/stale-data view
+- [ ] TASK-085 Destination publishing
+- [ ] TASK-086 Freshness view
+- [ ] TASK-088 Agency onboarding
+- [ ] TASK-089 Owned company profile editor
+- [ ] TASK-132 Agency approval/suspension and audit history
+- [ ] TASK-133 Admin plan/subscription controls and agency entitlement/change-request view
+- [ ] TASK-091 Owned package draft/revision CRUD
+- [ ] TASK-092 Multi-destination/origin/interest associations and itinerary
+- [ ] TASK-134 Review/publication/quota/expiry transitions
+- [ ] TASK-135 Group-price rule/fee/quote service and tests
+- [ ] TASK-136 Availability management and date compatibility tests
 
-## PHASE 11 - Partner Foundation
+### Phase E - Public discovery, offers and inquiries
 
-Do this only after the consumer foundation is stable.
+- [ ] TASK-023 Homepage shell for three core experiences
+- [ ] TASK-027 Destination card before its directory consumer
+- [ ] TASK-024 Destination directory
+- [ ] TASK-025 Destination search
+- [ ] TASK-026 Destination filters
+- [ ] TASK-028 Destination details
+- [ ] TASK-029 Attractions
+- [ ] TASK-030 Activities
+- [ ] TASK-031 Transport
+- [ ] TASK-032 Budget section (computed totals depend on Phase F engine)
+- [ ] TASK-033 Season/best time
+- [ ] TASK-034 Packing/travel notes
+- [ ] TASK-035 Map/location abstraction without paid provisioning
+- [ ] TASK-090 Public approved agency profile
+- [ ] TASK-137 Eligible public package directory/detail and package comparison
+- [ ] TASK-094 External booking/website action
+- [ ] TASK-095 WhatsApp/contact action
+- [ ] TASK-096 Inquiry form
+- [ ] TASK-097 Inquiry validation/consent/deduplication/durable spam controls
+- [ ] TASK-098 Secure storage with quote snapshot and derived tenant
+- [ ] TASK-099 Agency inquiry inbox
+- [ ] TASK-100 Inquiry workflow/status
 
-- [ ] TASK-087 Create agency schema/policies
-- [ ] TASK-088 Partner onboarding
-- [ ] TASK-089 Agency profile editor
-- [ ] TASK-090 Agency public profile
-- [ ] TASK-091 Package CRUD
-- [ ] TASK-092 Associate packages with destinations
-- [ ] TASK-093 Display packages on destination pages
-- [ ] TASK-094 Add outbound website action
-- [ ] TASK-095 Add WhatsApp/contact action
+Inquiry form/storage/abuse controls release together. Public pages may show sourced estimate data before the engine; computed totals depend on Phase F. Search is not release-complete until automatic matching in Phase F.
 
-## PHASE 12 - Leads
+### Phase F - Budget engine and automatic matching
 
-- [ ] TASK-096 Build inquiry form
-- [ ] TASK-097 Add inquiry validation/spam controls
-- [ ] TASK-098 Store inquiries securely
-- [ ] TASK-099 Partner lead inbox
-- [ ] TASK-100 Lead status management
-- [ ] TASK-101 Basic lead analytics
+- [ ] TASK-048 Transport calculation with units/capacity
+- [ ] TASK-049 Accommodation/occupancy/nights
+- [ ] TASK-050 Food
+- [ ] TASK-051 Activities/permits
+- [ ] TASK-052 Contingency
+- [ ] TASK-053 Estimate ranges/assumptions
+- [ ] TASK-054 Budget regression tests
+- [ ] TASK-036 Finder form
+- [ ] TASK-037 Input normalization/validation including group budget
+- [ ] TASK-038 Budget compatibility using tested estimate/quote services
+- [ ] TASK-039 Duration matching
+- [ ] TASK-040 Season/month/date matching
+- [ ] TASK-041 Interest matching
+- [ ] TASK-042 Origin/transport matching
+- [ ] TASK-043 Destination scoring
+- [ ] TASK-044 Match explanations
+- [ ] TASK-138 Shared public package eligibility/matching/ranking
+- [ ] TASK-139 Unified destination/package search integration
+- [ ] TASK-093 Automatic packages on destination pages
+- [ ] TASK-045 Finder results with destinations and agency offers
+- [ ] TASK-046 Labeled alternatives/no-inventory/self-plan fallback
+- [ ] TASK-047 Matching regression unit tests
+- [ ] TASK-140 Admin featured placements/allowances and Sponsored labels
+- [ ] TASK-144 Public cache expiry/invalidation across marketplace state changes
 
-## PHASE 13 - SEO / Discovery
+Pricing/matching tests are implemented with their services; regression tasks do not defer correctness checks. No public search release before 138/139/093 integrate automatic matching.
 
-- [ ] TASK-102 Dynamic metadata
+### Phase G - Saved plans and plan/package comparison
+
+- [ ] TASK-062 Favorite destination
+- [ ] TASK-063 Remove favorite
+- [ ] TASK-064 Saved destinations
+- [ ] TASK-065 Ownership/RLS regression tests
+- [ ] TASK-066 Create trip from recommendation/destination
+- [ ] TASK-067 Trip overview
+- [ ] TASK-068 Day-by-day itinerary
+- [ ] TASK-069 Add/edit/remove item
+- [ ] TASK-070 Reorder items
+- [ ] TASK-071 Estimated budget integration
+- [ ] TASK-072 Save trip
+- [ ] TASK-073 Owned trip deletion feature (implementation does not authorize deleting current data)
+- [ ] TASK-074 My Trips
+- [ ] TASK-075 Revocable unlisted share
+- [ ] TASK-141 Self-plan/saved-trip comparison against current package quotes
+- [ ] TASK-076 Planner E2E
+
+### Phase H - Analytics and discoverability
+
+- [ ] TASK-109 Privacy-conscious first-party analytics, no paid provider assumed
+- [ ] TASK-110 Finder completion events
+- [ ] TASK-111 Recommendation/package selection events
+- [ ] TASK-112 Trip create/save/share events
+- [ ] TASK-113 Website/WhatsApp events
+- [ ] TASK-114 Inquiry events
+- [ ] TASK-101 Basic inquiry analytics after event dependencies
+- [ ] TASK-143 Plan-gated agency analytics and admin oversight with organic/sponsored attribution
+- [ ] TASK-102 Destination/agency/package metadata
 - [ ] TASK-103 Sitemap
 - [ ] TASK-104 robots.txt
 - [ ] TASK-105 Open Graph
 - [ ] TASK-106 Breadcrumbs
-- [ ] TASK-107 Appropriate structured data
+- [ ] TASK-107 Truthful structured data
 - [ ] TASK-108 Internal linking audit
 
-## PHASE 14 - Analytics
+### Phase I - Acceptance and approved launch
 
-- [ ] TASK-109 Add privacy-conscious analytics
-- [ ] TASK-110 Track Trip Finder completion
-- [ ] TASK-111 Track recommendation selection
-- [ ] TASK-112 Track trip creation/save/share
-- [ ] TASK-113 Track partner website/WhatsApp clicks
-- [ ] TASK-114 Track inquiries
-
-## PHASE 15 - QA / Launch
-
-- [ ] TASK-115 Full responsive audit
+- [ ] TASK-142 Cross-role marketplace integration/E2E acceptance
+- [ ] TASK-145 Verify real launch agencies/consent/terms/inventory, or explicitly use honest empty inventory
+- [ ] TASK-115 Responsive audit
 - [ ] TASK-116 Accessibility audit
-- [ ] TASK-117 Security/authorization audit
+- [ ] TASK-117 Security/authorization/privacy audit
 - [ ] TASK-118 Performance audit
 - [ ] TASK-119 SEO audit
-- [ ] TASK-120 E2E regression suite
-- [ ] TASK-121 Production environment verification
-- [ ] TASK-122 Deploy production release
+- [ ] TASK-120 Full E2E regression
+- [ ] TASK-121 Approved production environment/migration verification
+- [ ] TASK-122 Explicitly authorized deployment only
 - [ ] TASK-123 Post-deployment smoke test
 
----
+## 14. Current resumption instruction
 
-# 14. DEVELOPMENT WORKFLOW
+TASK-015 and the provisional V1 policy baseline are complete. The Phase B SQL/RLS/constraint bundle and automated static/deferred integration tests are authored. Stop before executing migrations, tests that write to a database or destructive changes. Next is owner review of DATABASE_IMPLEMENTATION_REVIEW.md and explicit authorization of a designated test target before TASK-129/130. Do not automatically apply SQL, generate pretend database types, provision services, build future marketplace UI or deploy.
 
-For every task:
+## 15. Future ideas and final product rule
 
-**UNDERSTAND -> PLAN -> IMPLEMENT -> TEST -> REVIEW -> DOCUMENT -> COMMIT**
+Later candidates: natural-language AI assistance, live road/weather integrations, verified reviews, staff/multi-owner workspaces, age/room pricing, localization, collaboration, expense splitting and offline itineraries. Booking/payment/commissions require separate approval.
 
-Do not blindly continue after a failed test.
-
-Fix the current task before starting unrelated work.
-
----
-
-# 15. DEFINITION OF DONE
-
-A feature is not complete just because it visually appears.
-
-It is done when:
-
-- Requirement is implemented
-- UI works on mobile and desktop
-- Loading/error/empty states are handled
-- Input is validated
-- Authorization is correct
-- Relevant tests pass
-- No TypeScript/lint errors are introduced
-- Accessibility basics are respected
-- Documentation/task state is updated
-
----
-
-# 16. CODEX START INSTRUCTION
-
-When this file is first given to Codex, use the following operating instruction:
-
-> Read `GHUMNE_MASTER_SPEC.md` completely before making any code changes. Then inspect the entire existing repository and compare it against the specification. Do not immediately rewrite the project. First complete TASK-001 by identifying what can be reused, what conflicts with the new product direction, technical debt, current dependencies, database/auth configuration, existing routes/components, and missing requirements. Produce a concise repository audit and implementation plan. After TASK-001, proceed sequentially through TASK-002 onward. For every task, follow UNDERSTAND -> PLAN -> IMPLEMENT -> TEST -> REVIEW -> DOCUMENT. Do not skip tests, do not implement unrelated future features, do not make unnecessary visual changes, and do not remove working code without a documented reason. Update task status as work progresses and report files changed and tests run after each task.
-
----
-
-# 17. FUTURE IDEAS - NOT CURRENT REQUIREMENTS
-
-Keep these out of the MVP unless explicitly promoted into the task list:
-
-- Natural-language AI trip planner
-- Personalized recommendations from behavior
-- Real-time road/weather integrations
-- Hotel booking
-- Transport booking
-- Full tour booking/payment
-- Reviews and ratings
-- Native Android/iOS apps
-- Collaborative group trip planning
-- Expense splitting
-- Offline itinerary
-- Nepali-language interface
-- International traveler localization
-- Partner subscriptions
-- Featured/sponsored packages
-- Commission marketplace
-
----
-
-# 18. FINAL PRODUCT RULE
-
-Whenever there is uncertainty about a feature, ask:
-
-> **Does this make it easier for a traveler to decide where to go or plan the trip?**
-
-If no, it is probably not an MVP priority.
-
-The long-term product loop is:
-
-**Better destination data -> better recommendations -> more travelers -> more saved/planned trips -> more partner interest -> more useful fulfillment options -> better Ghumne experience.**
+Ask whether a feature helps a traveler discover a destination, compare a trustworthy offer or plan a trip, and whether agencies/admin can maintain accurate supporting data. Better destination/agency data -> useful matching/comparison -> travelers/plans -> qualified inquiries -> healthier agency supply -> better discovery.

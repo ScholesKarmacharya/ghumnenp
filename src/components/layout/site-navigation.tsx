@@ -38,7 +38,7 @@ function ResponsiveNavigation({
     function onViewportChange(event: MediaQueryListEvent) {
       if (event.matches) setOpen(false);
     }
-    const desktop = window.matchMedia("(min-width: 48rem)");
+    const desktop = window.matchMedia("(min-width: 64rem)");
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("pointerdown", onPointerDown);
     desktop.addEventListener("change", onViewportChange);
@@ -51,13 +51,18 @@ function ResponsiveNavigation({
 
   function links() {
     return items.map(({ href, label }) => (
-      <li key={href}>
+      <li
+        key={href}
+        className={
+          href === "/" || href === "/#for-agencies" ? "lg:hidden" : undefined
+        }
+      >
         <Link
           href={href}
           onClick={() => setOpen(false)}
           aria-current={pathname === href ? "page" : undefined}
           className={cn(
-            "flex min-h-control items-center rounded-control px-4 py-2 font-medium hover:bg-surface-muted hover:text-primary",
+            "flex min-h-control items-center rounded px-2 py-2 text-sm font-medium hover:bg-home-inset hover:text-primary",
             pathname === href
               ? "bg-surface-muted text-primary"
               : "text-foreground",
@@ -71,12 +76,12 @@ function ResponsiveNavigation({
 
   return (
     <>
-      <nav aria-label="Primary" className="hidden md:block">
+      <nav aria-label="Primary" className="hidden min-w-0 lg:block">
         <ul className="flex flex-wrap gap-2">{links()}</ul>
       </nav>
       <div
         ref={mobile}
-        className="md:hidden"
+        className="lg:hidden"
         onBlur={(event) => {
           if (!event.currentTarget.contains(event.relatedTarget))
             setOpen(false);
